@@ -19,9 +19,11 @@ struct studentas
 void skaitymas (studentas A[], int & n);
 void spausdinti (const studentas A[], int n);
 void skaiciavimas (studentas A[], int n);
+void generavimasPazymiu (studentas A[], int n);
+void generavimasStudentu (studentas A[], int n);
 
 int main (){
-    
+
     studentas A [MAX_STUDENTS];
     int n;
     skaitymas (A, n);
@@ -75,5 +77,27 @@ void spausdinti (const studentas A[], int n)
     cout << "----------------------------------------------------" << endl;
     for (int i = 0; i < n; i++){
      cout << left << setw(10) << A[i].vardas << setw(15) << A[i].pavarde << fixed << setprecision(2) << setw(15) << A[i].balas << setw(10) << A[i].mediana << endl;
+    }
+}
+void generavimasPazymiu (studentas A[], int n)
+{
+    srand(time(0));
+    for (int i = 0; i < n; i++){
+        for (int j = 0; j < A[j].nd_count; j++){
+            A[i].nd[j] = rand() % 11;
+        }
+        A[i].egz = rand() % 11;
+    }
+}
+void generavimasStudentu (studentas A[], int n)
+{
+    srand(time(0));
+
+    string vardai[] = {"Rokas", "Mantas" "Pijus", "Laurynas", "Ignas", "Gabriele", "Ugne", "Kamile", "Rugile", "Roberta"};
+    string pavardes [] = {"Gilys", "Globys", "Bogusis", "Dulskys", "Maliauka", "Skirmantaite", "Mockute", "Zobelaite", "Macaite", "Jurpalyte"};
+
+    for (int i = 0; i < n; i++){
+        A[i].vardas = vardai[rand() % 10];
+        A[i].pavarde = pavardes [rand () % 10];
     }
 }
