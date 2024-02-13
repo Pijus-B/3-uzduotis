@@ -23,6 +23,7 @@ void spausdinti (const studentas A[], int n);
 void skaiciavimas (studentas A[], int n);
 void generavimasPazymiu (studentas A[], int n);
 void generavimasStudentu (studentas A[], int n);
+bool isValidName(const string &name);
 
 int main (){
 
@@ -39,28 +40,63 @@ int main (){
 
         switch (pasirinkimas) {
             case 1:
+            {
                 skaitymas (A, n);
                 skaiciavimas (A, n);
                 spausdinti (A, n);
                 break;
+            }
             case 2:
+            {
+                 int n;
                  cout << "Iveskite zmoniu skaiciu" << endl;
-                 cin >> n;
+                while (!(cin >> n) || cin.peek() != '\n')
+                 {
+                      cout << "Netinkamas ivesties formatas. Iveskite skaiciu." << endl;
+                      cin.clear();
+                      cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                 }
+    
+                for (int i = 0; i < n; ++i)
+                {
+                bool valid_names;
+                do
+                {
+                    cout << "Iveskite savo varda" << endl;
+                    cin >> A[i].vardas;
+                    cout << "Iveskite savo pavarde" << endl;
+                    cin >> A[i].pavarde;
+
+                    valid_names = isValidName(A[i].vardas) && isValidName(A[i].pavarde);
+
+                    if (!valid_names)
+                    {
+                        cout << "Netinkami vardai. Bandykite is naujo." << endl;
+                    }
+                } while (!valid_names);
+            }
+
                 generavimasPazymiu (A, n);
                 skaiciavimas (A, n);
                 spausdinti (A, n);
                 break;
+            }
             case 3:
+            {
+                n = rand() % (MAX_STUDENTS + 1);
                 generavimasStudentu (A, n);
                 generavimasPazymiu (A, n);
                 skaiciavimas (A, n);
                 spausdinti (A, n);
                 break;
+            }
             case 4:
+            {
                 cout << "Programos pabaiga" << endl;
                 return 0;
             default:
                 cout << "Neteisingas pasirinkimas. Bandykite dar karta" << endl;
+            }
         }
     }
 return 0;
@@ -69,15 +105,31 @@ void skaitymas (studentas A [], int & n)
 {  
      cout << "Iveskite zmoniu kieki " << endl;
      cin >> n;
-     for (int i = 0; i < n; i++){
-        cout << "Iveskite savo varda" << endl;
-        cin >> A[i].vardas;
-        cout << "Iveskite savo pavarde " << endl;
-        cin >> A[i].pavarde;
+     for (int i = 0; i < n; i++)
+    {
+        bool valid_vardas = false;
+        bool valid_pavarde = false;
+        while (!valid_vardas || !valid_pavarde)
+        {
+            cout << "Iveskite savo varda" << endl;
+            cin >> A[i].vardas;
+            valid_vardas = isValidName(A[i].vardas);
+
+            cout << "Iveskite savo pavarde " << endl;
+            cin >> A[i].pavarde;
+            valid_pavarde = isValidName(A[i].pavarde);
+
+            if (!valid_vardas || !valid_pavarde)
+            {
+                cout << "Netinkami vardai. Bandykite is naujo." << endl;
+            }
+        }
+
         cout << "Iveskite namu darbu tarpinius rezultatus (baigti ivesdami -1)" << endl;
         A[i].nd_count = 0;
         int paz;
-        while (cin >> paz && paz != -1){
+        while (cin >> paz && paz != -1)
+        {
             A[i].nd[A[i].nd_count++] = paz;
         }
         cout << "Iveskite egzamino rezultatus" << endl;
@@ -153,4 +205,15 @@ void generavimasStudentu (studentas A[], int n)
             A[i].nd[j] = rand() % 11;
         }
     }
+}
+bool isValidName(const string &name)
+{
+    for (char c : name)
+    {
+        if (!isalpha(c) && c != ' ')
+        {
+            return false;
+        }
+    }
+    return true;
 }
