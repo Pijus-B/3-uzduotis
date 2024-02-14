@@ -3,14 +3,14 @@
 
 using namespace std;
 
-const int MAX_ND_SIZE = 500;
 const int MAX_STUDENTS = 500;
+
 
 struct studentas
 {
     string vardas;
     string pavarde;
-     int nd [MAX_ND_SIZE];
+     int * nd;
      int nd_count;
      int egz;
      double balas;
@@ -24,11 +24,12 @@ void skaiciavimas (studentas A[], int n);
 void generavimasPazymiu (studentas A[], int n);
 void generavimasStudentu (studentas A[], int n);
 bool isValidName(const string &name);
+int *naujas(int size);
+int *kopijavimas (int *pirmas, int *antras, int size, int reiksme);
 
 int main (){
 
-    studentas A [MAX_STUDENTS];
-    int n; int pasirinkimas;
+    int n; int pasirinkimas; studentas *A;
     while (true){
 
         cout << "Pasirinkite norima veiksma: " << endl;
@@ -56,7 +57,7 @@ int main (){
                       cin.clear();
                       cin.ignore(numeric_limits<streamsize>::max(), '\n');
                  }
-    
+                 A = new studentas[n];
                 for (int i = 0; i < n; ++i)
                 {
                 bool valid_names;
@@ -84,6 +85,7 @@ int main (){
             case 3:
             {
                 n = rand() % (MAX_STUDENTS + 1);
+                A = new studentas[n];
                 generavimasStudentu (A, n);
                 generavimasPazymiu (A, n);
                 skaiciavimas (A, n);
@@ -101,10 +103,30 @@ int main (){
     }
 return 0;
 }
+int *naujas(int size)
+{
+    return new int[size];
+}
+
+int *kopijavimas(int *pirmas, int *antras, int size, int reiksme)
+{
+    for (int i = 0; i < size; i++)
+    {
+        antras[i] = pirmas[i];
+    }
+    antras[size] = reiksme;
+    return antras;
+}
 void skaitymas (studentas A [], int & n)
 {  
      cout << "Iveskite zmoniu kieki " << endl;
      cin >> n;
+     while (!(cin >> n) || cin.peek() != '\n')
+     {
+        cout << "Netinkamas ivesties formatas. Iveskite skaiciu." << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
      for (int i = 0; i < n; i++)
     {
         bool valid_vardas = false;
@@ -126,16 +148,28 @@ void skaitymas (studentas A [], int & n)
         }
 
         cout << "Iveskite namu darbu tarpinius rezultatus (baigti ivesdami -1)" << endl;
+        A[i].nd = nullptr;
         A[i].nd_count = 0;
         int paz;
         while (cin >> paz && paz != -1)
         {
-            A[i].nd[A[i].nd_count++] = paz;
+            int *new_nd = naujas(A[i].nd_count + 1);
+        
+        if (A[i].nd != nullptr)
+            {
+                kopijavimas(A[i].nd, new_nd, A[i].nd_count, paz);
+                delete[] A[i].nd;
+            }
+            else
+            {
+                new_nd[0] = paz;
+            }
+            A[i].nd = new_nd;
         }
         cout << "Iveskite egzamino rezultatus" << endl;
         cin >> A[i].egz;
+      }
     }
-}
 void skaiciavimas (studentas A[], int n)
 { 
     for (int i = 0; i < n; i++)
@@ -180,7 +214,8 @@ void generavimasPazymiu (studentas A[], int n)
 {
     srand(time(0));
     for (int i = 0; i < n; i++){
-        A[i].nd_count = rand() % (MAX_ND_SIZE + 1);
+        A[i].nd_count = rand() % 11;
+        A[i].nd = naujas(A[i].nd_count);
         for (int j = 0; j < A[i].nd_count; j++){
             A[i].nd[j] = rand() % 11;
         }
@@ -199,7 +234,8 @@ void generavimasStudentu (studentas A[], int n)
     {
         A[i].vardas = vardai[rand() % 10];
         A[i].pavarde = pavardes[rand() % 10];
-        A[i].nd_count = rand() % (MAX_ND_SIZE + 1);
+        A[i].nd_count = rand() % 11;
+        A[i].nd = naujas(A[i].nd_count);
         for (int j = 0; j < A[i].nd_count; j++)
         {
             A[i].nd[j] = rand() % 11;

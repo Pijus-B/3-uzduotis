@@ -3,7 +3,7 @@ using namespace std;
 
 const int MAX_ND_SIZE = 500;
 const int MAX_STUDENTS = 500;
-
+//a
 struct studentas
 {
     string vardas;
@@ -39,6 +39,7 @@ int main (){
         switch (pasirinkimas){
             case 1:
             {
+                A.clear();
                 skaitymas (A);
                 skaiciavimas (A);
                 spausdinti (A);
@@ -49,6 +50,7 @@ int main (){
                 int n2;
                 cout << "Iveskite zmoniu skaiciu" << endl;
                 cin >> n2;
+                A.clear();
                 for (int i = 0; i < n2; i++)
             {
                 studentas student;
