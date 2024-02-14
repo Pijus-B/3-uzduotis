@@ -3,7 +3,7 @@ using namespace std;
 
 const int MAX_ND_SIZE = 500;
 const int MAX_STUDENTS = 500;
-
+//a
 struct studentas
 {
     string vardas;
