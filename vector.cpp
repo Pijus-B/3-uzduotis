@@ -188,7 +188,7 @@ void skaiciavimas (vector <studentas> & A)
 }
 void spausdinti (const vector <studentas> & A)
 {
-    cout << left << setw(10) << "Pavarde " << setw(15) << "Vardas " << setw(15) << "Galutinis (Vid.) " << " " << "/ Galutinis (Med.)" << endl;
+    cout << left << setw(10) << "Pavarde " << setw(15) << "Vardas " << setw(15) << "Galutinis (Vid.) " << " " << " / Galutinis (Med.)" << endl;
     cout << "----------------------------------------------------" << endl;
     for (int i = 0; i < A.size(); i++){
     cout << left << setw(10) << A[i].vardas << setw(15) << A[i].pavarde << fixed << setprecision(2) << setw(15) << A[i].balas << setw(10) << A[i].mediana << endl;
@@ -197,10 +197,10 @@ void spausdinti (const vector <studentas> & A)
 void spausdintiTeksto(const vector <studentas> & A)
 {
     ofstream fr ("kursiokai.txt");
-    fr << left << setw(10) << "Pavarde " << setw(15) << "Vardas " << setw(15) << "Galutinis (Vid.) " << " " << "/ Galutinis (Med.)" << endl;
-    fr << "----------------------------------------------------" << endl;
+    fr << left << setw(20) << "Pavarde " << setw(25) << "Vardas " << setw(20) << "Galutinis (Vid.) " << "/ " << " Galutinis (Med.)" << endl;
+    fr << "-------------------------------------------------------------------------------------" << endl;
     for (int i = 0; i < A.size(); i++){
-     fr << left << setw(10) << A[i].vardas << setw(15) << A[i].pavarde << fixed << setprecision(2) << setw(15) << A[i].balas << setw(10) << A[i].mediana << endl;
+     fr << left << setw(20) << A[i].vardas << setw(25) << A[i].pavarde << fixed << setprecision(2) << setw(25) << A[i].balas << setw(20) << A[i].mediana << endl;
     }
 }
 void generavimasPazymiu(vector<studentas>& A, int n2) {
