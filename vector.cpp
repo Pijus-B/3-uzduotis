@@ -18,6 +18,7 @@ struct studentas
 void skaitymas (vector <studentas> & A, int n);
 void skaitymasTeksto (vector <studentas> & A);
 void spausdinti (const vector <studentas> & A);
+void spausdintiTeksto(const vector <studentas> & A);
 void skaiciavimas (vector <studentas> & A);
 void generavimasPazymiu (vector <studentas> & A, int n);
 void generavimasPazymiuCase2 (vector <studentas> & A);
@@ -26,7 +27,7 @@ bool isValidName(const string &name);
 
 int main (){
 
-    ifstream fd ("studentai10000.txt");
+    ifstream fd ("studentai10000.txt"); 
     ofstream fr ("kursiokai.txt");
 
     vector <studentas> A;
@@ -50,9 +51,10 @@ int main (){
             }
             case 2:
             {
+                A.clear();
                 skaitymasTeksto (A);
                 skaiciavimas (A);
-                spausdinti (A);
+                spausdintiTeksto (A);
                 break;
             }
             case 3:
@@ -185,6 +187,14 @@ void skaiciavimas (vector <studentas> & A)
     }
 }
 void spausdinti (const vector <studentas> & A)
+{
+    cout << left << setw(10) << "Pavarde " << setw(15) << "Vardas " << setw(15) << "Galutinis (Vid.) " << " " << "/ Galutinis (Med.)" << endl;
+    cout << "----------------------------------------------------" << endl;
+    for (int i = 0; i < A.size(); i++){
+    cout << left << setw(10) << A[i].vardas << setw(15) << A[i].pavarde << fixed << setprecision(2) << setw(15) << A[i].balas << setw(10) << A[i].mediana << endl;
+    }
+}
+void spausdintiTeksto(const vector <studentas> & A)
 {
     ofstream fr ("kursiokai.txt");
     fr << left << setw(10) << "Pavarde " << setw(15) << "Vardas " << setw(15) << "Galutinis (Vid.) " << " " << "/ Galutinis (Med.)" << endl;
