@@ -3,7 +3,7 @@ using namespace std;
 
 const int MAX_ND_SIZE = 500;
 const int MAX_STUDENTS = 500;
-//a
+
 struct studentas
 {
     string vardas;
@@ -14,7 +14,6 @@ struct studentas
      double vid;
      double mediana;
 };
-
 
 void skaitymas (vector <studentas> & A);
 void spausdinti (const vector <studentas> & A);
@@ -138,11 +137,14 @@ void skaiciavimas (vector <studentas> & A)
         int size = student.nd.size();
         if (size % 2 == 0)
         {
-            student.mediana = (student.nd[size / 2 - 1] + student.nd[size / 2]) / 2.0;
+            int indeksas1 = size / 2 - 1;
+            int indeksas2 = size / 2;
+            student.mediana = (student.nd.at(indeksas1) + student.nd.at(indeksas2)) / 2.0;
         }
         else
         {
-            student.mediana = student.nd[size / 2];
+            int indeksas2 = size / 2;
+            student.mediana = student.nd.at(indeksas2);
         }
         double sum = accumulate(student.nd.begin(), student.nd.end(), 0);
         if (size > 0)
@@ -166,7 +168,8 @@ void spausdinti (const vector <studentas> & A)
      cout << left << setw(10) << student.vardas << setw(15) << student.pavarde << fixed << setprecision(2) << setw(15) << student.balas << setw(10) << student.mediana << endl;
     }
 }
-void generavimasPazymiu(vector<studentas>& A, int n2) {
+void generavimasPazymiu(vector<studentas>& A, int n2) 
+{
     srand(time(0));
     A.clear();
     for (int i = 0; i < n2; i++)
@@ -184,26 +187,25 @@ void generavimasPazymiu(vector<studentas>& A, int n2) {
 void generavimasPazymiuCase2 (vector <studentas> & A)
 {
     srand(time(0));
-    for (int i = 0; i < A.size(); i++){
+    for (auto& student : A){
         int nd_count = rand() % (MAX_ND_SIZE + 1);
         for (int j = 0; j < nd_count; j++){
-            A[i].nd.push_back(rand() % 11);
+            student.nd.push_back(rand() % 11);
         }
-        A[i].egz = rand() % 11;
+        student.egz = rand() % 11;
     }
 }
-void generavimasStudentu(vector<studentas>& A, int n) {
-   
+void generavimasStudentu(vector<studentas>& A, int n) 
+{
     srand(time(0));
 
     string vardai[] = {"Rokas", "Mantas", "Pijus", "Laurynas", "Ignas", "Gabriele", "Ugne", "Kamile", "Rugile", "Roberta"};
     string pavardes[] = {"Gilys", "Globys", "Bogusis", "Dulskis", "Maliauka", "Skirmantaite", "Mockute", "Zobelaite", "Macaite", "Jurpalyte"};
 
-    for (int i = 0; i < A.size(); i++)
+    for (auto& student : A)
     {
-        studentas student;
-       A[i].vardas = vardai[rand() % 10];
-       A[i].pavarde = pavardes[rand() % 10];
+       student.vardas = vardai[rand() % 10];
+       student.pavarde = pavardes[rand() % 10];
     }
 }
 bool isValidName(const string &name)

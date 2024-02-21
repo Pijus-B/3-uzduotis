@@ -148,14 +148,14 @@ void skaitymas (studentas A [], int & n)
         }
 
         cout << "Iveskite namu darbu tarpinius rezultatus (baigti ivesdami -1)" << endl;
-        A[i].nd = nullptr;
+        A[i].nd = new int [0];
         A[i].nd_count = 0;
         int paz;
         while (cin >> paz && paz != -1)
         {
             int *new_nd = naujas(A[i].nd_count + 1);
         
-        if (A[i].nd != nullptr)
+        if (A[i].nd != NULL)
             {
                 kopijavimas(A[i].nd, new_nd, A[i].nd_count, paz);
                 delete[] A[i].nd;
