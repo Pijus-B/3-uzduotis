@@ -17,6 +17,10 @@ struct studentas
 
 void skaitymas (vector <studentas> & A, int n);
 void skaitymasTeksto (vector <studentas> & A);
+bool pagalVarda(const studentas & A, const studentas &B);
+bool pagalPavarde(const studentas &A, const studentas &B);
+bool pagalVidurki(const studentas &A, const studentas &B);
+bool pagalMediana(const studentas &A, const studentas &B);
 void spausdinti (const vector <studentas> & A);
 void spausdintiTeksto(const vector <studentas> & A);
 void skaiciavimas (vector <studentas> & A);
@@ -38,7 +42,8 @@ int main (){
         cout << "2. Nuskaityti duomenis is failo" << endl;
         cout << "3. Generuoti pazymius" << endl;
         cout << "4. Generuoti studentu vardus ir pavardes" << endl;
-        cout << "5. Baigti programa" << endl;
+        cout << "5. Rusiuoti pagal pasirinktus parametrus" << endl;
+        cout << "6. Baigti programa" << endl;
         cin >> pasirinkimas;
 
         switch (pasirinkimas){
@@ -97,7 +102,36 @@ int main (){
             }
             case 5:
             {
-                cout << "Programos pabaiga" << endl;
+                cout << "Pasirinkite rusiavimo kriterijus: " << endl;
+                cout << "1. Pagal varda" << endl;
+                cout << "2. Pagal pavarde" << endl;
+                cout << "3. Pagal galutini (vidurkis)" << endl;
+                cout << "4. Pagal galutini (mediana)" << endl;
+                int rusiavimas;
+                cin >> rusiavimas;
+
+                switch (rusiavimas) {
+                    case 1:
+                        sort(A.begin(), A.end(), pagalVarda);
+                        break;
+                    case 2:
+                        sort(A.begin(), A.end(), pagalPavarde);
+                        break;
+                    case 3:
+                        sort(A.begin(), A.end(), pagalVidurki);
+                        break;
+                    case 4:
+                        sort(A.begin(), A.end(), pagalMediana);
+                        break;
+            }
+            spausdinti (A);
+            spausdintiTeksto(A);
+            break;
+                
+            }
+            case 6:
+            {
+               cout << "Programos pabaiga" << endl;
                 return 0;
             }
             default:
@@ -108,10 +142,10 @@ int main (){
         }
     }
 
-return 0;
+    return 0;
 }
 void skaitymas (vector <studentas> & A, int n)
-{  
+{ 
     cin >> n;
       for (int i = 0; i < n; i++)
     {
@@ -144,6 +178,9 @@ void skaitymasTeksto (vector <studentas> & A)
     ifstream fd ("studentai10000.txt");
     string eil;
     getline(fd, eil);
+
+    clock_t start = clock();
+
     while (getline(fd, eil)){
         stringstream ss(eil);
         studentas student;
@@ -155,43 +192,64 @@ void skaitymasTeksto (vector <studentas> & A)
         ss >> student.egz;
         A.push_back(student);
     }
+    clock_t end = clock();
+    double elapsed_secs = double(end - start) / CLOCKS_PER_SEC;
+    cout << "Laikas, per kuri nuskaite teksta: " << elapsed_secs << " sekundes" << endl;
     fd.close();
 
 }
 void skaiciavimas (vector <studentas> & A)
 { 
-   for (int i = 0; i < A.size(); i++ )
+   for (auto& student : A)
     {
-        sort(A[i].nd.begin(), A[i].nd.end());
-        int size = A[i].nd.size();
+        sort(student.nd.begin(), student.nd.end());
+        int size = student.nd.size();
         if (size % 2 == 0)
         {
-            A[i].mediana = (A[i].nd[size / 2 - 1] + A[i].nd[size / 2]) / 2.0;
+            int indeksas1 = size / 2 - 1;
+            int indeksas2 = size / 2;
+            student.mediana = (student.nd.at(indeksas1) + student.nd.at(indeksas2)) / 2.0;
         }
         else
         {
-            A[i].mediana = A[i].nd[size / 2];
+            int indeksas2 = size / 2;
+            student.mediana = student.nd.at(indeksas2);
         }
-        double sum = accumulate(A[i].nd.begin(), A[i].nd.end(), 0);
+        double sum = accumulate(student.nd.begin(), student.nd.end(), 0);
         if (size > 0)
         {
-            A[i].vid = sum / size;
-            A[i].balas = 0.4 * A[i].vid + 0.6 * A[i].egz;
+            student.vid = sum / size;
+            student.balas = 0.4 * student.vid + 0.6 * student.egz;
         }
         else
         {
-            A[i].vid = A[i].egz;
-            A[i].balas = A[i].vid;
-            A[i].mediana = A[i].vid;
+            student.vid = student.egz;
+            student.balas = student.vid;
+            student.mediana = student.vid;
         }
     }
+}
+bool pagalVarda(const studentas & A, const studentas & B) {
+    return A.vardas < B.vardas;
+}
+
+bool pagalPavarde(const studentas & A, const studentas & B) {
+    return A.pavarde < B.pavarde;
+}
+
+bool pagalVidurki(const studentas & A, const studentas & B) {
+    return A.balas < B.balas;
+}
+
+bool pagalMediana(const studentas & A, const studentas & B) {
+    return A.mediana < B.mediana;
 }
 void spausdinti (const vector <studentas> & A)
 {
     cout << left << setw(10) << "Pavarde " << setw(15) << "Vardas " << setw(15) << "Galutinis (Vid.) " << " " << " / Galutinis (Med.)" << endl;
     cout << "----------------------------------------------------" << endl;
-    for (int i = 0; i < A.size(); i++){
-    cout << left << setw(10) << A[i].vardas << setw(15) << A[i].pavarde << fixed << setprecision(2) << setw(15) << A[i].balas << setw(10) << A[i].mediana << endl;
+    for (const auto& student : A){
+    cout << left << setw(10) << student.vardas << setw(15) << student.pavarde << fixed << setprecision(2) << setw(15) << student.balas << setw(10) << student.mediana << endl;
     }
 }
 void spausdintiTeksto(const vector <studentas> & A)
@@ -199,9 +257,10 @@ void spausdintiTeksto(const vector <studentas> & A)
     ofstream fr ("kursiokai.txt");
     fr << left << setw(20) << "Pavarde " << setw(25) << "Vardas " << setw(20) << "Galutinis (Vid.) " << "/ " << " Galutinis (Med.)" << endl;
     fr << "-------------------------------------------------------------------------------------" << endl;
-    for (int i = 0; i < A.size(); i++){
-     fr << left << setw(20) << A[i].vardas << setw(25) << A[i].pavarde << fixed << setprecision(2) << setw(25) << A[i].balas << setw(20) << A[i].mediana << endl;
+    for (const auto& student : A){
+     fr << left << setw(20) << student.vardas << setw(25) << student.pavarde << fixed << setprecision(2) << setw(25) << student.balas << setw(20) << student.mediana << endl;
     }
+    fr.close();
 }
 void generavimasPazymiu(vector<studentas>& A, int n2) {
     srand(time(0));
@@ -221,12 +280,12 @@ void generavimasPazymiu(vector<studentas>& A, int n2) {
 void generavimasPazymiuCase2 (vector <studentas> & A)
 {
     srand(time(0));
-    for (int i = 0; i < A.size(); i++){
+    for (auto& student : A){
         int nd_count = rand() % (MAX_ND_SIZE + 1);
         for (int j = 0; j < nd_count; j++){
-            A[i].nd.push_back(rand() % 11);
+            student.nd.push_back(rand() % 11);
         }
-        A[i].egz = rand() % 11;
+        student.egz = rand() % 11;
     }
 }
 void generavimasStudentu(vector<studentas>& A, int n) {
@@ -236,11 +295,10 @@ void generavimasStudentu(vector<studentas>& A, int n) {
     string vardai[] = {"Rokas", "Mantas", "Pijus", "Laurynas", "Ignas", "Gabriele", "Ugne", "Kamile", "Rugile", "Roberta"};
     string pavardes[] = {"Gilys", "Globys", "Bogusis", "Dulskis", "Maliauka", "Skirmantaite", "Mockute", "Zobelaite", "Macaite", "Jurpalyte"};
 
-    for (int i = 0; i < A.size(); i++)
+    for (auto& student : A)
     {
-        studentas student;
-       A[i].vardas = vardai[rand() % 10];
-       A[i].pavarde = pavardes[rand() % 10];
+       student.vardas = vardai[rand() % 10];
+       student.pavarde = pavardes[rand() % 10];
     }
 }
 bool isValidName(const string &name)
