@@ -3,6 +3,9 @@
 
 using namespace std;
 
+const int MAX_ND_SIZE = 500;
+const int MAX_STUDENTS = 500;
+
 struct studentas
 {
     string vardas;
