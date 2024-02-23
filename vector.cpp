@@ -30,8 +30,9 @@ void generavimasStudentu (vector <studentas> & A, int n);
 bool isValidName(const string &name);
 
 int main (){
-
-    ifstream fd ("studentai10000.txt"); 
+  //ifstream fd ("studentai10000.txt");
+  //ifstream fd ("studentai100000.txt");
+    ifstream fd ("studentai1000000.txt"); 
     ofstream fr ("kursiokai.txt");
 
     vector <studentas> A;
