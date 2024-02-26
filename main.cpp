@@ -1,8 +1,8 @@
 #include "fun.cpp"
 
 int main (){
-  //ifstream fd ("studentai10000.txt");
-  //ifstream fd ("studentai100000.txt");
+    ifstream fd ("studentai10000.txt");
+    ifstream fd ("studentai100000.txt");
     ifstream fd ("studentai1000000.txt"); 
     ofstream fr ("kursiokai.txt");
 
@@ -46,30 +46,50 @@ int main (){
             }
             case 3:
             {
+                try {
                 int n2;
                 cout << "Iveskite zmoniu skaiciu" << endl;
                 cin >> n2;
+                if (cin.fail() || n2 <= 0){
+                    cin.clear();
+                    cin.ignore (numeric_limits<streamsize>::max(), '\n');
+                    throw runtime_error("Neteisingas ivedimas. Iveskite is naujo");
+                }
+                A.reserve(n2);
+                
                 for (int i = 0; i < n2; i++)
             {
                 studentas student;
                 bool valid_names;
                 do
                 {
-                    cout << "Iveskite savo varda" << endl;
-                    cin >> student.vardas;
-                    cout << "Iveskite savo pavarde" << endl;
-                    cin >> student.pavarde;
-                    valid_names = isValidName(student.vardas) && isValidName(student.pavarde);
-                    if (!valid_names)
-                    {
-                        cout << "Netinkami vardai. Bandykite is naujo." << endl;
+                    try {
+                        cout << "Iveskite savo varda" << endl;
+                        cin >> student.vardas;
+                        cout << "Iveskite savo pavarde" << endl;
+                        cin >> student.pavarde;
+                         valid_names = isValidName(student.vardas) && isValidName(student.pavarde) && student.vardas.length() >= 2 && student.pavarde.length() >= 2;
+                        if (!valid_names){
+                            throw runtime_error ("Netinkami vardai su pavardemis. Bandykite is naujo");
+                        }
                     }
-                } while (!valid_names);
+                        catch (const exception& e){
+                            cout << "Klaida: " << e.what() << endl;
+                            cin.clear();
+                            cin.ignore (numeric_limits <streamsize> :: max(), '\n');
+                            valid_names = false;
+                        }
+                }
+                while (!valid_names);
                  A.push_back(student);
             }
                 generavimasPazymiuCase2(A);
                 skaiciavimas (A);
                 spausdinti (A);
+                }
+                catch (const exception& e){
+                    cout << "Klaida: " << e.what() << endl;
+                }
                 break;
             }
             case 4:
@@ -106,7 +126,6 @@ int main (){
                         sort(A.begin(), A.end(), pagalMediana);
                         break;
             }
-            spausdinti (A);
             spausdintiTeksto(A);
             break;
                 
