@@ -2,8 +2,8 @@
 
 int main (){
     ifstream fd ("studentai10000.txt");
-    ifstream fd ("studentai100000.txt");
-    ifstream fd ("studentai1000000.txt"); 
+   // ifstream fd ("studentai100000.txt");
+   // ifstream fd ("studentai1000000.txt"); 
     ofstream fr ("kursiokai.txt");
 
     try {

@@ -86,6 +86,21 @@ void skaiciavimas (vector <studentas> & A)
         }
     }
 }
+void padalintiStudentus(vector <studentas> & A){
+    vector<studentas> vargsiukai;
+    vector<studentas> kietiakiai;
+
+    for (auto &studentas : A) {
+        if (studentas.balas < 5.0) {
+            vargsiukai.push_back(studentas);
+        } else {
+            kietiakiai.push_back(studentas);
+        }
+    }
+    A.clear();
+    A.insert(A.end(), vargsiukai.begin(), vargsiukai.end());
+    A.insert(A.end(), kietiakiai.begin(), kietiakiai.end());
+}
 bool pagalVarda(const studentas & A, const studentas & B) {
     return A.vardas < B.vardas;
 }
@@ -154,6 +169,33 @@ void generavimasStudentu(vector<studentas>& A, int n) {
        student.vardas = vardai[rand() % 10];
        student.pavarde = pavardes[rand() % 10];
     }
+}
+void generavimasFailo (int kiekis)
+{
+    stringstream fileNameStream;
+    fileNameStream << "Studentai" << kiekis << ".txt";
+    string filename = fileNameStream.str();
+    ofstream fd (filename);
+
+    random_device rd;
+    mt19937 mt(rd());
+    uniform_int_distribution <int> pazymiai (1,10);
+    uniform_int_distribution <int> egzaminas (1,10);
+
+    for (int i = 0; i < kiekis; i++){
+        stringstream ss;
+        ss << "Vardas" << i++ << " Pavarde" << i++ << " ";
+        for (int j = 0; j < 5; j++){
+            ss << pazymiai(mt) << " ";
+        }
+        int egz = egzaminas(mt);
+        double vid = 0.0;
+        double mediana = 0.0;
+        double balas = 0.4 * vid + 0.6 * egz;
+        ss << egz << " " << balas << " " << vid << " " << mediana << endl;
+        fd << ss.str();
+    }
+    fd.close();
 }
 bool isValidName(const string &name)
 {
