@@ -1,11 +1,6 @@
 #include "fun.cpp"
 
 int main (){
-    ifstream fd ("studentai10000.txt");
-   // ifstream fd ("studentai100000.txt");
-   // ifstream fd ("studentai1000000.txt"); 
-    ofstream fr ("kursiokai.txt");
-
     try {
         ifstream fd ("studentai10000.txt");
         if (!fd.is_open()){
@@ -25,7 +20,8 @@ int main (){
         cout << "3. Generuoti pazymius" << endl;
         cout << "4. Generuoti studentu vardus ir pavardes" << endl;
         cout << "5. Rusiuoti pagal pasirinktus parametrus" << endl;
-        cout << "6. Baigti programa" << endl;
+        cout << "6. Generuoti failus, surusiuoti bei padalinti juos i atskirus failus" << endl;
+        cout << "7. Baigti programa" << endl;
         cin >> pasirinkimas;
 
         switch (pasirinkimas){
@@ -131,6 +127,21 @@ int main (){
                 
             }
             case 6:
+            {
+                auto pradzia_failuGeneravimas = chrono::steady_clock::now();
+               // generavimasFailo(100);
+                //vector <studentas> studentai;
+                skaiciavimas(A);
+               // generavimasFailo(1000);
+               // generavimasFailo(100000);
+                //generavimasFailo(1000000);
+                generavimasFailo(10000000);
+                skaitymasTeksto(A);
+                spausdintiTeksto(A);
+              //  padalintiStudentus(A);
+                break;
+            }
+            case 7:
             {
                cout << "Programos pabaiga" << endl;
                 return 0;

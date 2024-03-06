@@ -32,7 +32,7 @@ void skaitymas (vector <studentas> & A, int n)
 }
 void skaitymasTeksto (vector <studentas> & A)
 {
-    ifstream fd ("studentai10000.txt");
+    ifstream fd ("studentai10000000.txt");
     string eil;
     getline(fd, eil);
 
@@ -46,7 +46,8 @@ void skaitymasTeksto (vector <studentas> & A)
         while (ss >> paz){
             student.nd.push_back(paz);
         }
-        ss >> student.egz;
+        student.egz = student.nd[student.nd.size()-1];
+        student.nd.pop_back();
         A.push_back(student);
     }
     clock_t end = clock();
@@ -87,6 +88,7 @@ void skaiciavimas (vector <studentas> & A)
     }
 }
 void padalintiStudentus(vector <studentas> & A){
+
     vector<studentas> vargsiukai;
     vector<studentas> kietiakiai;
 
@@ -97,9 +99,19 @@ void padalintiStudentus(vector <studentas> & A){
             kietiakiai.push_back(studentas);
         }
     }
-    A.clear();
-    A.insert(A.end(), vargsiukai.begin(), vargsiukai.end());
-    A.insert(A.end(), kietiakiai.begin(), kietiakiai.end());
+    ofstream vargsiukai_out ("vargsiukai.txt");
+    ofstream kietiakiai_out ("kietiakiai.txt");
+
+      for (const auto &studentas : vargsiukai) {
+        vargsiukai_out << studentas.vardas << " " << studentas.pavarde << " " << studentas.balas << endl;
+    }
+
+    for (const auto &studentas : kietiakiai) {
+        kietiakiai_out << studentas.vardas << " " << studentas.pavarde << " " << studentas.balas << endl;
+    }
+
+    vargsiukai_out.close();
+    kietiakiai_out.close();
 }
 bool pagalVarda(const studentas & A, const studentas & B) {
     return A.vardas < B.vardas;
@@ -182,19 +194,20 @@ void generavimasFailo (int kiekis)
     uniform_int_distribution <int> pazymiai (1,10);
     uniform_int_distribution <int> egzaminas (1,10);
 
-    for (int i = 0; i < kiekis; i++){
-        stringstream ss;
-        ss << "Vardas" << i++ << " Pavarde" << i++ << " ";
-        for (int j = 0; j < 5; j++){
-            ss << pazymiai(mt) << " ";
-        }
-        int egz = egzaminas(mt);
-        double vid = 0.0;
-        double mediana = 0.0;
-        double balas = 0.4 * vid + 0.6 * egz;
-        ss << egz << " " << balas << " " << vid << " " << mediana << endl;
-        fd << ss.str();
+    stringstream ss;
+    ss << left << setw(20) << "Vardas" << setw(20) << "Pavarde";
+    for (int i = 1; i <= 15; ++i) {
+        ss << setw(8) << "ND" + to_string(i);
     }
+    ss << setw(8) << "Egz." << endl;
+    for (int i = 0; i < kiekis; i++) {
+        ss << left << setw(20) << ("Vardas" + to_string(i + 1)) << setw(20) << ("Pavarde" + to_string(i + 1));
+        for (int j = 0; j < 15; j++) {
+            ss << setw(8) << pazymiai(mt);
+        }
+        ss << setw(8) << egzaminas(mt) << endl;
+    }
+    fd << ss.str();
     fd.close();
 }
 bool isValidName(const string &name)
