@@ -128,17 +128,19 @@ int main (){
             }
             case 6:
             {
-                auto pradzia_failuGeneravimas = chrono::steady_clock::now();
-               // generavimasFailo(100);
+                auto pradzia = chrono::steady_clock::now();
+                generavimasFailo(100);
                 //vector <studentas> studentai;
+                skaitymasTeksto(A);
                 skaiciavimas(A);
                // generavimasFailo(1000);
                // generavimasFailo(100000);
                 //generavimasFailo(1000000);
-                generavimasFailo(10000000);
-                skaitymasTeksto(A);
-                spausdintiTeksto(A);
-              //  padalintiStudentus(A);
+                //generavimasFailo(10000000);
+               padalintiStudentus(A);
+               auto pabaiga = chrono::steady_clock::now();
+               double trukme = chrono::duration<double>(pabaiga - pradzia).count();
+               cout << "Visos programos veikimo laikas: " << trukme << " sekundes" << endl;
                 break;
             }
             case 7:

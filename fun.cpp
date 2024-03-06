@@ -32,11 +32,11 @@ void skaitymas (vector <studentas> & A, int n)
 }
 void skaitymasTeksto (vector <studentas> & A)
 {
-    ifstream fd ("studentai10000000.txt");
+    ifstream fd ("studentai100.txt");
     string eil;
     getline(fd, eil);
 
-    clock_t start = clock();
+    auto pradzia = chrono::steady_clock::now();
 
     while (getline(fd, eil)){
         stringstream ss(eil);
@@ -50,9 +50,9 @@ void skaitymasTeksto (vector <studentas> & A)
         student.nd.pop_back();
         A.push_back(student);
     }
-    clock_t end = clock();
-    double elapsed_secs = double(end - start) / CLOCKS_PER_SEC;
-    cout << "Laikas, per kuri nuskaite teksta: " << elapsed_secs << " sekundes" << endl;
+    auto pabaiga = chrono::steady_clock::now();
+    double trukme = chrono::duration<double>(pabaiga - pradzia).count();
+    cout << "Laikas, per kuri nuskaite teksta: " << trukme << " sekundes" << endl;
     fd.close();
 
 }
@@ -88,7 +88,7 @@ void skaiciavimas (vector <studentas> & A)
     }
 }
 void padalintiStudentus(vector <studentas> & A){
-
+    auto pradzia_rusiavimas = chrono::steady_clock::now();
     vector<studentas> vargsiukai;
     vector<studentas> kietiakiai;
 
@@ -99,19 +99,34 @@ void padalintiStudentus(vector <studentas> & A){
             kietiakiai.push_back(studentas);
         }
     }
+   sort(vargsiukai.begin(), vargsiukai.end(), [](const studentas& a, const studentas& b) {
+        return a.balas < b.balas;
+    });
+    sort(kietiakiai.begin(), kietiakiai.end(), [](const studentas& a, const studentas& b) {
+        return a.balas < b.balas;
+    });
+    auto pabaiga_rusiavimas = chrono::steady_clock::now();
+
+    auto pradzia_isvedimas = chrono::steady_clock::now();
     ofstream vargsiukai_out ("vargsiukai.txt");
     ofstream kietiakiai_out ("kietiakiai.txt");
 
       for (const auto &studentas : vargsiukai) {
-        vargsiukai_out << studentas.vardas << " " << studentas.pavarde << " " << studentas.balas << endl;
+        vargsiukai_out << studentas.vardas << " " << studentas.pavarde << " " << fixed << setprecision(2) << studentas.balas << endl;
     }
 
     for (const auto &studentas : kietiakiai) {
-        kietiakiai_out << studentas.vardas << " " << studentas.pavarde << " " << studentas.balas << endl;
+        kietiakiai_out << studentas.vardas << " " << studentas.pavarde << " " << fixed << setprecision(2) << studentas.balas << endl;
     }
 
     vargsiukai_out.close();
     kietiakiai_out.close();
+    auto pabaiga_isvedimas = chrono::steady_clock::now();
+
+    double trukme_rusiavimas = chrono::duration<double>(pabaiga_rusiavimas - pradzia_rusiavimas).count();
+    double trukme_isvedimas = chrono::duration<double>(pabaiga_isvedimas - pradzia_isvedimas).count();
+    cout << "Studentu rusiavimo laikas: " << trukme_rusiavimas << " sekundes" << endl;
+    cout << "Surusiuotu studentu isvedimas: " << trukme_isvedimas << " sekundes" << endl;
 }
 bool pagalVarda(const studentas & A, const studentas & B) {
     return A.vardas < B.vardas;
@@ -184,6 +199,7 @@ void generavimasStudentu(vector<studentas>& A, int n) {
 }
 void generavimasFailo (int kiekis)
 {
+    auto pradzia_generavimasFailo = chrono::steady_clock::now();
     stringstream fileNameStream;
     fileNameStream << "Studentai" << kiekis << ".txt";
     string filename = fileNameStream.str();
@@ -209,6 +225,9 @@ void generavimasFailo (int kiekis)
     }
     fd << ss.str();
     fd.close();
+    auto pabaiga_generavimasFailo = chrono::steady_clock::now();
+    double trukme_generavimasFailo = chrono::duration<double>(pabaiga_generavimasFailo - pradzia_generavimasFailo).count();
+    cout << "Failu generavimo laikas: " << trukme_generavimasFailo << " sekundes" << endl;
 }
 bool isValidName(const string &name)
 {
