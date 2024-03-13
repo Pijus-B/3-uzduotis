@@ -3,9 +3,21 @@
 1. Galima rinktis, kad duomenys butu surusiuoti;
 2. Studentai buvo atitinkamai pagal konteinerius surusiuojami i dvi grupes;
 3. Sukurta funkcija, kuri generuoja failus;
-4. Prideta laiko analize.
+4. Prideta laiko analize. 
 
-## studentai1000.txt
+## 1\  Failo generavimo tyrimas
+
+| Failo pavadinimas      | Studentu kiekis    | Laikas         |
+|------------------------|--------------------|----------------|
+| "studentai1000.txt"    | 1,000              | 0.006719 s.    |
+| "studentai10000.txt"   | 10,000             | 0.053824 s.    |
+| "studentai100000.txt"  | 100,000            | 1.039215 s.    |
+| "studentai1000000.txt" | 1,000,000          | 6.718065 s.    |
+| "studentai10000000.txt"| 10,000,000         | 56.34281 s.    |
+
+
+
+## 2\ studentai1000.txt
 |Darbas                                     | Laikas                       |
 |-------------------------------------------|------------------------------|
 |Failu generavimo laikas                    | 0.0112258 s.                 |
