@@ -20,7 +20,6 @@
 ## 2\ studentai1000.txt
 |Darbas                                     | Laikas                       |
 |-------------------------------------------|------------------------------|
-|Failu generavimo laikas                    | 0.0112258 s.                 |
 |Laikas, per kuri nuskaite teksta           | 0.0209383 s.                 |
 |Studentu skirstymo i dvi grupes laikas     | 0.0022573 s.                 |
 |Studentu rusiavimo laikas                  | 0.0090379 s.                 |
@@ -32,7 +31,6 @@
 ## studentai10000.txt
 |Darbas                                     | Laikas                       |
 |-------------------------------------------|------------------------------|
-|Failu generavimo laikas                    | 0.075106 s.                  |
 |Laikas, per kuri nuskaite teksta           | 0.0633989 s.                 |
 |Studentu skirstymo i dvi grupes laikas     | 0.004668 s.                  |
 |Studentu rusiavimo laikas                  | 0.0184866 s.                 |
@@ -44,7 +42,6 @@
 ## studentai100000.txt
 |Darbas                                     | Laikas                       |
 |-------------------------------------------|------------------------------|
-|Failu generavimo laikas                    | 0.295283 s.                  |
 |Laikas, per kuri nuskaite teksta           | 0.498922 s.                  |
 |Studentu skirstymo i dvi grupes laikas     | 0.0375438 s.                 |
 |Studentu rusiavimo laikas                  | 0.192653 s.                  |
@@ -56,7 +53,6 @@
 ## studentai1000000.txt
 |Darbas                                     | Laikas                       |
 |-------------------------------------------|------------------------------|
-|Failu generavimo laikas                    | 1.93403 s.                   |
 |Laikas, per kuri nuskaite teksta           | 4.03112 s.                   |
 |Studentu skirstymo i dvi grupes laikas     | 0.443437 s.                  |
 |Studentu rusiavimo laikas                  | 2.0865 s.                    |
@@ -68,7 +64,6 @@
 ## studentai10000000.txt
 |Darbas                                     | Laikas                       |
 |-------------------------------------------|------------------------------|
-|Failu generavimo laikas                    | 18.1537 s.                   |
 |Laikas, per kuri nuskaite teksta           | 39.3553 s.                   |
 |Studentu skirstymo i dvi grupes laikas     | 3.08257 s.                   |
 |Studentu rusiavimo laikas                  | 23.7483 s.                   |
