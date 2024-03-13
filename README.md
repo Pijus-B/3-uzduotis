@@ -9,11 +9,11 @@
 
 | Failo pavadinimas      | Studentu kiekis    | Laikas         |
 |------------------------|--------------------|----------------|
-| "studentai1000.txt"    | 1,000              | 0.006719 s.    |
-| "studentai10000.txt"   | 10,000             | 0.053824 s.    |
-| "studentai100000.txt"  | 100,000            | 1.039215 s.    |
-| "studentai1000000.txt" | 1,000,000          | 6.718065 s.    |
-| "studentai10000000.txt"| 10,000,000         | 56.34281 s.    |
+| "studentai1000.txt"    | 1.000              | 0.006719 s.    |
+| "studentai10000.txt"   | 10.000             | 0.053824 s.    |
+| "studentai100000.txt"  | 100.000            | 1.039215 s.    |
+| "studentai1000000.txt" | 1.000.000          | 6.718065 s.    |
+| "studentai10000000.txt"| 10.000.000         | 56.34281 s.    |
 
 
 
