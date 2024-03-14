@@ -32,7 +32,7 @@ void skaitymas (vector <studentas> & A, int n)
 }
 void skaitymasTeksto (vector <studentas> & A)
 {
-    ifstream fd ("studentai100.txt");
+    ifstream fd ("studentai10000000.txt");
     string eil;
     getline(fd, eil);
 
@@ -92,6 +92,7 @@ void padalintiStudentus(vector <studentas> & A){
     vector<studentas> vargsiukai;
     vector<studentas> kietiakiai;
 
+    auto pradzia_dviGrupes = chrono::steady_clock::now();
     for (auto &studentas : A) {
         if (studentas.balas < 5.0) {
             vargsiukai.push_back(studentas);
@@ -99,12 +100,35 @@ void padalintiStudentus(vector <studentas> & A){
             kietiakiai.push_back(studentas);
         }
     }
-   sort(vargsiukai.begin(), vargsiukai.end(), [](const studentas& a, const studentas& b) {
-        return a.balas < b.balas;
-    });
-    sort(kietiakiai.begin(), kietiakiai.end(), [](const studentas& a, const studentas& b) {
-        return a.balas < b.balas;
-    });
+    auto pabaiga_dviGrupes = chrono::steady_clock::now();
+    double trukme_dviGrupes = chrono::duration<double>(pabaiga_dviGrupes - pradzia_dviGrupes).count();
+    cout << "Studentu skirstymo i dvi grupes laikas: " << trukme_dviGrupes << " sekundes" << endl;
+    cout << "Pasirinkite rusiavimo kriterijus: " << endl;
+    cout << "1. Pagal varda " << endl;
+    cout << "2. Pagal pavarde " << endl;
+    cout << "3. Pagal galutini (vidurkis) " << endl;
+    cout << "4. Pagal galutini (mediana) " << endl;
+    int pasirinkti;
+    cin >> pasirinkti;
+    switch (pasirinkti){
+        case 1:
+            sort(vargsiukai.begin(), vargsiukai.end(), pagalVarda);
+            sort(kietiakiai.begin(), kietiakiai.end(), pagalVarda);
+            break;
+        case 2:
+            sort(vargsiukai.begin(), vargsiukai.end(), pagalPavarde);
+            sort(kietiakiai.begin(), kietiakiai.end(), pagalPavarde);
+            break;
+        case 3:
+            sort(vargsiukai.begin(), vargsiukai.end(), pagalVidurki);
+            sort(kietiakiai.begin(), kietiakiai.end(), pagalVidurki);
+            break;
+        case 4:
+            sort(vargsiukai.begin(), vargsiukai.end(), pagalMediana);
+            sort(kietiakiai.begin(), kietiakiai.end(), pagalMediana);
+            break;
+            }
+    
     auto pabaiga_rusiavimas = chrono::steady_clock::now();
 
     auto pradzia_isvedimas = chrono::steady_clock::now();
