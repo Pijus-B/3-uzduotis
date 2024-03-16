@@ -75,7 +75,7 @@ Pateiktas kodas yra C++ programa studentu informacijos valdymui. Ji apima funkci
 |             |Studentu rusiavimo didejimo tvarka laikas  | 79.5062 s.     |
 
 ## 1 strategija
-### Vector konteinerio atminties analize
+### **Vector konteinerio atminties analize**
 ### studentai1000.txt
 ![memory1000](https://github.com/Pijus-B/OOP/assets/90143621/1afe5987-500c-4afa-a3bd-02f7b6f82831)
 ### studentai10000.txt
@@ -87,7 +87,7 @@ Pateiktas kodas yra C++ programa studentu informacijos valdymui. Ji apima funkci
 ### studentai10000000.txt
 ![memory10000000](https://github.com/Pijus-B/OOP/assets/90143621/fd594773-1cf7-4031-8e9b-4285b7f94bd0)
 
-### List konteinerio atminties analize
+### **List konteinerio atminties analize**
 ### studentai1000.txt
 ![memory1000](https://github.com/Pijus-B/OOP/assets/90143621/797663d2-ac9c-4a8f-860a-980ff9a3a36b)
 ### studentai10000.txt
@@ -115,7 +115,87 @@ Pateiktas kodas yra C++ programa studentu informacijos valdymui. Ji apima funkci
 _Is situ rezultatu galime pastebeti, jog studentu skirstymas i dvi grupes, lyginant visus tris konteinerius, efektyviausias buvo Vector, o likusieji pasizymejo panasiais rezultatais. Taciau, be abejo, si strategija nera efektyvti del gan savo dideles atminties uzimtumu._
 
 ## 2 strategija
-### fff
+### **Vector konteineris**
+### studentai1000.txt
+![memory1000](https://github.com/Pijus-B/OOP/assets/90143621/3c1154a5-3586-4521-83d0-26e5c7999adc)
+![vector1000](https://github.com/Pijus-B/OOP/assets/90143621/086671f7-2069-403f-ba78-24548ff1725a)
+### studentai10000.txt
+![memory10000](https://github.com/Pijus-B/OOP/assets/90143621/b3dd0218-5f45-461b-b9da-cb817d508ad2)
+![vector10000](https://github.com/Pijus-B/OOP/assets/90143621/a4df4abb-7de7-4bae-8f59-ce5003364b50)
+### studentai100000.txt
+![memory100000](https://github.com/Pijus-B/OOP/assets/90143621/a57e5c96-d83f-40d2-bb1a-804d91f8fd2c)
+![vector100000](https://github.com/Pijus-B/OOP/assets/90143621/bac133eb-e697-40b0-bf50-33bc82553ddd)
+
+_Su likusiais failais studentu skirstymo i dvi grupes laikas buvo per didelis, kad galeciau pateikti rezultatus._
+
+### **List konteineris**
+### studentai1000.txt
+![memory1000](https://github.com/Pijus-B/OOP/assets/90143621/f1436d62-6e93-4482-a6a0-c5a2094b2d0b)
+![list1000](https://github.com/Pijus-B/OOP/assets/90143621/3e6dca8f-4774-4ce7-a1eb-e88587f0b89e)
+### studentai10000.txt
+![memory10000](https://github.com/Pijus-B/OOP/assets/90143621/52c95601-31cc-4c51-b86a-f64949b31f19)
+![list10000](https://github.com/Pijus-B/OOP/assets/90143621/c4762926-58c1-4f04-849a-404c13a48e3d)
+### studentai100000.txt
+![memory100000](https://github.com/Pijus-B/OOP/assets/90143621/6cd5bdc0-84f2-495a-bc8e-70b32c958ba0)
+![list100000](https://github.com/Pijus-B/OOP/assets/90143621/54eb2c95-a348-49ca-b26f-a1d7b74538e5)
+### studentai1000000.txt
+![memory1000000](https://github.com/Pijus-B/OOP/assets/90143621/e47947fd-7ec4-4aa2-996c-17141c78babe)
+![list1000000](https://github.com/Pijus-B/OOP/assets/90143621/e812fd1f-532c-457a-93c7-721b736d59b7)
+### studentai10000000.txt
+![memory10000000](https://github.com/Pijus-B/OOP/assets/90143621/cf808137-4533-4d1d-ae7e-4e2ed4e69a29)
+![list10000000](https://github.com/Pijus-B/OOP/assets/90143621/51b48fbb-ea14-4b77-b124-81b5487c5dc4)
+
+### **Deque konteineris**
+### studentai1000.txt
+![memory1000](https://github.com/Pijus-B/OOP/assets/90143621/72389be8-395e-40b0-82bb-c837043a9399)
+![deque1000](https://github.com/Pijus-B/OOP/assets/90143621/a469a2dc-67c6-4a65-9f75-a6d88a86c878)
+### studentai10000.txt
+![memory10000](https://github.com/Pijus-B/OOP/assets/90143621/d1395c99-f1b7-47f3-bd95-ba38f6967491)
+![deque10000](https://github.com/Pijus-B/OOP/assets/90143621/295ff217-5c15-4b5e-b400-624fcfa034ae)
+### studentai100000.txt
+![memory100000](https://github.com/Pijus-B/OOP/assets/90143621/7d43c7c7-d00b-44ec-b833-81548d5c3337)
+![deque100000](https://github.com/Pijus-B/OOP/assets/90143621/67420cae-7948-43c9-9d5e-7645692d039b)
+
+_Su likusiais failais tas pats, kaip ir su Vector konteineriu, studentu skirstymo i dvi grupes laikas yra gan per didelis, jog galeciau isvesti rezultatus._
+### Isvada
+_Taigi, galima pastebeti, jog 2 strategija yra zenkliai efektyvesne ties atminties atzvilgiu, taciau skaiciuojant su didesniais failo duomenu kiekiais, tampa "skausminga" Vector ir Deque konteineriams del susijusiu su istrynimu is vidurio ir atminties pertekliaus valdymu._
+
+## 3 strategija
+### Vector konteinerio optimizacija su std::remove_if ir std::remove_if_copy
+![Screenshot 2024-03-16 180107](https://github.com/Pijus-B/OOP/assets/90143621/79542be5-ca72-4375-83bf-6094252614d2)
+![vector](https://github.com/Pijus-B/OOP/assets/90143621/30388577-8a53-41f5-92db-7aa621e2ef05)
+
+_Rezultatai gauti su studentai10000000.txt_
+
+### Vector konteinerio optimizacija su std::partition ir std::copy_if
+![Screenshot 2024-03-16 180755](https://github.com/Pijus-B/OOP/assets/90143621/0f3a3b65-6df5-4c83-a87a-f984e215fc7c)
+![Screenshot 2024-03-16 181235](https://github.com/Pijus-B/OOP/assets/90143621/ef210683-5f31-417f-aad6-1dbd302d298c)
+
+_Rezultatai gauti su studentai10000000.txt_
+
+### Isvada
+Galima pastebeti, jog naudojantis siais algoritmais, programos veikimo sparta zenkliai padideja. Lyginant 2 strategija su 3 Vector konteinerio, galima lengvai pamatyti, kaip sie algoritmai sumazina atminties ir laiko sanaudas, nes nereikia kiekvieno elemento kopijuoti i nauja konteineri.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
