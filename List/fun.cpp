@@ -92,16 +92,26 @@ void skaiciavimas (list <studentas> & A)
 void padalintiStudentus(list <studentas> & A){
     auto pradzia_rusiavimas = chrono::steady_clock::now();
     list <studentas> vargsiukai;
-    list <studentas> kietiakiai;
+   // list <studentas> kietiakiai;
 
     auto pradzia_dviGrupes = chrono::steady_clock::now();
-    for (auto &studentas : A) {
-        if (studentas.balas < 5.0) {
-            vargsiukai.push_back(studentas);
-        } else {
-            kietiakiai.push_back(studentas);
+    auto iter = A.begin();
+    while (iter != A.end()){
+        if (iter -> balas < 5.0){
+            vargsiukai.push_back(*iter);
+            iter = A.erase(iter);
+        }
+        else{
+            iter++;
         }
     }
+    /*for (auto &studentas : A) {
+        if (studentas.balas < 5.0) {
+            vargsiukai.push_back(studentas);      // 1 strategija
+        } else {  
+            kietiakiai.push_back(studentas);
+        }
+    }*/
     auto pabaiga_dviGrupes = chrono::steady_clock::now();
     double trukme_dviGrupes = chrono::duration<double>(pabaiga_dviGrupes - pradzia_dviGrupes).count();
     cout << "Studentu skirstymo i dvi grupes laikas: " << trukme_dviGrupes << " sekundes" << endl;
@@ -115,19 +125,19 @@ void padalintiStudentus(list <studentas> & A){
     switch (pasirinkti){
         case 1:
             vargsiukai.sort(pagalVarda);
-            kietiakiai.sort(pagalVarda);
+            //kietiakiai.sort(pagalVarda);
             break;
         case 2:
             vargsiukai.sort(pagalPavarde);
-            kietiakiai.sort(pagalPavarde);
+           // kietiakiai.sort(pagalPavarde);
             break;
         case 3:
             vargsiukai.sort(pagalVidurki);
-            kietiakiai.sort(pagalVidurki);
+            //kietiakiai.sort(pagalVidurki);
             break;
         case 4:
             vargsiukai.sort(pagalMediana);
-            kietiakiai.sort(pagalMediana);
+            //kietiakiai.sort(pagalMediana);
             break;
             }
     
@@ -135,18 +145,18 @@ void padalintiStudentus(list <studentas> & A){
 
     auto pradzia_isvedimas = chrono::steady_clock::now();
     ofstream vargsiukai_out ("vargsiukai.txt");
-    ofstream kietiakiai_out ("kietiakiai.txt");
+    //ofstream kietiakiai_out ("kietiakiai.txt");
 
       for (const auto &studentas : vargsiukai) {
         vargsiukai_out << studentas.vardas << " " << studentas.pavarde << " " << fixed << setprecision(2) << studentas.balas << endl;
     }
 
-    for (const auto &studentas : kietiakiai) {
-        kietiakiai_out << studentas.vardas << " " << studentas.pavarde << " " << fixed << setprecision(2) << studentas.balas << endl;
-    }
+   // for (const auto &studentas : kietiakiai) {
+     //   kietiakiai_out << studentas.vardas << " " << studentas.pavarde << " " << fixed << setprecision(2) << studentas.balas << endl;
+   // }
 
     vargsiukai_out.close();
-    kietiakiai_out.close();
+    //kietiakiai_out.close();
     auto pabaiga_isvedimas = chrono::steady_clock::now();
 
     double trukme_rusiavimas = chrono::duration<double>(pabaiga_rusiavimas - pradzia_rusiavimas).count();

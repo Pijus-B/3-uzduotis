@@ -32,7 +32,7 @@ void skaitymas (deque <studentas> & A, int n)
 }
 void skaitymasTeksto (deque <studentas> & A)
 {
-    ifstream fd ("studentai10000000.txt");
+    ifstream fd ("studentai1000.txt");
     string eil;
     getline(fd, eil);
 
@@ -90,16 +90,26 @@ void skaiciavimas (deque <studentas> & A)
 void padalintiStudentus(deque <studentas> & A){
     auto pradzia_rusiavimas = chrono::steady_clock::now();
     deque<studentas> vargsiukai;
-    deque<studentas> kietiakiai;
+   // deque<studentas> kietiakiai;
 
     auto pradzia_dviGrupes = chrono::steady_clock::now();
-    for (auto &studentas : A) {
+    auto iter = A.begin();
+    while (iter != A.end()){
+        if (iter -> balas < 5.0){
+            vargsiukai.push_back(*iter);                     // 2 strategija
+            iter = A.erase(iter);
+        }
+        else {
+            iter++;
+        }
+    }
+    /*for (auto &studentas : A) {
         if (studentas.balas < 5.0) {
-            vargsiukai.push_back(studentas);
+            vargsiukai.push_back(studentas);                 // 1 strategija
         } else {
             kietiakiai.push_back(studentas);
         }
-    }
+    }*/
     auto pabaiga_dviGrupes = chrono::steady_clock::now();
     double trukme_dviGrupes = chrono::duration<double>(pabaiga_dviGrupes - pradzia_dviGrupes).count();
     cout << "Studentu skirstymo i dvi grupes laikas: " << trukme_dviGrupes << " sekundes" << endl;
@@ -113,19 +123,19 @@ void padalintiStudentus(deque <studentas> & A){
     switch (pasirinkti){
         case 1:
             sort(vargsiukai.begin(), vargsiukai.end(), pagalVarda);
-            sort(kietiakiai.begin(), kietiakiai.end(), pagalVarda);
+            //sort(kietiakiai.begin(), kietiakiai.end(), pagalVarda);
             break;
         case 2:
             sort(vargsiukai.begin(), vargsiukai.end(), pagalPavarde);
-            sort(kietiakiai.begin(), kietiakiai.end(), pagalPavarde);
+            //sort(kietiakiai.begin(), kietiakiai.end(), pagalPavarde);
             break;
         case 3:
             sort(vargsiukai.begin(), vargsiukai.end(), pagalVidurki);
-            sort(kietiakiai.begin(), kietiakiai.end(), pagalVidurki);
+            //sort(kietiakiai.begin(), kietiakiai.end(), pagalVidurki);
             break;
         case 4:
             sort(vargsiukai.begin(), vargsiukai.end(), pagalMediana);
-            sort(kietiakiai.begin(), kietiakiai.end(), pagalMediana);
+            //sort(kietiakiai.begin(), kietiakiai.end(), pagalMediana);
             break;
             }
     
@@ -133,18 +143,18 @@ void padalintiStudentus(deque <studentas> & A){
 
     auto pradzia_isvedimas = chrono::steady_clock::now();
     ofstream vargsiukai_out ("vargsiukai.txt");
-    ofstream kietiakiai_out ("kietiakiai.txt");
+    //ofstream kietiakiai_out ("kietiakiai.txt");
 
       for (const auto &studentas : vargsiukai) {
         vargsiukai_out << studentas.vardas << " " << studentas.pavarde << " " << fixed << setprecision(2) << studentas.balas << endl;
     }
 
-    for (const auto &studentas : kietiakiai) {
-        kietiakiai_out << studentas.vardas << " " << studentas.pavarde << " " << fixed << setprecision(2) << studentas.balas << endl;
-    }
+    //for (const auto &studentas : kietiakiai) {
+    //    kietiakiai_out << studentas.vardas << " " << studentas.pavarde << " " << fixed << setprecision(2) << studentas.balas << endl;
+    //}
 
     vargsiukai_out.close();
-    kietiakiai_out.close();
+    //kietiakiai_out.close();
     auto pabaiga_isvedimas = chrono::steady_clock::now();
 
     double trukme_rusiavimas = chrono::duration<double>(pabaiga_rusiavimas - pradzia_rusiavimas).count();
