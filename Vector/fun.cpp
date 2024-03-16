@@ -32,7 +32,7 @@ void skaitymas (vector <studentas> & A, int n)
 }
 void skaitymasTeksto (vector <studentas> & A)
 {
-    ifstream fd ("studentai1000.txt");
+    ifstream fd ("studentai10000000.txt");
     string eil;
     getline(fd, eil);
 
@@ -91,9 +91,24 @@ void padalintiStudentus(vector <studentas> & A){
     auto pradzia_rusiavimas = chrono::steady_clock::now();
     vector<studentas> vargsiukai;
     //vector<studentas> kietiakiai;
+      auto pradzia_dviGrupes = chrono::steady_clock::now();
+       auto partition_point = partition(A.begin(), A.end(), [] (const studentas & s){
+        return s.balas < 5.0;
+    });
+    copy_if(A.begin(), A.end(), back_inserter(vargsiukai), [](const studentas& s){
+        return s.balas < 5.0;
+    });
+     A.erase(A.begin(), partition_point);
 
-    auto pradzia_dviGrupes = chrono::steady_clock::now();
-    auto iter = A.begin();
+    /*remove_copy_if(A.begin(), A.end(), back_inserter(vargsiukai), [] (const studentas & s){
+        return s.balas >= 5.0;
+    });
+    A.erase(remove_if(A.begin(), A.end(), [](const studentas& s){        // 3 strategija su std::remove_if ir std::remove_if_copy
+        return s.balas < 5.0;
+    }), A.end());
+    */
+
+    /*auto iter = A.begin();
     while (iter != A.end()){
         if (iter -> balas < 5.0){
             vargsiukai.push_back(*iter);     // 2 strategija
@@ -103,6 +118,7 @@ void padalintiStudentus(vector <studentas> & A){
             iter++;
         }
     }
+    */
     /*for (auto &studentas : A) {
         if (studentas.balas < 5.0) {
             vargsiukai.push_back(studentas);    // 1 strategija

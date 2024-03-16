@@ -98,7 +98,7 @@ void padalintiStudentus(list <studentas> & A){
     auto iter = A.begin();
     while (iter != A.end()){
         if (iter -> balas < 5.0){
-            vargsiukai.push_back(*iter);
+            vargsiukai.push_back(*iter);       // 2 strategija
             iter = A.erase(iter);
         }
         else{
