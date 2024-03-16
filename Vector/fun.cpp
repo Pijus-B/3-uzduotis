@@ -1,4 +1,3 @@
-#pragma once
 #include "fun.h"
 
 void skaitymas (vector <studentas> & A, int n)

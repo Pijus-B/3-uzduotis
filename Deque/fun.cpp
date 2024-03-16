@@ -1,4 +1,3 @@
-#pragma once
 #include "fun.h"
 
 void skaitymas (deque <studentas> & A, int n)
@@ -32,7 +31,7 @@ void skaitymas (deque <studentas> & A, int n)
 }
 void skaitymasTeksto (deque <studentas> & A)
 {
-    ifstream fd ("studentai1000.txt");
+    ifstream fd ("studentai1000000.txt");
     string eil;
     getline(fd, eil);
 
