@@ -2,6 +2,25 @@
 ## V1.0
 Pateiktas kodas yra C++ programa studentu informacijos valdymui. Ji apima funkcijas tokias kaip ivesti studentų duomenis, skaiciuoti vidurkius ir medianas bei rodyti rezultatus. Zemiau pateikiamas pagrindiniu komponentu ir funkciju aprasymas:
 
+## Programu paleisties proceso instrukcijos
+- 1 zingsnis: Instaliuoti Chocolatey
+Atsidaryti CMD kaip Administrator: Spustelti Win + X ir pasirinkti “Command Prompt (Admin)” or “Windows PowerShell (Admin)”.
+Paleisti instaliavimo komanda: Nusikopijuoti ta komanda ir paspausti Enter. Si komanda yra pasiekiama per Chocolatey svetaine.
+powershell
+Nusikopijuoti koda:
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+Patvirtinti instaliacija: irasyti choco i CMD ir paspausti Enter. Jeigu matote Chocolatey versijos informacija, tai jau yra instaliuota sekmingai.
+- 2 zingsnis: Instaliuoti Make
+Instaliuokite Make: CMD terminale (vis dar kaip Administrator), irasykite sia komanda bei paspauskite Enter:
+shell
+Nukopijuokite koda:
+choco install make
+Patvirtinkite Make instaliacija: irasykite "make -v" i CMD. Jei po irasymo rodo Make versijos informacija, tai reiskia, kad sekmingai instaliuota.
+- 3 zingsnis: Kompiliuokite ir pradekite savo C++ projekta
+Nurodykite savo projekto direktyva: Naudokite cd komanda i CMD, jog pakeisti savo projekto direktyva, kur yra instaliuotas Makefile.
+Kompiliuokite savo projekta: Irasykite make ir paspauskite Enter. Tada prades kompiliuoti jusu C++ projekta pagal nurodytas Makefile instrukcijas.
+Pradekite savo projekta: Po kompiliavimo, jus turetumete turetiyou should have an vykdomaji faila, dazniausiai vadinama main arba kitu specifikai pavadintu jusu Makefile. Irasykite main i CMD ir paspauskite Enter, kad pradetumete savo programos veikima.
+
 ## Testavimo sistemos parametrai
 - SSD 500GB
 - RAM 16GB
