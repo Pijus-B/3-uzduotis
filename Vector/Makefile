@@ -1,5 +1,5 @@
 main: fun.o
-	g++ -o main main.cpp fun.o
+	g++ -o main -O3 main.cpp fun.o
 fun:
 	g++ -c fun.cpp
 clean:
