@@ -1,5 +1,43 @@
-#include "fun.h"
+#include <bits/stdc++.h>
+using namespace std;
 
+
+const int MAX_ND_SIZE = 500;
+const int MAX_STUDENTS = 500;
+
+struct studentas
+{
+    string vardas;
+    string pavarde;
+     vector <int> nd;
+     int egz;
+     double balas;
+     double vid;
+     double mediana;
+};
+bool isValidName(const string &name)
+{
+    for (char c : name)
+    {
+        if (!isalpha(c) && c != ' ')
+        {
+            return false;
+        }
+    }
+    return true;
+}
+bool pagalVarda(const studentas & A, const studentas & B) {
+    return A.vardas < B.vardas;
+}
+bool pagalPavarde(const studentas & A, const studentas & B) {
+    return A.pavarde < B.pavarde;
+}
+bool pagalVidurki(const studentas & A, const studentas & B) {
+    return A.balas < B.balas;
+}
+bool pagalMediana(const studentas & A, const studentas & B) {
+    return A.mediana < B.mediana;
+}
 void skaitymas (vector <studentas> & A, int n)
 { 
     cin >> n;
@@ -177,18 +215,6 @@ void padalintiStudentus(vector <studentas> & A){
     cout << "Studentu rusiavimo laikas: " << trukme_rusiavimas << " sekundes" << endl;
     cout << "Surusiuotu studentu isvedimas: " << trukme_isvedimas << " sekundes" << endl;
 }
-bool pagalVarda(const studentas & A, const studentas & B) {
-    return A.vardas < B.vardas;
-}
-bool pagalPavarde(const studentas & A, const studentas & B) {
-    return A.pavarde < B.pavarde;
-}
-bool pagalVidurki(const studentas & A, const studentas & B) {
-    return A.balas < B.balas;
-}
-bool pagalMediana(const studentas & A, const studentas & B) {
-    return A.mediana < B.mediana;
-}
 void spausdinti (const vector <studentas> & A)
 {
     cout << left << setw(10) << "Pavarde " << setw(15) << "Vardas " << setw(15) << "Galutinis (Vid.) " << " " << " / Galutinis (Med.)" << endl;
@@ -277,15 +303,4 @@ void generavimasFailo (int kiekis)
     auto pabaiga_generavimasFailo = chrono::steady_clock::now();
     double trukme_generavimasFailo = chrono::duration<double>(pabaiga_generavimasFailo - pradzia_generavimasFailo).count();
     cout << "Failu generavimo laikas: " << trukme_generavimasFailo << " sekundes" << endl;
-}
-bool isValidName(const string &name)
-{
-    for (char c : name)
-    {
-        if (!isalpha(c) && c != ' ')
-        {
-            return false;
-        }
-    }
-    return true;
 }

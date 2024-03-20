@@ -1,6 +1,6 @@
-#pragma once
-#include "header.h"
-
+#ifndef LABAS
+#define LABAS
+#include <bits/stdc++.h>
 using namespace std;
 
 const int MAX_ND_SIZE = 500;
@@ -32,3 +32,4 @@ void generavimasPazymiuCase2 (vector <studentas> & A);
 void generavimasStudentu (vector <studentas> & A, int n);
 void generavimasFailo (vector <studentas> & A, int n);
 bool isValidName(const string &name);
+#endif 

@@ -1,6 +1,5 @@
 #pragma once
-#include "header.h"
-
+#include <bits/stdc++.h>
 using namespace std;
 
 const int MAX_ND_SIZE = 500;
