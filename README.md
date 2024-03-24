@@ -3,20 +3,20 @@
 Pateiktas kodas yra C++ programa studentu informacijos valdymui. Ji apima funkcijas tokias kaip ivesti studentų duomenis, skaiciuoti vidurkius ir medianas bei rodyti rezultatus. Zemiau pateikiamas pagrindiniu komponentu ir funkciju aprasymas:
 
 ## Programu paleisties proceso instrukcijos
-- 1 zingsnis: Instaliuoti Chocolatey
+## 1 zingsnis: Instaliuoti Chocolatey
 Atsidaryti CMD kaip Administrator: Spustelti Win + X ir pasirinkti “Command Prompt (Admin)” or “Windows PowerShell (Admin)”.
 Paleisti instaliavimo komanda: Nusikopijuoti ta komanda ir paspausti Enter. Si komanda yra pasiekiama per Chocolatey svetaine.
 powershell
 Nusikopijuoti koda:
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 Patvirtinti instaliacija: irasyti choco i CMD ir paspausti Enter. Jeigu matote Chocolatey versijos informacija, tai jau yra instaliuota sekmingai.
-- 2 zingsnis: Instaliuoti Make
+## 2 zingsnis: Instaliuoti Make
 Instaliuokite Make: CMD terminale (vis dar kaip Administrator), irasykite sia komanda bei paspauskite Enter:
 shell
 Nukopijuokite koda:
 choco install make
 Patvirtinkite Make instaliacija: irasykite "make -v" i CMD. Jei po irasymo rodo Make versijos informacija, tai reiskia, kad sekmingai instaliuota.
-- 3 zingsnis: Kompiliuokite ir pradekite savo C++ projekta
+## 3 zingsnis: Kompiliuokite ir pradekite savo C++ projekta
 Nurodykite savo projekto direktyva: Naudokite cd komanda i CMD, jog pakeisti savo projekto direktyva, kur yra instaliuotas Makefile.
 Kompiliuokite savo projekta: Irasykite make ir paspauskite Enter. Tada prades kompiliuoti jusu C++ projekta pagal nurodytas Makefile instrukcijas.
 Pradekite savo projekta: Po kompiliavimo, jus turetumete turetiyou should have an vykdomaji faila, dazniausiai vadinama main arba kitu specifikai pavadintu jusu Makefile. Irasykite main i CMD ir paspauskite Enter, kad pradetumete savo programos veikima.
@@ -195,7 +195,27 @@ _Rezultatai gauti su studentai10000000.txt_
 ### Isvada
 Galima pastebeti, jog naudojantis siais algoritmais, programos veikimo sparta zenkliai padideja. Lyginant 2 strategija su 3 Vector konteinerio, galima lengvai pamatyti, kaip sie algoritmai sumazina atminties ir laiko sanaudas, nes nereikia kiekvieno elemento kopijuoti i nauja konteineri.
 
-
+## Palyginimai
+| Konteineris | Strategija| Kiekis |Skaitymo laikas| Skirstymo i dvi grupes laikas  | Visos programos veikimo laikas|
+|-------------|-----------|--------|---------------|--------------------------------|-------------------------------|
+| Vector      | 1         |  1000  | 0.0380181 s.  | 0.0047277 s.                   | 0.016265 s.                   |
+| Vector      | 1         |  100000|0.355937 s.    | 0.0284657 s.                   | 0.155674 s.                   |
+| Vector      | 2         |  1000  | 0.070161 s.   |   1.58157 s.                   | 1.253638 s.                   |
+| Vector      | 2         |  100000| 0.77073 s.    |   162.484 s.                   | 163.431 s.                    |
+| Vector      | 3         |  1000  | 3.334 s.      |   1.58157 s.                   | 5.101 s.                      |  
+| Vector      | 3         |  100000| 4.51 s.       |   2.7805  s.                   | 7.3401 s.                     |
+| List        | 1         |  1000  | 0.0694568 s.  | 0.0216233 s.                   | 0.540543 s.                   |
+| List        | 1         |  100000|0.59668 s.     | 0.186695 s.                    | 1.346704 s.                   |
+| List        | 2         |  1000  | 0.016951 s.   | 0.0108616 s.                   | 0.134331 s.                   |
+| List        | 2         |  100000| 2.331 s.      | 0.107117 s.                    | 3.305 s.                      |
+| List        | 3         |  1000  | 0.017038 s.   | 0.009501 s.                    | 0.109943 s.                   |
+| List        | 3         |  100000| 0.181387 s.   |  2.5813 s.                     | 4.5315 s.                     |
+| Deque       | 1         |  1000  | 0.0400197 s.  | 0.0079072 s.                   | 0.013435 s.                   |
+| Deque       | 1         |  100000|0.348641 s.    | 0.0731703 s.                   | 0.531011 s.                   |
+| Deque       | 2         |  1000  | 0.00951 s.    | 1.15924 s.                     | 3.01334 s.                    |
+| Deque       | 2         |  100000| 0.083064 s.   | 129.367 s.                     | 130.115 s.                    |
+| Deque       | 3         |  1000  | 0.008511 s.   | 0.008511 s.                    |  0.018615 s.                  |
+| Deque       | 3         |  100000| 0.077897 s.   | 1.9801 s.                      | 3.1797 s.                     |
 
 
 
