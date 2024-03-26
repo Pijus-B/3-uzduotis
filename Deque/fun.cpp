@@ -1,5 +1,5 @@
 #include "fun.h"
-
+#include "studentas.h"
 void skaitymas (deque <studentas> & A, int n)
 { 
     cin >> n;
@@ -173,21 +173,21 @@ bool pagalVidurki(const studentas & A, const studentas & B) {
 bool pagalMediana(const studentas & A, const studentas & B) {
     return A.mediana < B.mediana;
 }
-void spausdinti (const deque <studentas> & A)
+void spausdinti (const deque <Studentas> & A)
 {
     cout << left << setw(10) << "Pavarde " << setw(15) << "Vardas " << setw(15) << "Galutinis (Vid.) " << " " << " / Galutinis (Med.)" << endl;
     cout << "----------------------------------------------------" << endl;
     for (const auto& student : A){
-    cout << left << setw(10) << student.vardas << setw(15) << student.pavarde << fixed << setprecision(2) << setw(15) << student.balas << setw(10) << student.mediana << endl;
+    cout << left << setw(10) << student.getVardas() << setw(15) << student.getPavarde() << fixed << setprecision(2) << setw(15) << student.getBalas() << setw(10) << student.getMediana() << endl;
     }
 }
-void spausdintiTeksto(const deque <studentas> & A)
+void spausdintiTeksto(const deque <Studentas> & A)
 {
     ofstream fr ("kursiokai.txt");
     fr << left << setw(20) << "Pavarde " << setw(25) << "Vardas " << setw(20) << "Galutinis (Vid.) " << "/ " << " Galutinis (Med.)" << endl;
     fr << "-------------------------------------------------------------------------------------" << endl;
     for (const auto& student : A){
-     fr << left << setw(20) << student.vardas << setw(25) << student.pavarde << fixed << setprecision(2) << setw(25) << student.balas << setw(20) << student.mediana << endl;
+     fr << left << setw(20) << student.getVardas() << setw(25) << student.getPavarde() << fixed << setprecision(2) << setw(25) << student.getBalas() << setw(20) << student.getMediana() << endl;
     }
     fr.close();
 }
