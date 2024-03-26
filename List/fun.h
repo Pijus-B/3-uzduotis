@@ -1,5 +1,16 @@
 #pragma once
-#include <bits/stdc++.h>
+#include <iostream>
+#include <numeric>
+#include <vector>
+#include <string>
+#include <algorithm>
+#include <fstream>
+#include <sstream>
+#include <iomanip>
+#include <random>
+#include <ctime>
+#include <chrono>
+#include <list>
 using namespace std;
 
 const int MAX_ND_SIZE = 500;
