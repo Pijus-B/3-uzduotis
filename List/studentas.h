@@ -12,6 +12,10 @@
 #include <ctime>
 #include <chrono>
 using namespace std;
+
+const int MAX_ND_SIZE = 500;
+const int MAX_STUDENTS = 500;
+
 class Studentas {
 private:
     string vardas_;
@@ -42,10 +46,10 @@ public:
     inline void setVid (const double& vid) {vid_ = vid;} // setteris
     inline void setMediana (const double& mediana) {mediana_ = mediana;} // setteris
 
-    inline void skaiciavimas (vector <Studentas>);
+
 
 };
-/*void skaitymas (vector <Studentas> &, int); //get
+void skaitymas (vector <Studentas> &, int); //get
 void skaitymasTeksto (vector <Studentas> &); //get
 bool pagalVarda(const Studentas &, const Studentas &);
 bool pagalPavarde(const Studentas &, const Studentas &);
@@ -59,5 +63,5 @@ void generavimasPazymiu (vector <Studentas> &, int n);
 void generavimasPazymiuCase2 (vector <Studentas> &);
 void generavimasStudentu (vector <Studentas> &, int);
 void generavimasFailo (vector <Studentas> &, int);
-bool isValidName(const string &);*/
+bool isValidName(const string &);
 #endif 

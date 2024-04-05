@@ -1,35 +1,42 @@
-#include "fun.h"
 #include "studentas.h"
-void skaitymas (deque <studentas> & A, int n)
+using namespace std;
+
+void skaitymas (deque <Studentas> & A, int n)
 { 
     cin >> n;
       for (int i = 0; i < n; i++)
     {
-         studentas student;
-        
-        cin >> student.vardas;
+         Studentas student;
+        string vardas, pavarde;
+        cin >> vardas;
         cout << "Iveskite savo pavarde " << endl;
-        cin >> student.pavarde;
-        bool valid_vardas = isValidName(student.vardas);
-        bool valid_pavarde = isValidName(student.pavarde);
+        cin >> pavarde;
+        bool valid_vardas = isValidName(vardas);
+        bool valid_pavarde = isValidName(pavarde);
         if (!valid_vardas || !valid_pavarde)
         {
             cout << "Netinkami vardai. Bandykite is naujo." << endl;
             i--;
             continue;
         }
+        student.setVardas(vardas);
+        student.setPavarde(pavarde);
         cout << "Iveskite egzamino rezultatus " << endl;
-        cin >> student.egz;
+        int egz;
+        cin >> egz;
+        student.setEgz(egz);
         cout << "Iveskite namu darbu tarpinius rezultatus (baigti ivesdami -1)" << endl;
         int nd;
+        deque <int> nds;
         while (cin >> nd && nd != -1)
         {
-            student.nd.push_back(nd);
+            nds.push_back(nd);
         }
+        student.setNd(nds);
         A.push_back(student);
     }
 }
-void skaitymasTeksto (deque <studentas> & A)
+void skaitymasTeksto (deque <Studentas> & A)
 {
     ifstream fd ("studentai1000000.txt");
     string eil;
@@ -39,14 +46,19 @@ void skaitymasTeksto (deque <studentas> & A)
 
     while (getline(fd, eil)){
         stringstream ss(eil);
-        studentas student;
-        ss >> student.vardas >> student.pavarde;
+        Studentas student;
+        string vardas, pavarde;
+        ss >> vardas >> pavarde;
+        student.setVardas(vardas);
+        student.setPavarde(pavarde);
         int paz;
+        deque <int> nds;
         while (ss >> paz){
-            student.nd.push_back(paz);
+            nds.push_back(paz);
         }
-        student.egz = student.nd[student.nd.size()-1];
-        student.nd.pop_back();
+        student.setNd(nds);
+        student.setEgz(student.getNd().back());
+        student.getNd().pop_back();
         A.push_back(student);
     }
     auto pabaiga = chrono::steady_clock::now();
@@ -55,60 +67,85 @@ void skaitymasTeksto (deque <studentas> & A)
     fd.close();
 
 }
-void skaiciavimas (deque <studentas> & A)
+void skaiciavimas (deque <Studentas> & A)
 { 
    for (auto& student : A)
     {
-        sort(student.nd.begin(), student.nd.end());
-        int size = student.nd.size();
+        sort(student.getNd().begin(), student.getNd().end());
+        int size = student.getNd().size();
         if (size % 2 == 0)
         {
             int indeksas1 = size / 2 - 1;
             int indeksas2 = size / 2;
-            student.mediana = (student.nd.at(indeksas1) + student.nd.at(indeksas2)) / 2.0;
+            student.setMediana((student.getNd()[indeksas1] + student.getNd()[indeksas2]) / 2.0);
         }
         else
         {
             int indeksas2 = size / 2;
-            student.mediana = student.nd.at(indeksas2);
+            student.setMediana(student.getNd()[indeksas2]);
         }
-        double sum = accumulate(student.nd.begin(), student.nd.end(), 0);
+        double sum = accumulate(student.getNd().begin(), student.getNd().end(), 0.0);
         if (size > 0)
         {
-            student.vid = sum / size;
-            student.balas = 0.4 * student.vid + 0.6 * student.egz;
+            student.setVid(sum / size);
+            student.setBalas(0.4 * student.getVid() + 0.6 * student.getEgz());
         }
         else
         {
-            student.vid = student.egz;
-            student.balas = student.vid;
-            student.mediana = student.vid;
+            student.setVid(student.getEgz());
+            student.setBalas(student.getVid());
+            student.setMediana(student.getVid());
         }
     }
 }
-void padalintiStudentus(deque <studentas> & A){
-    auto pradzia_rusiavimas = chrono::steady_clock::now();
-    deque<studentas> vargsiukai;
-   // deque<studentas> kietiakiai;
-
+void padalintiStudentus(deque <Studentas> & A){
+    deque<Studentas> vargsiukai;
+    deque<Studentas> kietiakiai;
+    cout << "Pasirinkite norima strategija: " << endl;
+    cout << "1 strategija " << endl;
+    cout << "2 strategija " << endl;
+    cout << "3 strategija " << endl;
+    int strategija;
+    cin >> strategija;
     auto pradzia_dviGrupes = chrono::steady_clock::now();
-    auto iter = A.begin();
-    while (iter != A.end()){
-        if (iter -> balas < 5.0){
-            vargsiukai.push_back(*iter);                     // 2 strategija
+    switch (strategija){
+        case 1:{
+            for (auto &student : A) {
+        if (student.getBalas() < 5.0) {
+            vargsiukai.push_back(student);    // 1 strategija
+        } else {
+            kietiakiai.push_back(student);
+        }
+    }
+            break;
+        }
+        case 2:
+        {
+           auto iter = A.begin();
+            while (iter != A.end()){
+        if (iter -> getBalas() < 5.0){
+            vargsiukai.push_back(*iter);     // 2 strategija
             iter = A.erase(iter);
         }
         else {
             iter++;
-        }
+             }
+             }
+            break;
     }
-    /*for (auto &studentas : A) {
-        if (studentas.balas < 5.0) {
-            vargsiukai.push_back(studentas);                 // 1 strategija
-        } else {
-            kietiakiai.push_back(studentas);
-        }
-    }*/
+        case 3:{
+            remove_copy_if(A.begin(), A.end(), back_inserter(vargsiukai), [] (const Studentas & s){
+                return s.getBalas() >= 5.0;
+            });
+            A.erase(remove_if(A.begin(), A.end(), [](const Studentas& s){        // 3 strategija su std::remove_if ir std::remove_if_copy
+                return s.getBalas() < 5.0;
+            }), A.end());
+            break;
+             }
+            default:
+            cout <<"Pasirinkta neteisinga strategija" << endl;
+            return;
+    }
     auto pabaiga_dviGrupes = chrono::steady_clock::now();
     double trukme_dviGrupes = chrono::duration<double>(pabaiga_dviGrupes - pradzia_dviGrupes).count();
     cout << "Studentu skirstymo i dvi grupes laikas: " << trukme_dviGrupes << " sekundes" << endl;
@@ -119,41 +156,46 @@ void padalintiStudentus(deque <studentas> & A){
     cout << "4. Pagal galutini (mediana) " << endl;
     int pasirinkti;
     cin >> pasirinkti;
+     auto pradzia_rusiavimas = chrono::steady_clock::now();
     switch (pasirinkti){
         case 1:
             sort(vargsiukai.begin(), vargsiukai.end(), pagalVarda);
-            //sort(kietiakiai.begin(), kietiakiai.end(), pagalVarda);
+            sort(kietiakiai.begin(), kietiakiai.end(), pagalVarda);
             break;
         case 2:
             sort(vargsiukai.begin(), vargsiukai.end(), pagalPavarde);
-            //sort(kietiakiai.begin(), kietiakiai.end(), pagalPavarde);
+            sort(kietiakiai.begin(), kietiakiai.end(), pagalPavarde);
             break;
         case 3:
             sort(vargsiukai.begin(), vargsiukai.end(), pagalVidurki);
-            //sort(kietiakiai.begin(), kietiakiai.end(), pagalVidurki);
+            sort(kietiakiai.begin(), kietiakiai.end(), pagalVidurki);
             break;
         case 4:
             sort(vargsiukai.begin(), vargsiukai.end(), pagalMediana);
-            //sort(kietiakiai.begin(), kietiakiai.end(), pagalMediana);
+            sort(kietiakiai.begin(), kietiakiai.end(), pagalMediana);
             break;
+        default:
+            cout << "Pasirinktias netinkamas rusiavimo kriterijus" << endl;
+            return;
             }
     
     auto pabaiga_rusiavimas = chrono::steady_clock::now();
 
     auto pradzia_isvedimas = chrono::steady_clock::now();
     ofstream vargsiukai_out ("vargsiukai.txt");
-    //ofstream kietiakiai_out ("kietiakiai.txt");
+    ofstream kietiakiai_out ("kietiakiai.txt");
 
-      for (const auto &studentas : vargsiukai) {
-        vargsiukai_out << studentas.vardas << " " << studentas.pavarde << " " << fixed << setprecision(2) << studentas.balas << endl;
+      for (const auto &Studentas : vargsiukai) {
+        vargsiukai_out << Studentas.getVardas() << " " << Studentas.getPavarde() << " " << fixed << setprecision(2) << Studentas.getBalas() << endl;
     }
 
-    //for (const auto &studentas : kietiakiai) {
-    //    kietiakiai_out << studentas.vardas << " " << studentas.pavarde << " " << fixed << setprecision(2) << studentas.balas << endl;
-    //}
+    for (const auto &Studentas : kietiakiai) {
+       kietiakiai_out << Studentas.getVardas() << " " << Studentas.getPavarde() << " " << fixed << setprecision(2) << Studentas.getBalas() << endl;
+   }
 
     vargsiukai_out.close();
-    //kietiakiai_out.close();
+    kietiakiai_out.close();
+
     auto pabaiga_isvedimas = chrono::steady_clock::now();
 
     double trukme_rusiavimas = chrono::duration<double>(pabaiga_rusiavimas - pradzia_rusiavimas).count();
@@ -161,17 +203,17 @@ void padalintiStudentus(deque <studentas> & A){
     cout << "Studentu rusiavimo laikas: " << trukme_rusiavimas << " sekundes" << endl;
     cout << "Surusiuotu studentu isvedimas: " << trukme_isvedimas << " sekundes" << endl;
 }
-bool pagalVarda(const studentas & A, const studentas & B) {
-    return A.vardas < B.vardas;
+bool pagalVarda(const Studentas & A, const Studentas & B) {
+    return A.getVardas() < B.getVardas();
 }
-bool pagalPavarde(const studentas & A, const studentas & B) {
-    return A.pavarde < B.pavarde;
+bool pagalPavarde(const Studentas & A, const Studentas & B) {
+    return A.getPavarde()< B.getPavarde();
 }
-bool pagalVidurki(const studentas & A, const studentas & B) {
-    return A.balas < B.balas;
+bool pagalVidurki(const Studentas & A, const Studentas & B) {
+    return A.getBalas() < B.getBalas();
 }
-bool pagalMediana(const studentas & A, const studentas & B) {
-    return A.mediana < B.mediana;
+bool pagalMediana(const Studentas & A, const Studentas & B) {
+    return A.getMediana() < B.getMediana();
 }
 void spausdinti (const deque <Studentas> & A)
 {
@@ -191,33 +233,37 @@ void spausdintiTeksto(const deque <Studentas> & A)
     }
     fr.close();
 }
-void generavimasPazymiu(deque<studentas>& A, int n2) {
+void generavimasPazymiu(deque<Studentas>& A, int n2) {
     srand(time(0));
     A.clear();
     for (int i = 0; i < n2; i++)
     {
-        studentas student;
+        Studentas student;
         int nd_count = rand() % (MAX_ND_SIZE + 1);
+        deque <int> nds;
         for (int j = 0; j < nd_count; j++)
         {
-            student.nd.push_back(rand() % 11);
+            nds.push_back(rand() % 11);
         }
-        student.egz = rand() % 11;
+        student.setNd(nds);
+        student.setEgz(rand() % 11);
         A.push_back(student);
     }
 }
-void generavimasPazymiuCase2 (deque <studentas> & A)
+void generavimasPazymiuCase2 (deque <Studentas> & A)
 {
     srand(time(0));
     for (auto& student : A){
         int nd_count = rand() % (MAX_ND_SIZE + 1);
+        deque<int> nds;
         for (int j = 0; j < nd_count; j++){
-            student.nd.push_back(rand() % 11);
+            nds.push_back(rand() % 11);
         }
-        student.egz = rand() % 11;
+        student.setNd(nds);
+        student.setEgz(rand() % 11);
     }
 }
-void generavimasStudentu(deque<studentas>& A, int n) {
+void generavimasStudentu(deque<Studentas>& A, int n) {
    
     srand(time(0));
 
@@ -226,8 +272,8 @@ void generavimasStudentu(deque<studentas>& A, int n) {
 
     for (auto& student : A)
     {
-       student.vardas = vardai[rand() % 10];
-       student.pavarde = pavardes[rand() % 10];
+       student.setVardas(vardai[rand() % 10]);
+       student.setPavarde(pavardes[rand() % 10]);
     }
 }
 void generavimasFailo (int kiekis)

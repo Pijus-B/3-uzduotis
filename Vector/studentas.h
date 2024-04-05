@@ -12,6 +12,10 @@
 #include <ctime>
 #include <chrono>
 using namespace std;
+
+const int MAX_ND_SIZE = 500;
+const int MAX_STUDENTS = 500;
+
 class Studentas {
 private:
     string vardas_;
@@ -28,7 +32,7 @@ public:
 
     inline string getVardas() const { return vardas_;} // getteris
     inline string getPavarde() const {return pavarde_;} // geteris
-    inline vector<int> geNnd() const {return nd_;} // getteris
+    inline vector<int>& getNd() {return nd_;} // getteris
     inline int getEgz() const {return egz_;} // getteris
     inline double getBalas() const {return balas_;} // getteris
     inline double getVid () const {return vid_;} // getteris
@@ -42,22 +46,20 @@ public:
     inline void setVid (const double& vid) {vid_ = vid;} // setteris
     inline void setMediana (const double& mediana) {mediana_ = mediana;} // setteris
 
-    inline void skaiciavimas (vector <Studentas>);
-
 };
-/*void skaitymas (vector <Studentas> &, int); //get
-void skaitymasTeksto (vector <Studentas> &); //get
+void skaitymas (vector <Studentas> &, int);
+void skaitymasTeksto (vector <Studentas> &); 
 bool pagalVarda(const Studentas &, const Studentas &);
 bool pagalPavarde(const Studentas &, const Studentas &);
 bool pagalVidurki(const Studentas &, const Studentas &);
 bool pagalMediana(const Studentas &, const Studentas &);
-void spausdinti (const vector <Studentas> &);//get
-void spausdintiTeksto(const vector <Studentas> &); //get
-void skaiciavimas (vector <Studentas> &); //funkc
-void padalintiStudentus(vector <Studentas> &); //
+void spausdinti (const vector <Studentas> &);
+void spausdintiTeksto(const vector <Studentas> &);
+void skaiciavimas (vector <Studentas> &);
+void padalintiStudentus(vector <Studentas> &); 
 void generavimasPazymiu (vector <Studentas> &, int n);
 void generavimasPazymiuCase2 (vector <Studentas> &);
 void generavimasStudentu (vector <Studentas> &, int);
 void generavimasFailo (vector <Studentas> &, int);
-bool isValidName(const string &);*/
+bool isValidName(const string &);
 #endif 

@@ -1,6 +1,7 @@
 #ifndef LABAS
 #define LABAS
 #include <iostream>
+#include <numeric>
 #include <vector>
 #include <string>
 #include <algorithm>

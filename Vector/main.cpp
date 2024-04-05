@@ -1,6 +1,6 @@
-#include "fun.h"
-
+#include "studentas.h"
 int main (){
+
     try {
         ifstream fd ("studentai10000.txt");
         if (!fd.is_open()){
@@ -11,7 +11,7 @@ int main (){
             throw runtime_error ("Nepavyko atidaryti rezultatu failo");
         }
     
-    vector <studentas> A;
+    vector <Studentas> A;
     int n; int pasirinkimas;
     while (true){
         cout << "Pasirinkite norima veiksma: " << endl;
@@ -42,6 +42,7 @@ int main (){
             }
             case 3:
             {
+                A.clear();
                 try {
                 int n2;
                 cout << "Iveskite zmoniu skaiciu" << endl;
@@ -55,16 +56,19 @@ int main (){
                 
                 for (int i = 0; i < n2; i++)
             {
-                studentas student;
+                Studentas student;
                 bool valid_names;
                 do
                 {
                     try {
                         cout << "Iveskite savo varda" << endl;
-                        cin >> student.vardas;
+                        string vardas, pavarde;
+                        cin >> vardas;
+                        student.setVardas(vardas);
                         cout << "Iveskite savo pavarde" << endl;
-                        cin >> student.pavarde;
-                         valid_names = isValidName(student.vardas) && isValidName(student.pavarde) && student.vardas.length() >= 2 && student.pavarde.length() >= 2;
+                        cin >> pavarde;
+                        student.setPavarde(pavarde);
+                         valid_names = isValidName(student.getVardas()) && isValidName(student.getPavarde()) && student.getVardas().length() >= 2 && student.getPavarde().length() >= 2;
                         if (!valid_names){
                             throw runtime_error ("Netinkami vardai su pavardemis. Bandykite is naujo");
                         }
