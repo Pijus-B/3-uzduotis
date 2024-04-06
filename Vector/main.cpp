@@ -137,9 +137,9 @@ int main (){
                 skaitymasTeksto(A);
                 skaiciavimas(A);
                padalintiStudentus(A);
-              // auto pabaiga = chrono::steady_clock::now();
-               //double trukme = chrono::duration<double>(pabaiga - pradzia).count();
-              // cout << "Visos programos veikimo laikas: " << trukme << " sekundes" << endl;
+               auto pabaiga = chrono::steady_clock::now();
+               double trukme = chrono::duration<double>(pabaiga - pradzia).count();
+             cout << "Visos programos veikimo laikas: " << trukme << " sekundes" << endl;
                 break;
             }
             case 7:
