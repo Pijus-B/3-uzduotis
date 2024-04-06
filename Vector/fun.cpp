@@ -59,7 +59,41 @@ void skaitymas (vector <Studentas> & A, int n)
 }
 void skaitymasTeksto (vector <Studentas> & A)
 {
-    ifstream fd ("studentai1000000.txt");
+    cout << "Pasirinkite norima faila: " << endl;
+    cout << "1. studentai1000.txt" << endl;
+    cout << "2. studentai10000.txt" << endl;
+    cout << "3. studentai100000.txt" << endl;
+    cout << "4. studentai1000000.txt" << endl;
+    cout << "5. studentai10000000.txt" << endl;
+    int pasirinkimas;
+    cin >> pasirinkimas;
+    string failas;
+    switch (pasirinkimas) {
+        case 1:
+            failas = "studentai1000.txt";
+            break;
+        case 2:
+            failas = "studentai10000.txt";
+            break;
+        case 3:
+            failas = "studentai100000.txt";
+            break;
+        case 4:
+            failas = "studentai1000000.txt";
+            break;
+        case 5:
+            failas = "studentai10000000.txt";
+            break;
+        default:
+            cout << "Neteisingas pasirinkimas" << endl;
+            return;
+    }
+
+    ifstream fd(failas);
+    if (!fd.is_open()){
+        throw runtime_error ("Nepavyko atidaryti duomenu failo");
+    }
+
     string eil;
     getline(fd, eil);
 
@@ -285,10 +319,10 @@ void generavimasStudentu(vector<Studentas>& A, int n) {
 void generavimasFailo (int kiekis)
 {
     auto pradzia_generavimasFailo = chrono::steady_clock::now();
-    stringstream fileNameStream;
-    fileNameStream << "Studentai" << kiekis << ".txt";
-    string filename = fileNameStream.str();
-    ofstream fd (filename);
+    stringstream failasStream;
+    failasStream << "Studentai" << kiekis << ".txt";
+    string failas = failasStream.str();
+    ofstream fd (failas);
 
     random_device rd;
     mt19937 mt(rd());
