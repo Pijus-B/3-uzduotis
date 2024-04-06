@@ -11,6 +11,7 @@
 #include <random>
 #include <ctime>
 #include <chrono>
+#include <list>
 using namespace std;
 
 const int MAX_ND_SIZE = 500;
@@ -20,19 +21,19 @@ class Studentas {
 private:
     string vardas_;
     string pavarde_;
-    vector <int> nd_;
+    list <int> nd_;
     int egz_;
     double balas_;
     double vid_;
     double mediana_;
 public:
     Studentas () : egz_(0), balas_(0), vid_(0), mediana_(0) {} // default konstruktorius
-    Studentas (const string& vardas, const string& pavarde, const vector<int>& nd, int egz, double balas, double vid, double mediana) : vardas_(vardas), pavarde_(pavarde), nd_(nd), egz_(egz), balas_(balas), vid_(vid), mediana_(mediana) {} // konstruktoriai
+    Studentas (const string& vardas, const string& pavarde, const list<int>& nd, int egz, double balas, double vid, double mediana) : vardas_(vardas), pavarde_(pavarde), nd_(nd), egz_(egz), balas_(balas), vid_(vid), mediana_(mediana) {} // konstruktoriai
     ~Studentas () {} // destruktorius
 
     inline string getVardas() const { return vardas_;} // getteris
     inline string getPavarde() const {return pavarde_;} // geteris
-    inline vector<int> geNnd() const {return nd_;} // getteris
+    inline list <int> getNd() const {return nd_;} // getteris
     inline int getEgz() const {return egz_;} // getteris
     inline double getBalas() const {return balas_;} // getteris
     inline double getVid () const {return vid_;} // getteris
@@ -40,13 +41,11 @@ public:
 
     inline void setVardas (const string& vardas) {vardas_ = vardas;} // setteris
     inline void setPavarde (const string &pavarde) {pavarde_ = pavarde;} // setteris
-    inline void setNd (const vector<int>& nd) {nd_ = nd;} // setteris
+    inline void setNd (const list<int>& nd) {nd_ = nd;} // setteris
     inline void setEgz (const int& egz) {egz_ = egz;} // setteris
     inline void setBalas (const double& balas) {balas_ = balas;} // setteris
     inline void setVid (const double& vid) {vid_ = vid;} // setteris
     inline void setMediana (const double& mediana) {mediana_ = mediana;} // setteris
-
-
 
 };
 void skaitymas (vector <Studentas> &, int); //get
