@@ -19,11 +19,17 @@ using namespace std;
 const int MAX_ND_SIZE = 500;
 const int MAX_STUDENTS = 500;
 
-class Studentas {
+class Zmogus {
+    protected:
+    virtual void vardas() const = 0;
+    virtual void pavarde() const = 0;
+};
+
+class Studentas : public Zmogus {
 private:
     string vardas_;
     string pavarde_;
-    vector<int> nd_;
+    vector <int> nd_;
     int egz_;
     double balas_;
     double vid_;
