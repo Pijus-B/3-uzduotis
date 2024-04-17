@@ -21,7 +21,9 @@ int main (){
         cout << "4. Generuoti studentu vardus ir pavardes" << endl;
         cout << "5. Rusiuoti pagal pasirinktus parametrus" << endl;
         cout << "6. Generuoti failus, surusiuoti bei padalinti juos i atskirus failus" << endl;
-        cout << "7. Baigti programa" << endl;
+        cout << "7. Patikrinti Rule of Five" << endl;
+        cout << "8. Patikrinti << ir >> " << endl;
+        cout << "9. Baigti programa" << endl;
         cin >> pasirinkimas;
 
         switch (pasirinkimas){
@@ -143,6 +145,22 @@ int main (){
                 break;
             }
             case 7:
+            {
+                test_constructor ();
+                test_copy_constructor();
+                test_move_constructor ();
+                test_copy_assignment ();
+                test_move_assignment ();
+                break;
+            }
+            case 8:
+            {
+                test_input_operator ();
+                test_output_operator();
+                cout << "Visi testai praejo" << endl;
+                break;
+            }
+            case 9:
             {
                cout << "Programos pabaiga" << endl;
                 return 0;
