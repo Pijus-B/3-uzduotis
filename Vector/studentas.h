@@ -21,8 +21,8 @@ const int MAX_STUDENTS = 500;
 
 class Zmogus {
     public:
-    virtual void getVardas() const = 0;
-    virtual void getPavarde() const = 0;
+    virtual string getVardas() const {return "";}
+    virtual string getPavarde() const {return "";}
     virtual ~Zmogus() {}
 };
 
@@ -76,8 +76,8 @@ public:
     }
 
     // Getter and setter functions
-    inline string getVardas() const override{ return vardas_; }
-    inline string getPavarde() const override { return pavarde_; }
+    inline string getVardas() const override{}
+    inline string getPavarde() const override {}
     inline vector<int>& getNd() { return nd_; }
     inline int getEgz() const { return egz_; }
     inline double getBalas() const { return balas_; }
