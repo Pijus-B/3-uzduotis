@@ -30,11 +30,9 @@ private:
     double mediana_;
 
 public:
-    // Default constructor
-    Studentas() : egz_(0), balas_(0), vid_(0), mediana_(0) {}
+    Studentas() : egz_(0), balas_(0), vid_(0), mediana_(0) {} // default konstruktorius
 
-    // Parameterized constructor
-    Studentas(const string& vardas, const string& pavarde, const vector<int>& nd, int egz, double balas, double vid, double mediana)
+    Studentas(const string& vardas, const string& pavarde, const vector<int>& nd, int egz, double balas, double vid, double mediana) // konstruktorius
         : vardas_(vardas), pavarde_(pavarde), nd_(nd), egz_(egz), balas_(balas), vid_(vid), mediana_(mediana) {}
     ~Studentas() {} // destruktorius
 
