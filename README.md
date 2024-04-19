@@ -13,6 +13,9 @@ Pateiktas kodas yra C++ programa studentu informacijos valdymui. Ji apima funkci
 
 Šie testai padeda mums patvirtinti svarbią klasės funkcionalumo dalį, įskaitant studentų įrašų konstravimą, kopijavimą ir perkėlimą.
 
+![ruleoffive](https://github.com/Pijus-B/2-uzduotis/assets/90143621/a25a36c4-c841-4c5a-9101-db32a3e47de8)
+
+
 ## Ivesties ir isvesties patikrinimas
 | Testavimo funkcija       | Aprasymas                                                                             |  Rezultatas     |
 |--------------------------|---------------------------------------------------------------------------------------|-----------------|
