@@ -19,6 +19,15 @@ Nurodykite savo projekto direktyvą: naudokite cd komandą į CMD, jog pakeisti 
 Kompiliuokite savo projektą: Įrašykite make ir paspauskite Enter. Tada prades kompiliuoti jūsų C++ projektą pagal nurodytas Makefile instrukcijas.
 Pradėkite savo projektą: Po kompiliavimo jūs turėtumete turėti vykdomąjį failą, dažniausiai vadinamą main arba kitu specifiškai pavadintu jūsų Makefile. Įrašykite main i CMD ir paspauskite Enter, kad pradėtumete savo programos veikimą.
 
+## UnitTest testai
+| Testavimo funkcija       | Aprasymas                                                                             |  Rezultatas     |
+|--------------------------|---------------------------------------------------------------------------------------|-----------------|
+|`test_constructor()`      |Patikrina konstruktorių su default parametrais                                         |Sėkmingai praėjo |
+|`test_copy_constructor()` |Patikrina copy konstruktorių, ar tinkamai nukopijuoja objekta                          |Sėkmingai praėjo |   
+
+![paveikslas](https://github.com/Pijus-B/2-uzduotis/assets/90143621/ac31a4e9-68f6-4843-87fa-cac34574e38c)
+
+
 
 */## Studentas klasės informacija
 ## Konstruktoriai
