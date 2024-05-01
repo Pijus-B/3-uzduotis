@@ -1,0 +1,174 @@
+\doxysection{fun.\+h File Reference}
+\hypertarget{fun_8h}{}\label{fun_8h}\index{fun.h@{fun.h}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$numeric$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$random$>$}\newline
+{\ttfamily \#include $<$ctime$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+Include dependency graph for fun.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{fun_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structstudentas}{studentas}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{fun_8h_a6efa712a6e9ba89b54cef5c76fef26d3}{skaitymas}} (vector$<$ \mbox{\hyperlink{structstudentas}{studentas}} $>$ \&A, int n)
+\item 
+void \mbox{\hyperlink{fun_8h_a6cafc497a1ee80ef2200021ee13478b5}{skaitymas\+Teksto}} (vector$<$ \mbox{\hyperlink{structstudentas}{studentas}} $>$ \&A)
+\item 
+bool \mbox{\hyperlink{fun_8h_a8f2a9d0474ec2a20aac605dce81f0d67}{pagal\+Varda}} (const \mbox{\hyperlink{structstudentas}{studentas}} \&A, const \mbox{\hyperlink{structstudentas}{studentas}} \&B)
+\item 
+bool \mbox{\hyperlink{fun_8h_a6b8bbe6335f66a1ac4fec7b4db3dd8cf}{pagal\+Pavarde}} (const \mbox{\hyperlink{structstudentas}{studentas}} \&A, const \mbox{\hyperlink{structstudentas}{studentas}} \&B)
+\item 
+bool \mbox{\hyperlink{fun_8h_a525f374507ca27695a0cb3967121beda}{pagal\+Vidurki}} (const \mbox{\hyperlink{structstudentas}{studentas}} \&A, const \mbox{\hyperlink{structstudentas}{studentas}} \&B)
+\item 
+bool \mbox{\hyperlink{fun_8h_a5c76ce08ef3a1ad6e307f94ec343d760}{pagal\+Mediana}} (const \mbox{\hyperlink{structstudentas}{studentas}} \&A, const \mbox{\hyperlink{structstudentas}{studentas}} \&B)
+\item 
+void \mbox{\hyperlink{fun_8h_a50a46db9e8c1b191af6e133c0a25fb5a}{spausdinti}} (const vector$<$ \mbox{\hyperlink{structstudentas}{studentas}} $>$ \&A)
+\item 
+void \mbox{\hyperlink{fun_8h_adf174b49400d84b1336f173381be5c5a}{spausdinti\+Teksto}} (const vector$<$ \mbox{\hyperlink{structstudentas}{studentas}} $>$ \&A)
+\item 
+void \mbox{\hyperlink{fun_8h_ae3a31fce481d6822be0e7ed022a07e8b}{skaiciavimas}} (vector$<$ \mbox{\hyperlink{structstudentas}{studentas}} $>$ \&A)
+\item 
+void \mbox{\hyperlink{fun_8h_ab3d65179a78ceccb34fbbe0b952fe46f}{padalinti\+Studentus}} (vector$<$ \mbox{\hyperlink{structstudentas}{studentas}} $>$ \&A)
+\item 
+void \mbox{\hyperlink{fun_8h_a93d243f73344405ff7acb37f7f3eb536}{generavimas\+Pazymiu}} (vector$<$ \mbox{\hyperlink{structstudentas}{studentas}} $>$ \&A, int n)
+\item 
+void \mbox{\hyperlink{fun_8h_a362fbfe0d233d5a6384ea1a6515b88a2}{generavimas\+Pazymiu\+Case2}} (vector$<$ \mbox{\hyperlink{structstudentas}{studentas}} $>$ \&A)
+\item 
+void \mbox{\hyperlink{fun_8h_aba6ba0682c97a2c79401193d550edf7e}{generavimas\+Studentu}} (vector$<$ \mbox{\hyperlink{structstudentas}{studentas}} $>$ \&A, int n)
+\item 
+void \mbox{\hyperlink{fun_8h_a81e61f33fdb4adb6db68e2166ae12cdb}{generavimas\+Failo}} (vector$<$ \mbox{\hyperlink{structstudentas}{studentas}} $>$ \&A, int n)
+\item 
+bool \mbox{\hyperlink{fun_8h_ab4bd4dd9e2b7e3ab308f711e08d8dae7}{is\+Valid\+Name}} (const string \&name)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const int \mbox{\hyperlink{fun_8h_aa21e842fbd411a1aa816dd52a4c10d51}{MAX\+\_\+\+ND\+\_\+\+SIZE}} = 500
+\item 
+const int \mbox{\hyperlink{fun_8h_a79e20fbd6b7e339450e8cfa08c32844d}{MAX\+\_\+\+STUDENTS}} = 500
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{fun_8h_a81e61f33fdb4adb6db68e2166ae12cdb}\label{fun_8h_a81e61f33fdb4adb6db68e2166ae12cdb} 
+\index{fun.h@{fun.h}!generavimasFailo@{generavimasFailo}}
+\index{generavimasFailo@{generavimasFailo}!fun.h@{fun.h}}
+\doxysubsubsection{\texorpdfstring{generavimasFailo()}{generavimasFailo()}}
+{\footnotesize\ttfamily void generavimas\+Failo (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{structstudentas}{studentas}} $>$ \&}]{A,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+\Hypertarget{fun_8h_a93d243f73344405ff7acb37f7f3eb536}\label{fun_8h_a93d243f73344405ff7acb37f7f3eb536} 
+\index{fun.h@{fun.h}!generavimasPazymiu@{generavimasPazymiu}}
+\index{generavimasPazymiu@{generavimasPazymiu}!fun.h@{fun.h}}
+\doxysubsubsection{\texorpdfstring{generavimasPazymiu()}{generavimasPazymiu()}}
+{\footnotesize\ttfamily void generavimas\+Pazymiu (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{structstudentas}{studentas}} $>$ \&}]{A,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+\Hypertarget{fun_8h_a362fbfe0d233d5a6384ea1a6515b88a2}\label{fun_8h_a362fbfe0d233d5a6384ea1a6515b88a2} 
+\index{fun.h@{fun.h}!generavimasPazymiuCase2@{generavimasPazymiuCase2}}
+\index{generavimasPazymiuCase2@{generavimasPazymiuCase2}!fun.h@{fun.h}}
+\doxysubsubsection{\texorpdfstring{generavimasPazymiuCase2()}{generavimasPazymiuCase2()}}
+{\footnotesize\ttfamily void generavimas\+Pazymiu\+Case2 (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{structstudentas}{studentas}} $>$ \&}]{A }\end{DoxyParamCaption})}
+
+\Hypertarget{fun_8h_aba6ba0682c97a2c79401193d550edf7e}\label{fun_8h_aba6ba0682c97a2c79401193d550edf7e} 
+\index{fun.h@{fun.h}!generavimasStudentu@{generavimasStudentu}}
+\index{generavimasStudentu@{generavimasStudentu}!fun.h@{fun.h}}
+\doxysubsubsection{\texorpdfstring{generavimasStudentu()}{generavimasStudentu()}}
+{\footnotesize\ttfamily void generavimas\+Studentu (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{structstudentas}{studentas}} $>$ \&}]{A,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+\Hypertarget{fun_8h_ab4bd4dd9e2b7e3ab308f711e08d8dae7}\label{fun_8h_ab4bd4dd9e2b7e3ab308f711e08d8dae7} 
+\index{fun.h@{fun.h}!isValidName@{isValidName}}
+\index{isValidName@{isValidName}!fun.h@{fun.h}}
+\doxysubsubsection{\texorpdfstring{isValidName()}{isValidName()}}
+{\footnotesize\ttfamily bool is\+Valid\+Name (\begin{DoxyParamCaption}\item[{const string \&}]{name }\end{DoxyParamCaption})}
+
+\Hypertarget{fun_8h_ab3d65179a78ceccb34fbbe0b952fe46f}\label{fun_8h_ab3d65179a78ceccb34fbbe0b952fe46f} 
+\index{fun.h@{fun.h}!padalintiStudentus@{padalintiStudentus}}
+\index{padalintiStudentus@{padalintiStudentus}!fun.h@{fun.h}}
+\doxysubsubsection{\texorpdfstring{padalintiStudentus()}{padalintiStudentus()}}
+{\footnotesize\ttfamily void padalinti\+Studentus (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{structstudentas}{studentas}} $>$ \&}]{A }\end{DoxyParamCaption})}
+
+\Hypertarget{fun_8h_a5c76ce08ef3a1ad6e307f94ec343d760}\label{fun_8h_a5c76ce08ef3a1ad6e307f94ec343d760} 
+\index{fun.h@{fun.h}!pagalMediana@{pagalMediana}}
+\index{pagalMediana@{pagalMediana}!fun.h@{fun.h}}
+\doxysubsubsection{\texorpdfstring{pagalMediana()}{pagalMediana()}}
+{\footnotesize\ttfamily bool pagal\+Mediana (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structstudentas}{studentas}} \&}]{A,  }\item[{const \mbox{\hyperlink{structstudentas}{studentas}} \&}]{B }\end{DoxyParamCaption})}
+
+\Hypertarget{fun_8h_a6b8bbe6335f66a1ac4fec7b4db3dd8cf}\label{fun_8h_a6b8bbe6335f66a1ac4fec7b4db3dd8cf} 
+\index{fun.h@{fun.h}!pagalPavarde@{pagalPavarde}}
+\index{pagalPavarde@{pagalPavarde}!fun.h@{fun.h}}
+\doxysubsubsection{\texorpdfstring{pagalPavarde()}{pagalPavarde()}}
+{\footnotesize\ttfamily bool pagal\+Pavarde (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structstudentas}{studentas}} \&}]{A,  }\item[{const \mbox{\hyperlink{structstudentas}{studentas}} \&}]{B }\end{DoxyParamCaption})}
+
+\Hypertarget{fun_8h_a8f2a9d0474ec2a20aac605dce81f0d67}\label{fun_8h_a8f2a9d0474ec2a20aac605dce81f0d67} 
+\index{fun.h@{fun.h}!pagalVarda@{pagalVarda}}
+\index{pagalVarda@{pagalVarda}!fun.h@{fun.h}}
+\doxysubsubsection{\texorpdfstring{pagalVarda()}{pagalVarda()}}
+{\footnotesize\ttfamily bool pagal\+Varda (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structstudentas}{studentas}} \&}]{A,  }\item[{const \mbox{\hyperlink{structstudentas}{studentas}} \&}]{B }\end{DoxyParamCaption})}
+
+\Hypertarget{fun_8h_a525f374507ca27695a0cb3967121beda}\label{fun_8h_a525f374507ca27695a0cb3967121beda} 
+\index{fun.h@{fun.h}!pagalVidurki@{pagalVidurki}}
+\index{pagalVidurki@{pagalVidurki}!fun.h@{fun.h}}
+\doxysubsubsection{\texorpdfstring{pagalVidurki()}{pagalVidurki()}}
+{\footnotesize\ttfamily bool pagal\+Vidurki (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structstudentas}{studentas}} \&}]{A,  }\item[{const \mbox{\hyperlink{structstudentas}{studentas}} \&}]{B }\end{DoxyParamCaption})}
+
+\Hypertarget{fun_8h_ae3a31fce481d6822be0e7ed022a07e8b}\label{fun_8h_ae3a31fce481d6822be0e7ed022a07e8b} 
+\index{fun.h@{fun.h}!skaiciavimas@{skaiciavimas}}
+\index{skaiciavimas@{skaiciavimas}!fun.h@{fun.h}}
+\doxysubsubsection{\texorpdfstring{skaiciavimas()}{skaiciavimas()}}
+{\footnotesize\ttfamily void skaiciavimas (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{structstudentas}{studentas}} $>$ \&}]{A }\end{DoxyParamCaption})}
+
+\Hypertarget{fun_8h_a6efa712a6e9ba89b54cef5c76fef26d3}\label{fun_8h_a6efa712a6e9ba89b54cef5c76fef26d3} 
+\index{fun.h@{fun.h}!skaitymas@{skaitymas}}
+\index{skaitymas@{skaitymas}!fun.h@{fun.h}}
+\doxysubsubsection{\texorpdfstring{skaitymas()}{skaitymas()}}
+{\footnotesize\ttfamily void skaitymas (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{structstudentas}{studentas}} $>$ \&}]{A,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+\Hypertarget{fun_8h_a6cafc497a1ee80ef2200021ee13478b5}\label{fun_8h_a6cafc497a1ee80ef2200021ee13478b5} 
+\index{fun.h@{fun.h}!skaitymasTeksto@{skaitymasTeksto}}
+\index{skaitymasTeksto@{skaitymasTeksto}!fun.h@{fun.h}}
+\doxysubsubsection{\texorpdfstring{skaitymasTeksto()}{skaitymasTeksto()}}
+{\footnotesize\ttfamily void skaitymas\+Teksto (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{structstudentas}{studentas}} $>$ \&}]{A }\end{DoxyParamCaption})}
+
+\Hypertarget{fun_8h_a50a46db9e8c1b191af6e133c0a25fb5a}\label{fun_8h_a50a46db9e8c1b191af6e133c0a25fb5a} 
+\index{fun.h@{fun.h}!spausdinti@{spausdinti}}
+\index{spausdinti@{spausdinti}!fun.h@{fun.h}}
+\doxysubsubsection{\texorpdfstring{spausdinti()}{spausdinti()}}
+{\footnotesize\ttfamily void spausdinti (\begin{DoxyParamCaption}\item[{const vector$<$ \mbox{\hyperlink{structstudentas}{studentas}} $>$ \&}]{A }\end{DoxyParamCaption})}
+
+\Hypertarget{fun_8h_adf174b49400d84b1336f173381be5c5a}\label{fun_8h_adf174b49400d84b1336f173381be5c5a} 
+\index{fun.h@{fun.h}!spausdintiTeksto@{spausdintiTeksto}}
+\index{spausdintiTeksto@{spausdintiTeksto}!fun.h@{fun.h}}
+\doxysubsubsection{\texorpdfstring{spausdintiTeksto()}{spausdintiTeksto()}}
+{\footnotesize\ttfamily void spausdinti\+Teksto (\begin{DoxyParamCaption}\item[{const vector$<$ \mbox{\hyperlink{structstudentas}{studentas}} $>$ \&}]{A }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{fun_8h_aa21e842fbd411a1aa816dd52a4c10d51}\label{fun_8h_aa21e842fbd411a1aa816dd52a4c10d51} 
+\index{fun.h@{fun.h}!MAX\_ND\_SIZE@{MAX\_ND\_SIZE}}
+\index{MAX\_ND\_SIZE@{MAX\_ND\_SIZE}!fun.h@{fun.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_ND\_SIZE}{MAX\_ND\_SIZE}}
+{\footnotesize\ttfamily const int MAX\+\_\+\+ND\+\_\+\+SIZE = 500}
+
+\Hypertarget{fun_8h_a79e20fbd6b7e339450e8cfa08c32844d}\label{fun_8h_a79e20fbd6b7e339450e8cfa08c32844d} 
+\index{fun.h@{fun.h}!MAX\_STUDENTS@{MAX\_STUDENTS}}
+\index{MAX\_STUDENTS@{MAX\_STUDENTS}!fun.h@{fun.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_STUDENTS}{MAX\_STUDENTS}}
+{\footnotesize\ttfamily const int MAX\+\_\+\+STUDENTS = 500}
+

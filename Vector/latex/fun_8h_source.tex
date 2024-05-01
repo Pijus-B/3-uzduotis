@@ -1,0 +1,50 @@
+\doxysection{fun.\+h}
+\hypertarget{fun_8h_source}{}\label{fun_8h_source}\mbox{\hyperlink{fun_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ LABAS}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ LABAS}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <numeric>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <ctime>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{00014\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{fun_8h_aa21e842fbd411a1aa816dd52a4c10d51}{MAX\_ND\_SIZE}}\ =\ 500;}
+\DoxyCodeLine{00017\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{fun_8h_a79e20fbd6b7e339450e8cfa08c32844d}{MAX\_STUDENTS}}\ =\ 500;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstudentas}{studentas}}}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{structstudentas_a12c7418eb835240f31d00a3ebf7b22bf}{vardas}};}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{structstudentas_a7ee17ba9f138bb97c25a92036318f0e8}{pavarde}};}
+\DoxyCodeLine{00023\ \ \ \ \ \ vector\ <int>\ \mbox{\hyperlink{structstudentas_a8aef5bd85b89d611446851d143303d35}{nd}};}
+\DoxyCodeLine{00024\ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structstudentas_a77793375d5560caf680ece7487d2be99}{egz}};}
+\DoxyCodeLine{00025\ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structstudentas_a06eefe70cf037f5bbbbca8b4f684edb2}{balas}};}
+\DoxyCodeLine{00026\ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structstudentas_a3e504afdcfcb534040b7d619b33ab222}{vid}};}
+\DoxyCodeLine{00027\ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structstudentas_a70fbd1be28a459ab674fd4aa8c7af28f}{mediana}};}
+\DoxyCodeLine{00028\ \};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{fun_8h_a6efa712a6e9ba89b54cef5c76fef26d3}{skaitymas}}\ (vector\ <studentas>\ \&\ A,\ \textcolor{keywordtype}{int}\ n);}
+\DoxyCodeLine{00031\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{fun_8h_a6cafc497a1ee80ef2200021ee13478b5}{skaitymasTeksto}}\ (vector\ <studentas>\ \&\ A);}
+\DoxyCodeLine{00032\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{fun_8h_a8f2a9d0474ec2a20aac605dce81f0d67}{pagalVarda}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structstudentas}{studentas}}\ \&\ A,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structstudentas}{studentas}}\ \&B);}
+\DoxyCodeLine{00033\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{fun_8h_a6b8bbe6335f66a1ac4fec7b4db3dd8cf}{pagalPavarde}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structstudentas}{studentas}}\ \&A,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structstudentas}{studentas}}\ \&B);}
+\DoxyCodeLine{00034\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{fun_8h_a525f374507ca27695a0cb3967121beda}{pagalVidurki}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structstudentas}{studentas}}\ \&A,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structstudentas}{studentas}}\ \&B);}
+\DoxyCodeLine{00035\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{fun_8h_a5c76ce08ef3a1ad6e307f94ec343d760}{pagalMediana}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structstudentas}{studentas}}\ \&A,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structstudentas}{studentas}}\ \&B);}
+\DoxyCodeLine{00036\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{fun_8h_a50a46db9e8c1b191af6e133c0a25fb5a}{spausdinti}}\ (\textcolor{keyword}{const}\ vector\ <studentas>\ \&\ A);}
+\DoxyCodeLine{00037\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{fun_8h_adf174b49400d84b1336f173381be5c5a}{spausdintiTeksto}}(\textcolor{keyword}{const}\ vector\ <studentas>\ \&\ A);}
+\DoxyCodeLine{00038\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{fun_8h_ae3a31fce481d6822be0e7ed022a07e8b}{skaiciavimas}}\ (vector\ <studentas>\ \&\ A);}
+\DoxyCodeLine{00039\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{fun_8h_ab3d65179a78ceccb34fbbe0b952fe46f}{padalintiStudentus}}(vector\ <studentas>\ \&A);}
+\DoxyCodeLine{00040\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{fun_8h_a93d243f73344405ff7acb37f7f3eb536}{generavimasPazymiu}}\ (vector\ <studentas>\ \&\ A,\ \textcolor{keywordtype}{int}\ n);}
+\DoxyCodeLine{00041\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{fun_8h_a362fbfe0d233d5a6384ea1a6515b88a2}{generavimasPazymiuCase2}}\ (vector\ <studentas>\ \&\ A);}
+\DoxyCodeLine{00042\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{fun_8h_aba6ba0682c97a2c79401193d550edf7e}{generavimasStudentu}}\ (vector\ <studentas>\ \&\ A,\ \textcolor{keywordtype}{int}\ n);}
+\DoxyCodeLine{00043\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{fun_8h_a81e61f33fdb4adb6db68e2166ae12cdb}{generavimasFailo}}\ (vector\ <studentas>\ \&\ A,\ \textcolor{keywordtype}{int}\ n);}
+\DoxyCodeLine{00044\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{fun_8h_ab4bd4dd9e2b7e3ab308f711e08d8dae7}{isValidName}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&name);}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#endif\ }}
+
+\end{DoxyCode}
