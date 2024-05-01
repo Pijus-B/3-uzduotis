@@ -1,8 +1,26 @@
 # OOP
-## V1.5
-Pateiktas kodas yra C++ programa studentu informacijos valdymui. Ji apima funkcijas tokias kaip ivesti studentų duomenis, skaiciuoti vidurkius ir medianas bei rodyti rezultatus. Šios testavimo funkcijos įgyvendintos tam, kad būtų užtikrintas Studentas klasės veikimo teisingumas ir patikimumas:
+## V2.0
+Pateiktas kodas yra C++ programa studentų informacijos valdymui. Ji apima funkcijas tokias kaip ivesti studentų duomenis, skaičiuoti vidurkius ir medianas bei rodyti rezultatus. Buvo sukurti `Unit Testai` naudodami C++ Unit testų framework'ą: `Google Test`. Šie testai tikrina svarbias programos funkcijas, konstruktorius, tokiu būdu užtikrinant, kad jos veikia kaip tikimasi. Testai galėjo būti įdiegti, jog padėtų identifikuoti ir ištaisyti potencialias klaidas.
 
-## Studentas klasės informacija
+## Programos paleisties proceso instrukcijos
+## 1 žingsnis: Instaliuoti Chocolatey
+Atsidaryti CMD kaip Administrator: Spustelti Win + X ir pasirinkti “Command Prompt (Admin)” or “Windows PowerShell (Admin)”.
+Paleisti instaliavimo komandą: nusikopijuoti ta komandą ir paspausti Enter. Ši komanda yra pasiekiama per Chocolatey svetainę.
+Nusikopijuoti kodą:
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient). DownloadString('https://chocolatey.org/install.ps1')).
+Patvirtinti instaliacija: irasyti choco i CMD ir paspausti Enter. Jeigu matote Chocolatey versijos informacija, tai jau yra instaliuota sekmingai.
+## 2 žingsnis: Instaliuoti Make
+Instaliuokite Make: CMD terminale (vis dar kaip Administrator), įrašykite šią komandą bei paspauskite Enter:
+Nukopijuokite koda:
+choco install make
+Patvirtinkite Make instaliacija: įrašykite "make -v" i CMD. Jei po įrašymo rodo Make versijos informaciją, tai reiškia, kad sėkmingai instaliuota.
+## 3 žingsnis: Kompiliuokite ir pradėkite savo C++ projektą
+Nurodykite savo projekto direktyvą: naudokite cd komandą į CMD, jog pakeisti savo projekto direktyvą, kur yra instaliuotas Makefile.
+Kompiliuokite savo projektą: Įrašykite make ir paspauskite Enter. Tada prades kompiliuoti jūsų C++ projektą pagal nurodytas Makefile instrukcijas.
+Pradėkite savo projektą: Po kompiliavimo jūs turėtumete turėti vykdomąjį failą, dažniausiai vadinamą main arba kitu specifiškai pavadintu jūsų Makefile. Įrašykite main i CMD ir paspauskite Enter, kad pradėtumete savo programos veikimą.
+
+
+*/## Studentas klasės informacija
 ## Konstruktoriai
 ### Konstruktorius su Default parametrais
 - Parametrai:
@@ -71,7 +89,7 @@ Destruktoriaus pagrindinis tikslas yra atlaisvinti bet kokius resursus arba atli
 
 ![inputoutputtestai](https://github.com/Pijus-B/2-uzduotis/assets/90143621/b927e409-0e97-4c25-967b-f321d0b5e92a)
 
-
+/*
 
 
 
