@@ -20,16 +20,22 @@ const int MAX_ND_SIZE = 500;
 const int MAX_STUDENTS = 500;
 
 class Zmogus {
+    protected:
+    string vardas_;
+    string pavarde_;
     public:
-    virtual string getVardas() const {return "";}
-    virtual string getPavarde() const {return "";}
+    Zmogus() = default;
+    Zmogus(const string& vardas, const string& pavarde) : vardas_(vardas), pavarde_(pavarde) {}
     virtual ~Zmogus() {}
+
+    virtual void setVardas(const string& vardas) { vardas_ = vardas; }
+    virtual void setPavarde(const string& pavarde) { pavarde_ = pavarde; }
+    virtual string getVardas() const = 0; // { return vardas_; }
+    virtual string getPavarde() const = 0; // { return pavarde_; } 
 };
 
 class Studentas : public Zmogus {
 private:
-    string vardas_;
-    string pavarde_;
     vector <int> nd_;
     int egz_;
     double balas_;
@@ -40,16 +46,16 @@ public:
     Studentas() : egz_(0), balas_(0), vid_(0), mediana_(0) {} // default konstruktorius
 
     Studentas(const string& vardas, const string& pavarde, const vector<int>& nd, int egz, double balas, double vid, double mediana) // konstruktorius
-        : vardas_(vardas), pavarde_(pavarde), nd_(nd), egz_(egz), balas_(balas), vid_(vid), mediana_(mediana) {}
-    ~Studentas() {} // destruktorius
+        : Zmogus(vardas, pavarde),  nd_(nd), egz_(egz), balas_(balas), vid_(vid), mediana_(mediana) {}
+    ~Studentas() {nd_.clear();} // destruktorius
 
     Studentas(const Studentas& other)
-        : vardas_(other.vardas_), pavarde_(other.pavarde_), nd_(other.nd_), egz_(other.egz_), balas_(other.balas_), vid_(other.vid_), mediana_(other.mediana_) {} // copy constructor
+        : Zmogus(other.getVardas(), other.getPavarde()), nd_(other.nd_), egz_(other.egz_), balas_(other.balas_), vid_(other.vid_), mediana_(other.mediana_) {} // copy constructor
 
     Studentas& operator=(const Studentas& other) { // copy assignment operatorius
         if (this != &other) {
-            vardas_ = other.vardas_;
-            pavarde_ = other.pavarde_;
+            Zmogus::setVardas(other.getVardas());
+            Zmogus::setPavarde(other.getPavarde());
             nd_ = other.nd_;
             egz_ = other.egz_;
             balas_ = other.balas_;
@@ -60,24 +66,45 @@ public:
     }
 
     Studentas(Studentas&& other) noexcept
-        : vardas_(move(other.vardas_)), pavarde_(move(other.pavarde_)), nd_(move(other.nd_)), egz_(other.egz_), balas_(other.balas_), vid_(other.vid_), mediana_(other.mediana_) {} // move konstriuktorius
+      {Zmogus::setVardas(other.getVardas());
+       Zmogus::setPavarde(other.getPavarde());
+       nd_ = other.nd_;
+       egz_ = other.egz_;
+       balas_ = other.balas_;
+       vid_ = other.vid_;
+       mediana_ = mediana_;
+
+       other.setVardas("");
+       other.setPavarde("");
+       other.nd_.clear();
+       other.egz_ = 0;
+       other.balas_ = 0;
+       other.vid_ = 0;
+       other.mediana_ = 0;
+       
+       cout << "Move konstruktorius suveike" << endl;
+    };
 
     Studentas& operator=(Studentas&& other) noexcept { // move assignment operatorius
         if (this != &other) {
-            vardas_ = move(other.vardas_);
-            pavarde_ = move(other.pavarde_);
+            Zmogus::setVardas(move(other.getVardas()));
+            Zmogus::setPavarde(move(other.getPavarde()));
             nd_ = move(other.nd_);
             egz_ = other.egz_;
             balas_ = other.balas_;
             vid_ = other.vid_;
             mediana_ = other.mediana_;
+            other.egz_ = 0;
+            other.balas_ = 0;
+            other.vid_ = 0;
+            other.mediana_ = 0;
         }
         return *this;
     }
 
     // Getter and setter functions
-    inline string getVardas() const override{}
-    inline string getPavarde() const override {}
+    inline string getVardas() const override{return vardas_;}
+    inline string getPavarde() const override {return pavarde_;}
     inline vector<int>& getNd() { return nd_; }
     inline int getEgz() const { return egz_; }
     inline double getBalas() const { return balas_; }

@@ -1,4 +1,4 @@
-#include "Studentas.h"
+#include "studentas.h"
 using namespace std;
 
 bool isValidName(const string &name)
@@ -370,8 +370,8 @@ void test_copy_constructor ()
     assert (copy.getPavarde() == "Lape");
     assert (copy.getNd() == nd);
     assert (copy.getEgz() == 92);
-    assert (copy.getBalas() == 91.5);
-    assert (copy.getVid() == 91.0);
+    assert (copy.getBalas() == 91.0);
+    assert (copy.getVid() == 91.5);
     assert (copy.getMediana() == 90.5);
     cout << "Copy constructor testas sekmingai praejo" << endl;
 }
@@ -379,23 +379,26 @@ void test_move_constructor ()
 {
     vector <int> nd = {89};
     Studentas originalas ("Akvile", "Aleksa", nd, 87, 88.0, 88.5, 87.5);
+    cout << originalas << endl;
     Studentas moved = move (originalas);
     assert (moved.getVardas() == "Akvile");
     assert (moved.getPavarde() == "Aleksa");
     cout << "Move constructor sekmingai praejo" << endl;
+    cout << moved << endl;
+    cout << originalas << endl;
 }
 void test_copy_assignment ()
 {
     vector <int> nd = {85};
-    Studentas originalas ("Bobas", "Jonaitis", nd, 84, 84.0, 85.5, 85.0);
+    Studentas originalas ("Bobas", "Jonaitis", nd, 84, 84.5, 85.5, 85.0);
     Studentas copy;
     copy = originalas;
     assert (copy.getVardas() == "Bobas");
     assert (copy.getPavarde() == "Jonaitis");
     assert (copy.getNd() == nd);
     assert (copy.getEgz() == 84);
-    assert (copy.getBalas() == 85.5);
-    assert (copy.getVid() == 84.0);
+    assert (copy.getBalas() == 84.5);
+    assert (copy.getVid() == 85.5);
     assert (copy.getMediana() == 85.0);
     cout << "Copy assignment sekmingai praejo" << endl;
 }
@@ -405,8 +408,8 @@ void test_move_assignment ()
     Studentas originalas ("Marius", "Lelesius", nd, 80, 80.0, 82.5, 81.5);
     Studentas moved;
     moved = move (originalas);
-    assert (moved.getVardas() == "");
-    assert (moved.getPavarde() == "");
+    assert (moved.getVardas() == "Marius");
+    assert (moved.getPavarde() == "Lelesius");
     cout << "Move assignment sekmingai praejo" << endl;
     
 }
