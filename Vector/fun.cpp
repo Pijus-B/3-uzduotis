@@ -379,22 +379,26 @@ void test_move_constructor ()
 {
     vector <int> nd = {89};
     Studentas originalas ("Akvile", "Aleksa", nd, 87, 88.0, 88.5, 87.5);
+    cout << originalas << endl;
     Studentas moved = move (originalas);
     assert (moved.getVardas() == "Akvile");
     assert (moved.getPavarde() == "Aleksa");
     cout << "Move constructor sekmingai praejo" << endl;
+    cout << moved << endl;
+    cout << originalas << endl;
 }
 void test_copy_assignment ()
+
 {
     vector <int> nd = {85};
-    Studentas originalas ("Bobas", "Jonaitis", nd, 84, 84.0, 85.5, 85.0);
+    Studentas originalas ("Bobas", "Jonaitis", nd, 84, 84.5, 85.5, 85.0);
     Studentas copy;
     copy = originalas;
     assert (copy.getVardas() == "Bobas");
     assert (copy.getPavarde() == "Jonaitis");
     assert (copy.getNd() == nd);
     assert (copy.getEgz() == 84);
-    assert (copy.getBalas() == 84.0);
+    assert (copy.getBalas() == 84.5);
     assert (copy.getVid() == 85.5);
     assert (copy.getMediana() == 85.0);
     cout << "Copy assignment sekmingai praejo" << endl;
@@ -404,7 +408,7 @@ void test_move_assignment ()
     vector <int> nd = {82};
     Studentas originalas ("Marius", "Lelesius", nd, 80, 80.0, 82.5, 81.5);
     Studentas moved;
-    moved = move (originalas);
+    moved = move(originalas);
     assert (moved.getVardas() == "Marius");
     assert (moved.getPavarde() == "Lelesius");
     cout << "Move assignment sekmingai praejo" << endl;
@@ -420,7 +424,7 @@ void test_input_operator ()
 }
 void test_output_operator() 
 {
-    Studentas student("John", "Doe", {90, 95, 80}, 85, 87.5, 86.5, 87);
+    Studentas student("Jon", "Doe", {90, 95, 80}, 85, 87.5, 86.5, 87);
     cout << "Student details:" << endl;
     cout << student;
 }

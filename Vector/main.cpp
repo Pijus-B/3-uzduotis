@@ -147,7 +147,7 @@ int main (){
             case 7:
             {
                 test_constructor ();
-                test_copy_constructor();
+                test_copy_constructor ();
                 test_move_constructor ();
                 test_copy_assignment ();
                 test_move_assignment ();

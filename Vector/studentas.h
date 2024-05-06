@@ -52,19 +52,44 @@ public:
         return *this;
     }
 
-    Studentas(Studentas&& other) noexcept
-        : vardas_(move(other.vardas_)), pavarde_(move(other.pavarde_)), nd_(move(other.nd_)), egz_(other.egz_), balas_(other.balas_), vid_(other.vid_), mediana_(other.mediana_) {} // move konstriuktorius
+    Studentas(Studentas&& other) noexcept{  // move konstruktorius
+       vardas_ = other.vardas_;
+       pavarde_ = other.pavarde_;
+       nd_ = other.nd_;
+       egz_ = other.egz_;
+       balas_ = other.balas_;
+       vid_ = other.vid_;
+       mediana_ = mediana_;
+
+       other.vardas_ = "";
+       other.pavarde_ = "";
+       other.nd_.clear();
+       other.egz_ = 0;
+       other.balas_ = 0;
+       other.vid_ = 0;
+       other.mediana_ = 0;
+       
+       cout << "Move konstruktorius suveike" << endl;
+    };
 
     Studentas& operator=(Studentas&& other) noexcept { // move assignment operatorius
         if (this != &other) {
-            vardas_ = move(other.vardas_);
-            pavarde_ = move(other.pavarde_);
-            nd_ = move(other.nd_);
-            egz_ = other.egz_;
-            balas_ = other.balas_;
-            vid_ = other.vid_;
-            mediana_ = other.mediana_;
+            vardas_ = (other.vardas_);
+            pavarde_ = (other.pavarde_);
+            nd_ = (other.nd_);
+            egz_ = (other.egz_);
+            balas_ = (other.balas_);
+            vid_ = (other.vid_);
+            mediana_ = (other.mediana_);
         }
+        other.vardas_ = "";
+       other.pavarde_ = "";
+       other.nd_.clear();
+       other.egz_ = 0;
+       other.balas_ = 0;
+       other.vid_ = 0;
+       other.mediana_ = 0;
+       cout << "move operatorius veikia" << endl;
         return *this;
     }
 
@@ -84,7 +109,8 @@ public:
     inline void setVid(const double& vid) { vid_ = vid; }
     inline void setMediana(const double& mediana) { mediana_ = mediana; }
 
-     friend istream& operator>>(istream& is, Studentas& student) { // input metodas
+     friend istream& operator>>(istream& is, Studentas& student) {
+    try {
         cout << "Enter student's name and surname: ";
         is >> student.vardas_ >> student.pavarde_;
         
@@ -96,18 +122,28 @@ public:
         while (is >> score && score != -1) {
             student.nd_.push_back(score);
         }
-
         
-        return is;
+    } catch (const exception& e) {
+        cerr << "Error: " << e.what() << endl;
+        student.vardas_ = "";
+        student.pavarde_ = "";
+        student.egz_ = 0;
+        student.nd_.clear();
+        is.clear();
+        is.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
+    
+    return is;
+}
 
     friend ostream& operator<<(ostream& os, const Studentas& student) { // output metodas
         os << "Name: " << student.vardas_ << " " << student.pavarde_ << endl;
-        os << "Exam score: " << student.egz_ << endl;
-        os << "Homework scores: ";
+         os << "Homework scores: ";
         for (int score : student.nd_) {
             os << score << " ";
         }
+        os << endl;
+        os << "Exam score: " << student.egz_ << endl;
         os << endl;
         os << "Final score: " << student.balas_ << endl;
         os << "Average: " << student.vid_ << endl;
