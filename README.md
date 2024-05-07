@@ -39,6 +39,11 @@ Pateiktas kodas yra C++ programa studentu informacijos valdymui. Ji apima funkci
 
 Šie įvesties/išvesties metodai yra efektyvūs, nes leidžia programuotojams lengvai ir efektyviai manipuliuoti objektų įvestimi ir išvestimi. Taip pat šie operatoriai yra lengvai suprantami, leidžia sumažinti pakartotinį kodą bei programavimo klaidos gali būti aptinkamos kompiliavimo metu.
 ## Zmogus abstrakčios klasės informacija
+Jei bazinė abstrakti klasė ir išvestinė klasė buvo parašytos teisingai, tai aš negalėsiu sukurti Zmogus objekto. Todėl int main() aš parašiau `Zmogus zmogus;` ir tai buvo rezultatas:
+
+![paveikslas](https://github.com/Pijus-B/2-uzduotis/assets/90143621/785b00e0-40a2-4867-9848-e6339364d48d)
+
+Ši raudona bangelė rodo, jog tai yra klaida, ką reiškia, kad Zmogus objekto neina sukurti. Todėl tai rodo, kad bazinė ir abstrakčios klasės veikia.
 ## Konstruktoriai
 ### Konstruktorius su Default parametrais
 - Parametrai:
