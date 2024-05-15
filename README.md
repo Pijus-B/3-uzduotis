@@ -65,7 +65,7 @@ vectorr susideda is: 1 2 3 4 5
 ```
 **Gautas rezultatas:**
 ```
-1.vectorr talpa: 100
+1. vectorr talpa: 100
 2. vectorr talpa: 100
 3. vectorr talpa: 10
 ```
