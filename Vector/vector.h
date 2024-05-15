@@ -96,7 +96,7 @@ class Vector{
     const_iterator end() const{return avail;}
     //capacity
     size_type size() const{return avail-dat;}
-    size_type max_size() const {return std::numeric_limits<size_type>::max();}
+    size_type max_size() const {return std::numeric_limits<size_type>::max();}    //max size
     void resize(size_type sz){
         if (sz < size()){
             iterator it = dat + sz;
@@ -122,23 +122,83 @@ class Vector{
             avail = dat + sz;
         }
     }
-    size_type capacity() const {return limit-dat;}
-    bool empty() const noexcept { return size() == 0;}
-    void reserve (size_type n) {
+    size_type capacity() const {return limit-dat;}            //capacity
+    bool empty() const noexcept { return size() == 0;}     //empty
+    void reserve (size_type n) {                        // reserve
         if (n > capacity()) {
             grow(n);
         }
     }
     void shrink_to_fit(){
-        if (limit > avail) 
+        if (limit > avail)    //shrink to fit
         limit = avail;
     }
-    
+    //modifiers
+    void clear () noexcept {uncreate();} // clear
+    iterator insert (iterator position, size_type n, const value_type& val){return insert(position, 1, val);} //insert
+    iterator insert(iterator position, size_type n, const value_type& val) {
+        if (position < begin() || position > end()) {
+            throw std::out_of_range("Index out of range");
+        }
+        if (avail + n > limit) {
+            size_type index = position - begin();
+            grow(n);
+            position = begin() + index;
+        }
+        for (iterator it = end() + n - 1; it != position + n - 1; --it) {
+            *it = std::move(*(it - n));
+        }
+        std::uninitialized_fill(position, position + n, val);
+        avail += n;
+
+        return position;
+        }
+    iterator erase(iterator position) {
+        if (position < dat || position > avail) {
+            throw std::out_of_range("Index out of range");
+        }
+        std::move(position + 1, avail, position);
+        alloc.destroy(avail - 1);
+        --avail;
+
+        return position;
+    }
+        
+    iterator erase(iterator first, iterator last) {
+        iterator new_available = std::uninitialized_copy(last, avail, first); //erase
+
+        iterator it = avail;
+        while (it != new_available) {
+            alloc.destroy(--it);
+        }
+
+        avail= new_available;
+        return last;
+    }
+     void push_back (const value_type& t) { //push_back
+            if (avail==limit) 
+                grow();
+            unchecked_append(t);
+        }
+
+        void push_back (value_type&& val) {   //push_back
+            if (avail == limit)
+                grow();
+            unchecked_append(val);
+        }
+
+        void pop_back() {
+            if (avail != dat)         //pop_back
+                alloc.destroy(--avail);
+        }
+
+        void swap(Vector& x) {
+            std::swap(dat, x.dat);          //swap
+            std::swap(avail, x.avail);
+            std::swap(limit, x.limit);
+        }
+        
 };
-
-
-
-
 
 
 #endif
