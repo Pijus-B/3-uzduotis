@@ -89,6 +89,51 @@ class Vector{
     const value_type* data() const noexcept{
         return dat;
     }
+    //iterators
+    iterator begin() {return dat;}
+    const_iterator begin() const {return dat;}
+    iterator end() {return avail;}
+    const_iterator end() const{return avail;}
+    //capacity
+    size_type size() const{return avail-dat;}
+    size_type max_size() const {return std::numeric_limits<size_type>::max();}
+    void resize(size_type sz){
+        if (sz < size()){
+            iterator it = dat + sz;
+            while (it != avail){
+                alloc.destroy(it++);
+            }
+            avail = dat + sz;
+        }
+        else if (sz > capacity()){
+            grow(sz);
+            std::uninitialized_fill(avail, dat + sz, value_type());
+            avail = dat + sz;
+        }
+    }
+     void resize(size_type sz, const value_type& value) {
+        if (sz > capacity()) {
+            grow(sz);
+        }
+            
+        if (sz > size()) {
+            insert(end(), sz - size(), value);
+        } else if (sz < size()) {
+            avail = dat + sz;
+        }
+    }
+    size_type capacity() const {return limit-dat;}
+    bool empty() const noexcept { return size() == 0;}
+    void reserve (size_type n) {
+        if (n > capacity()) {
+            grow(n);
+        }
+    }
+    void shrink_to_fit(){
+        if (limit > avail) 
+        limit = avail;
+    }
+    
 };
 
 
