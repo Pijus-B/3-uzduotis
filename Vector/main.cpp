@@ -263,16 +263,34 @@ int main (){
             {
                auto start_pildyti = chrono::steady_clock::now();
                unsigned int sz = 10000; //100000, 1000000, 10000000, 100000000
-               vector <int> v1;
-               int vector_perskirstymas = 0;
+               std::vector <int> v1;
+               int std_vector_perskirstymas = 0;
                for (int i = 1; i <= sz; ++i){
                 v1.push_back(i);
                 if (v1.capacity() == v1.size()){
-                    ++vector_perskirstymas;
+                    ++std_vector_perskirstymas;
                 }
                }
                auto end_pildyti = chrono::steady_clock::now();
                auto skirtumas_pildyti = chrono::duration<double>(end_pildyti - start_pildyti).count();
+               //cout << "Tusciu vektoriu su std::vector uzpildymas su: " << sz << " eilutemis uzeme: " << fixed << setprecision(8)
+              // << skirtumas_pildyti << "s" << endl;
+               cout << "Atmintis buvo perskirstyta " << std_vector_perskirstymas << " kartu su std::vector" << endl;
+
+               auto start_pildyti_vector = chrono::steady_clock::now();
+               Vector <int> v2;
+               int vector_perskirstymas = 0;
+               for (int i = 1; i <= sz; ++i){
+                v2.push_back(i);
+                if (v2.capacity() == v2.size()){
+                    ++vector_perskirstymas;
+                }
+               }
+               auto end_pildyti_vector = chrono::steady_clock::now();
+               auto skirtumas_pildyti_vector = chrono::duration<double>(end_pildyti_vector - start_pildyti_vector).count();
+               //cout << "Tusciu vectoriu su Vector uzpildymas su " << sz << " eilutemis uzeme: " << fixed << setprecision(8) 
+               // << skirtumas_pildyti_vector << "s" << endl;
+               cout << "Atmintis buvo perskirstyta " << vector_perskirstymas << " kartu su Vector" << endl;
                 break;
 
             }
