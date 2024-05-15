@@ -22,6 +22,19 @@ private:
         limit = avail = dat + n;
         std::uninitialized_fill(dat, limit, val);
     }
+    void grow(size_type new_capacity = 1) {
+        size_type new_size = std::max(new_capacity, 2 * capacity());
+        iterator new_data = alloc.allocate(new_size);
+        iterator new_avail = std::uninitialized_copy(dat, avail, new_data);
+        uncreate();
+        dat = new_data;
+        avail = new_avail;
+        limit = dat + new_size;
+    }
+
+    void unchecked_append(const T& val) {
+        alloc.construct(avail++, val);
+    }
 public:
     typedef T value_type;
     typedef size_t size_type;
@@ -231,6 +244,9 @@ public:
         }
         bool operator>= (const Vector <T>& other) const{
             return !(other > this*);
+        }
+        void swap (Vector<T>& x, Vector<T>& y) {
+        std::swap(x,y);
         }
 };
 
