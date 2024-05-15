@@ -10,36 +10,11 @@ template <typename T>
 
 class Vector{
     // MEMBER TYPES
-private:
-    iterator dat;
-    iterator avail;
-    iterator limit;
-    std::allocator<T> alloc;
-
-    void create() { dat = avail = limit = nullptr; }
-    void create(size_type n, const T& val) {
-        dat = alloc.allocate(n);
-        limit = avail = dat + n;
-        std::uninitialized_fill(dat, limit, val);
-    }
-    void grow(size_type new_capacity = 1) {
-        size_type new_size = std::max(new_capacity, 2 * capacity());
-        iterator new_data = alloc.allocate(new_size);
-        iterator new_avail = std::uninitialized_copy(dat, avail, new_data);
-        uncreate();
-        dat = new_data;
-        avail = new_avail;
-        limit = dat + new_size;
-    }
-
-    void unchecked_append(const T& val) {
-        alloc.construct(avail++, val);
-    }
 public:
     typedef T value_type;
     typedef size_t size_type;
     typedef T& reference;
-    typedef const T& reference;
+    typedef const T& const_reference;
     typedef T* iterator;
     typedef const T* const_iterator;
 
@@ -248,6 +223,31 @@ public:
         void swap (Vector<T>& x, Vector<T>& y) {
         std::swap(x,y);
         }
+private:
+    iterator dat;
+    iterator avail;
+    iterator limit;
+    std::allocator<T> alloc;
+
+    void create() { dat = avail = limit = nullptr; }
+    void create(size_type n, const T& val) {
+        dat = alloc.allocate(n);
+        limit = avail = dat + n;
+        std::uninitialized_fill(dat, limit, val);
+    }
+    void grow(size_type new_capacity = 1) {
+        size_type new_size = std::max(new_capacity, 2 * capacity());
+        iterator new_data = alloc.allocate(new_size);
+        iterator new_avail = std::uninitialized_copy(dat, avail, new_data);
+        uncreate();
+        dat = new_data;
+        avail = new_avail;
+        limit = dat + new_size;
+    }
+
+    void unchecked_append(const T& val) {
+        alloc.construct(avail++, val);
+    }
 };
 
 
