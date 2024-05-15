@@ -81,9 +81,32 @@ vectorr elementu suma: 600
 vectorr elementu suma: 600
 ```
 
+# Vector ir std::vector efektyvumo/spartos analizė
+| Konteineriai| Elementų kiekis | Rezultatas  |            
+|-------------|-----------------|-------------|
+|`Vector`     | 10000           |0.00005950s  |
+|             | 100000          | 0.00035170s |
+|             | 1000000         | 0.00257710s |
+|             | 10000000        | 0.03596280s |
+|             | 100000000       |0.34461070s  |
+|`std::vector`| 10000           |0.00008360s  |
+|             | 100000          |0.00053260s  |
+|             | 1000000         |0.00302100s  |
+|             | 10000000        |0.04083550s  |
+|             | 100000000       | 0.40393940s |
+
+Galime pastebėti, kad `Vector` prisipildo elementais greičiau nei `std::vector` konteineris. Žiūrint bendrai, vidutiniškai `Vector` užtrunka apie 0,07671236 s., o konteineriui `std::vector` užtrunka apie 0,0906411s. prisipildyti elementams.
+
+# Konteinerių `Vector` ir `std::vector` atminties perskirstymai užpildant 100000000
+![paveikslas](https://github.com/Pijus-B/3-uzduotis/assets/90143621/3b777974-45f4-4f8c-9a4b-26ab866feda9)
+
+Galime pastebėti, kai pildėme šiuos konteinerius 100000000 elementais, abudu konteineriai lygiai persiskyrė atmintį po 27 kartus.
+
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 # Dokumentacija su HTML formatu
 Šis formatas leidžia varototui draugišką sąsają naršant per projekto kodą, jo svarbiausias funkcijas, klases ir kitus svarbius likusius kodo elementus.
+
 ## Dokumentacijos su HTML formatu pasiekimas
 1. Nueikite į `docs/html` aplanką projekto repozitorijoje.
 2. Atidarykite `index.html` failą pasirinktame interneto naršyklės lange.
