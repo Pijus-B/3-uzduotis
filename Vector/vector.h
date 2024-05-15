@@ -42,6 +42,20 @@ class Vector{
         }
         return *this;
     };
+    //assign
+    template <class InputIterator>
+    void assign (InputIterator first, InputIterator last){
+        uncreate();
+        create(first, last);
+    }
+    void assign (size_type n, const value_type& val){
+        uncreate();
+        create(n, val);
+    }
+    void assign (initializer_list <value_type> il){
+        uncreate ();
+        create (il);
+    }
 };
 
 
