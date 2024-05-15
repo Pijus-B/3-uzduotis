@@ -198,6 +198,28 @@ class Vector{
             std::swap(limit, x.limit);
         }
         
+        // NON-MEMBER FUNCTIONS
+        bool operator= (const Vector <T>& other) const{
+            if (size() != other.size()){
+                return false;
+            }
+            return std::equal(begin(), end(), other.begin());
+        }
+        bool operator!= (const Vector <T>& other) const{
+            return !(this* == other);
+        }
+        bool operator< (const Vector <T>& other) const{
+            return std::lexicographical_compare(begin(), end(), other.begin(), other.end())
+        }
+        bool operator<= (const Vector <T>& other) const{
+            return !(other < this*);
+        }
+        bool operator> (const Vector <T>& other) const{
+            return std::lexicographical_compare(other.begin(), other.end(), begin(), end())
+        }
+        bool operator>= (const Vector <T>& other) const{
+            return !(other > this*);
+        }
 };
 
 
