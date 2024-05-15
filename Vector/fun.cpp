@@ -1,4 +1,4 @@
-#include "Studentas.h"
+#include "studentas.h"
 using namespace std;
 
 bool isValidName(const string &name)
@@ -370,8 +370,8 @@ void test_copy_constructor ()
     assert (copy.getPavarde() == "Lape");
     assert (copy.getNd() == nd);
     assert (copy.getEgz() == 92);
-    assert (copy.getBalas() == 91.5);
-    assert (copy.getVid() == 91.0);
+    assert (copy.getBalas() == 91.0);
+    assert (copy.getVid() == 91.5);
     assert (copy.getMediana() == 90.5);
     cout << "Copy constructor testas sekmingai praejo" << endl;
 }
@@ -379,10 +379,13 @@ void test_move_constructor ()
 {
     vector <int> nd = {89};
     Studentas originalas ("Akvile", "Aleksa", nd, 87, 88.0, 88.5, 87.5);
+    cout << originalas << endl;
     Studentas moved = move (originalas);
     assert (moved.getVardas() == "Akvile");
     assert (moved.getPavarde() == "Aleksa");
     cout << "Move constructor sekmingai praejo" << endl;
+    cout << moved << endl;
+    cout << originalas << endl;
 }
 void test_copy_assignment ()
 {
