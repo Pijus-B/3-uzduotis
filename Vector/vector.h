@@ -10,7 +10,19 @@ template <typename T>
 
 class Vector{
     // MEMBER TYPES
-    public:
+private:
+    iterator dat;
+    iterator avail;
+    iterator limit;
+    std::allocator<T> alloc;
+
+    void create() { dat = avail = limit = nullptr; }
+    void create(size_type n, const T& val) {
+        dat = alloc.allocate(n);
+        limit = avail = dat + n;
+        std::uninitialized_fill(dat, limit, val);
+    }
+public:
     typedef T value_type;
     typedef size_t size_type;
     typedef T& reference;
