@@ -102,6 +102,36 @@ Galime pastebėti, kad `Vector` prisipildo elementais greičiau nei `std::vector
 
 Galime pastebėti, kai pildėme šiuos konteinerius 100000000 elementais, abudu konteineriai lygiai persiskyrė atmintį po 27 kartus.
 
+# Konteinerių `Vector` ir `std::vector` greičio analizė
+## studentai100000.txt
+| Konteineris |         Darbas                            | Laikas         |
+|-------------|-------------------------------------------|----------------|
+|`Vector`     |Laikas, per kuri nuskaite teksta           | 0.0380181 s.   |
+|             |Studentu skirstymo i dvi grupes laikas     | 0.0047277 s.   |
+|             |Studentu rusiavimo didejimo tvarka laikas  | 0.593777 s.    |
+|`std::vector`|Laikas, per kuri nuskaite teksta           | 0.0380181 s.   |
+|             |Studentu skirstymo i dvi grupes laikas     | 0.0047277 s.   |
+|             |Studentu rusiavimo didejimo tvarka laikas  | 0.593777 s.    |
+
+## studentai1000000.txt
+| Konteineris |         Darbas                            | Laikas         |
+|-------------|-------------------------------------------|----------------|
+| `Vector`    |Laikas, per kuri nuskaite teksta           | 0.0380181 s.   |
+|             |Studentu skirstymo i dvi grupes laikas     | 0.0047277 s.   |
+|             |Studentu rusiavimo didejimo tvarka laikas  | 0.593777 s.    |
+|`std::vector`|Laikas, per kuri nuskaite teksta           | 0.0380181 s.   |
+|             |Studentu skirstymo i dvi grupes laikas     | 0.0047277 s.   |
+|             |Studentu rusiavimo didejimo tvarka laikas  | 0.593777 s.    |
+
+## studentai10000000.txt
+| Konteineris |         Darbas                            | Laikas         |
+|-------------|-------------------------------------------|----------------|
+|`Vector`     |Laikas, per kuri nuskaite teksta           | 0.0380181 s.   |
+|             |Studentu skirstymo i dvi grupes laikas     | 0.0047277 s.   |
+|             |Studentu rusiavimo didejimo tvarka laikas  | 0.593777 s.    |
+|`std::vector`|Laikas, per kuri nuskaite teksta           | 0.0380181 s.   |
+|             |Studentu skirstymo i dvi grupes laikas     | 0.0047277 s.   |
+|             |Studentu rusiavimo didejimo tvarka laikas  | 0.593777 s.    |
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 # Dokumentacija su HTML formatu
