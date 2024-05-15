@@ -1,7 +1,87 @@
 # OOP
-## V2.0
-Pateiktas kodas yra C++ programa studentų informacijos valdymui. Ji apima funkcijas tokias kaip ivesti studentų duomenis, skaičiuoti vidurkius ir medianas bei rodyti rezultatus. Buvo sukurti `Unit Testai` naudodami C++ Unit testų framework'ą: `Google Test`. Šie testai tikrina svarbias programos funkcijas, konstruktorius, tokiu būdu užtikrinant, kad jos veikia kaip tikimasi. Testai galėjo būti įdiegti, jog padėtų identifikuoti ir ištaisyti potencialias klaidas.
+## V3.0
+Pateiktas kodas yra C++ programa studentų informacijos valdymui. Ji apima funkcijas tokias kaip ivesti studentų duomenis, skaičiuoti vidurkius ir medianas bei rodyti rezultatus. Ši klasė buvo sukurta kaip alternatyva `std::vector` konteineriui, kuri suteikia pilnavertį funkcionalumą. Taip pat leidžia saugoti ir tvarkyti duomenis dinamiškai, neprisirišant prie fiksuoto dydžio.
 
+
+# Pasirinktų funkcijų ištirimas
+Šis ištirimas yra skritas tam, kad pasitikrinti, ar sukurtos funkcijos veikia taip, kaip ir su konteineriu `std::vector`. Norint tą atlikti, pirmiausia reikėjo apsilankyti skirtoje dėstytojo svetainėje apie `std::vector`: https://en.cppreference.com/w/cpp/container/vector Apsilankius šioje svetainėje, galime pastebėti, kad yra nemažai pavyzdžių su funkcijomis. Dėl šios priežasties aš sukūriau panašias funkcijas, naudodamas savo `Vector` konteinerį bei lyginau rezultatus iš anksčiau minėtos svetainės.
+## Operatoriai
+![paveikslas](https://github.com/Pijus-B/3-uzduotis/assets/90143621/aa64ca1d-6db6-47c8-b5f8-723df8166568)
+
+**Norimas rezultatas:**
+```
+pirmas ir antras nera lygus
+pirmas yra mazesnis uz antra
+pirmas yra mazesnis arba lygus antram
+```
+**Gautas rezultatas:**
+```
+pirmas ir antras nera lygus
+pirmas yra mazesnis uz antra
+pirmas yra mazesnis arba lygus antram
+```
+## Resize()
+![resize](https://github.com/Pijus-B/3-uzduotis/assets/90143621/70146f94-54d1-47c3-85c4-2426290e95dc)
+
+**Norimas rezultatas:**
+```
+vectorr susideda is: 1 2 3 4 5 100 100 0 0 0 0
+```
+**Gautas rezultatas:**
+```
+vectorr susideda is: 1 2 3 4 5 100 100 0 0 0 0
+```
+
+## Erase()
+![paveikslas](https://github.com/Pijus-B/3-uzduotis/assets/90143621/49443bf0-805e-4404-983d-59cddc15ce7f)
+
+**Norimas rezultatas:**
+```
+vectorr susideda is: 4 5 7 8 9 10
+```
+**Gautas rezultatas:**
+```
+vectorr susideda is: 4 5 7 8 9 10
+```
+## Begin()
+![paveikslas](https://github.com/Pijus-B/3-uzduotis/assets/90143621/f7a679de-b883-4289-80ed-e09ae669a08a)
+
+**Norimas rezultatas:**
+```
+vectorr susideda is: 1 2 3 4 5
+```
+**Gautas rezultatas:**
+```
+vectorr susideda is: 1 2 3 4 5
+```
+## Shrink_to_fit()
+![paveikslas](https://github.com/Pijus-B/3-uzduotis/assets/90143621/5912e20f-958a-41c3-83d4-22d157270df0)
+
+**Norimas rezultatas:**
+```
+1. vectorr talpa: 100
+2. vectorr talpa: 100
+3. vector talpa: 10
+```
+**Gautas rezultatas:**
+```
+1.vectorr talpa: 100
+2. vectorr talpa: 100
+3. vectorr talpa: 10
+```
+## Pop_back()
+![paveikslas](https://github.com/Pijus-B/3-uzduotis/assets/90143621/47ca728a-19b3-4407-9e48-787622430a7f)
+
+**Norimas rezultatas:**
+```
+vectorr elementu suma: 600
+```
+**Gautas rezultatas:**
+```
+vectorr elementu suma: 600
+```
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 # Dokumentacija su HTML formatu
 Šis formatas leidžia varototui draugišką sąsają naršant per projekto kodą, jo svarbiausias funkcijas, klases ir kitus svarbius likusius kodo elementus.
 ## Dokumentacijos su HTML formatu pasiekimas
