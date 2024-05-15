@@ -20,7 +20,7 @@ public:
 
     // MEMBER FUNCTIONS
     Vector() {create ();} // default konstruktorius
-    explicit Vector (size_type n, const T& t = T{}) {create (n, T);} // fill
+    explicit Vector (size_type n, const T& t = T{}) {create (n, t);} // fill
     Vector (const Vector& v) {create(v.begin(), v.end());} // copy konstruktorius
     template <class InputIterator>
     Vector (InputIterator first, InputIterator last) {create(first, last);} // range konstruktorius
@@ -64,7 +64,7 @@ public:
         }
     }
     T& operator[] (size_type n) {return dat[n];}
-    const T& operator [] (size_type) {const return dat[n];}
+    const T& operator [] (size_type n) const { return dat[n];}
     reference at (size_type n){
         if (n >= size() || n < 0){                                //operator[]
             throw std::out_of_range("Index Out of Range");
@@ -72,10 +72,10 @@ public:
         }
     }
     reference front(){
-        return dat[n];
+        return dat[0];
     };                                              //front
     const_reference front() const{
-        return dat[n];
+        return dat[0];
     }
     reference back(){
         return dat[size() - 1];
@@ -135,7 +135,7 @@ public:
     }
     //modifiers
     void clear () noexcept {uncreate();} // clear
-    iterator insert (iterator position, size_type n, const value_type& val){return insert(position, 1, val);} //insert
+    iterator insert (const_iterator position, const value_type& val){return insert(position, 1, val);} //insert
     iterator insert(iterator position, size_type n, const value_type& val) {
         if (position < begin() || position > end()) {
             throw std::out_of_range("Index out of range");
@@ -199,26 +199,26 @@ public:
         }
         
         // NON-MEMBER FUNCTIONS
-        bool operator= (const Vector <T>& other) const{
+        bool operator== (const Vector <T>& other) const{
             if (size() != other.size()){
                 return false;
             }
             return std::equal(begin(), end(), other.begin());
         }
         bool operator!= (const Vector <T>& other) const{
-            return !(this* == other);
+            return !(*this == other);
         }
         bool operator< (const Vector <T>& other) const{
-            return std::lexicographical_compare(begin(), end(), other.begin(), other.end())
+            return std::lexicographical_compare(begin(), end(), other.begin(), other.end());
         }
         bool operator<= (const Vector <T>& other) const{
-            return !(other < this*);
+            return !(other < *this);
         }
         bool operator> (const Vector <T>& other) const{
-            return std::lexicographical_compare(other.begin(), other.end(), begin(), end())
+            return std::lexicographical_compare(other.begin(), other.end(), begin(), end());
         }
         bool operator>= (const Vector <T>& other) const{
-            return !(other > this*);
+            return !(other > *this);
         }
         void swap (Vector<T>& x, Vector<T>& y) {
         std::swap(x,y);
@@ -229,12 +229,26 @@ private:
     iterator limit;
     std::allocator<T> alloc;
 
-    void create() { dat = avail = limit = nullptr; }
-    void create(size_type n, const T& val) {
-        dat = alloc.allocate(n);
-        limit = avail = dat + n;
-        std::uninitialized_fill(dat, limit, val);
-    }
+     void create() {dat = avail = limit = nullptr;}
+        void create (size_type n, const T& val) {
+            dat = alloc.allocate(n);
+            limit = avail = dat + n;
+            std::uninitialized_fill(dat, limit, val);
+        }
+        void create(const_iterator i, const_iterator j) {
+            dat = alloc.allocate(j - i);
+            limit = avail = std::uninitialized_copy(i, j, dat);
+        }
+        void uncreate(){
+            if (dat) {
+                iterator it = avail;
+                while (it != dat) {
+                    alloc.destroy(--it);
+                }
+            alloc.deallocate(dat, limit - dat);
+            }
+            dat = limit = avail = nullptr;
+        }
     void grow(size_type new_capacity = 1) {
         size_type new_size = std::max(new_capacity, 2 * capacity());
         iterator new_data = alloc.allocate(new_size);
