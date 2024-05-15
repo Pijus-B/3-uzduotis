@@ -56,6 +56,39 @@ class Vector{
         uncreate ();
         create (il);
     }
+    //element access
+    const_reference at (size_type n) const {
+        if (n >= size() || n < 0){
+            throw std::out_of_range("Index Out of Range"); // at
+            return dat[n];
+        }
+    }
+    T& operator[] (size_type n) {return dat[n];}
+    const T& operator [] (size_type) {const return dat[n];}
+    reference at (size_type n){
+        if (n >= size() || n < 0){                                //operator[]
+            throw std::out_of_range("Index Out of Range");
+            return dat[n];
+        }
+    }
+    reference front(){
+        return dat[n];
+    };                                              //front
+    const_reference front() const{
+        return dat[n];
+    }
+    reference back(){
+        return dat[size() - 1];
+    }                                                //back
+    const_reference back() const{
+        return dat[size() - 1];
+    }
+    value_type* data() noexcept{
+        return dat;                                  //data
+    }
+    const value_type* data() const noexcept{
+        return dat;
+    }
 };
 
 
