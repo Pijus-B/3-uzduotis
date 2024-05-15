@@ -199,28 +199,28 @@ int main (){
 
                 cout << "3. Tikriname erase()" << endl;
                 {
-                    Vector<int> myvector;
+                    Vector<int> vectorr;
 
-                    for (int i = 1; i <= 10; i++) myvector.push_back(i);
+                    for (int i = 1; i <= 10; i++) vectorr.push_back(i);
 
-                    myvector.erase (myvector.begin() + 5);
+                    vectorr.erase (vectorr.begin() + 5);
 
-                    myvector.erase (myvector.begin(), myvector.begin() + 3);
+                    vectorr.erase (vectorr.begin(), vectorr.begin() + 3);
 
                     cout << "vectorr susideda is:";
-                    for (unsigned i=0; i<myvector.size(); ++i)
-                        cout << ' ' << myvector[i];
+                    for (unsigned i=0; i<vectorr.size(); ++i)
+                        cout << ' ' << vectorr[i];
                     cout << endl;
 
                     }
 
                 cout << "4. Tikriname begin()" << endl;
                 {
-                    Vector<int> myvector;
-                    for (int i = 1; i <= 5; i++) myvector.push_back(i);
+                    Vector<int> vectorr;
+                    for (int i = 1; i <= 5; i++) vectorr.push_back(i);
 
                     cout << "vectorr susideda is:";
-                    for (Vector<int>::iterator it = myvector.begin() ; it != myvector.end(); ++it)
+                    for (Vector<int>::iterator it = vectorr.begin() ; it != vectorr.end(); ++it)
                         cout << ' ' << *it;
                     cout << endl;
 
@@ -228,29 +228,29 @@ int main (){
 
                 cout << "5. Tikriname shrink_to_fit()" << endl;
                 {
-                    Vector<int> myvector (100);
-                    cout << "1. capacity of myvector: " << myvector.capacity() << endl;
+                    Vector<int> vectorr (100);
+                    cout << "1. vectorr talpa: " << vectorr.capacity() << endl;
 
-                    myvector.resize(10);
-                    cout << "2. capacity of myvector: " << myvector.capacity() << endl;
+                    vectorr.resize(10);
+                    cout << "2. vectorr talpa: " << vectorr.capacity() << endl;
 
-                    myvector.shrink_to_fit();
-                    cout << "3. capacity of myvector: " << myvector.capacity() << endl;
+                    vectorr.shrink_to_fit();
+                    cout << "3. vectorr talpa: " << vectorr.capacity() << endl;
 
                 }
 
                 cout << "6. Tikriname pop_back()" << endl;
                 {
-                    Vector<int> myvector;
+                    Vector<int> vectorr;
                     int sum (0);
-                    myvector.push_back (100);
-                    myvector.push_back (200);
-                    myvector.push_back (300);
+                    vectorr.push_back (100);
+                    vectorr.push_back (200);
+                    vectorr.push_back (300);
 
-                    while (!myvector.empty())
+                    while (!vectorr.empty())
                     {
-                        sum += myvector.back();
-                        myvector.pop_back();
+                        sum += vectorr.back();
+                        vectorr.pop_back();
                     }
 
                     cout << "vectorr elementu suma: " << sum << endl;
