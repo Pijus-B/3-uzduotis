@@ -1,5 +1,5 @@
 #include "studentas.h"
-
+#include "vector.h"
 int main (){
 
     try {
@@ -24,7 +24,9 @@ int main (){
         cout << "6. Generuoti failus, surusiuoti bei padalinti juos i atskirus failus" << endl;
         cout << "7. Patikrinti Rule of Five" << endl;
         cout << "8. Patikrinti << ir >> " << endl;
-        cout << "9. Baigti programa" << endl;
+        cout << "9. Patikrinti testavima naujos klases" << endl;
+        cout << "10. Patikrinti spartos analize" << endl;
+        cout << "11. Baigti programa" << endl;
         cin >> pasirinkimas;
 
         switch (pasirinkimas){
@@ -162,6 +164,139 @@ int main (){
                 break;
             }
             case 9:
+            {
+               cout << "1. Tikriname operatorius" << endl;
+                {
+                    Vector<int> pirmas (100);
+                    Vector<int> antras (200);
+
+                    if (pirmas==antras) cout << "pirmas ir antras yra lygus" << endl;
+                    if (pirmas!=antras) cout << "pirmas ir antras nera lygus" << endl;
+                    if (pirmas<antras) cout << "pirmas yra mazesnis uz antra" << endl;
+                    if (pirmas>antras) cout << "pirmas yra didesnis uz antra" << endl;
+                    if (pirmas<=antras) cout << "pirmas yra mazesnis arba lygus antram" << endl;
+                    if (pirmas>=antras) cout << "pirmas yra didesnis arba lygus antram" << endl;
+
+                }
+
+                cout << "2. Tikriname resize()" << endl;
+                {
+                    Vector<int> vectorr;
+
+                    // set some initial content:
+                    for (int i=1; i < 10; i++) vectorr.push_back(i);
+
+                    vectorr.resize(5);
+                    vectorr.resize(8, 100);
+                    vectorr.resize(12);
+
+                    cout << "vectorr susideda is: ";
+                    for (int i = 0; i < vectorr.size();i++)
+                        cout << ' ' << vectorr[i];
+                    cout << endl;
+
+                }
+
+                cout << "3. Tikriname erase()" << endl;
+                {
+                    Vector<int> myvector;
+
+                    for (int i = 1; i <= 10; i++) myvector.push_back(i);
+
+                    myvector.erase (myvector.begin() + 5);
+
+                    myvector.erase (myvector.begin(), myvector.begin() + 3);
+
+                    cout << "vectorr susideda is:";
+                    for (unsigned i=0; i<myvector.size(); ++i)
+                        cout << ' ' << myvector[i];
+                    cout << endl;
+
+                    }
+
+                cout << "4. Tikriname begin()" << endl;
+                {
+                    Vector<int> myvector;
+                    for (int i = 1; i <= 5; i++) myvector.push_back(i);
+
+                    cout << "vectorr susideda is:";
+                    for (Vector<int>::iterator it = myvector.begin() ; it != myvector.end(); ++it)
+                        cout << ' ' << *it;
+                    cout << endl;
+
+                }
+
+                cout << "5. Tikriname shrink_to_fit()" << endl;
+                {
+                    Vector<int> myvector (100);
+                    cout << "1. capacity of myvector: " << myvector.capacity() << endl;
+
+                    myvector.resize(10);
+                    cout << "2. capacity of myvector: " << myvector.capacity() << endl;
+
+                    myvector.shrink_to_fit();
+                    cout << "3. capacity of myvector: " << myvector.capacity() << endl;
+
+                }
+
+                cout << "6. Tikriname pop_back()" << endl;
+                {
+                    Vector<int> myvector;
+                    int sum (0);
+                    myvector.push_back (100);
+                    myvector.push_back (200);
+                    myvector.push_back (300);
+
+                    while (!myvector.empty())
+                    {
+                        sum += myvector.back();
+                        myvector.pop_back();
+                    }
+
+                    cout << "vectorr elementu suma: " << sum << endl;
+
+                }
+                break;
+
+            }
+            case 10:
+            {
+                auto start_pildyti = chrono::steady_clock::now();
+                unsigned int sz = 100000000;  // 10000, 100000, 1000000, 10000000, 100000000
+                std::vector<int> v1;
+                int std_vector_perskirstymas = 0;
+                for (int i = 1; i <= sz; ++i) {
+                    v1.push_back(i);
+                    if (v1.capacity() == v1.size()) {
+                        ++std_vector_perskirstymas;
+                    }
+                }
+                auto end_pildyti = chrono::steady_clock::now();
+                auto skirtumas_pildyti = chrono::duration<double> (end_pildyti - start_pildyti).count();   
+                //cout << "Tusciu vektoriu su std::vector uzpildymas su " << sz << " eilutemis uzeme: " << setprecision(8) 
+                //<< skirtumas_pildyti << "s" << endl; 
+                cout << "Atmintis buvo perskirstyta " << std_vector_perskirstymas << " kartu su std::vector" << endl;
+
+                auto start_pildyti_Vector = chrono::steady_clock::now();
+                Vector<int> v2;
+                int vector_perskirstymas = 0;
+                for (int i = 1; i <= sz; ++i) {
+                    v2.push_back(i);
+                    if (v2.capacity() == v2.size()) {
+                        ++vector_perskirstymas;
+                    }
+                }
+                
+                auto end_pildyti_Vector = chrono::steady_clock::now();
+                auto skirtumas_pildyti_Vector = chrono::duration<double> (end_pildyti_Vector - start_pildyti_Vector).count();   
+                //cout << "Tusciu vektoriu su Vector uzpildymas su " << sz << " eilutemis uzeme: " << setprecision(8) 
+                //<< skirtumas_pildyti_Vector << "s" << endl; 
+                cout << "Atmintis buvo perskirstyta " << vector_perskirstymas << " kartu su Vector" << endl;
+
+                break;
+
+            }
+            case 11:
             {
                cout << "Programos pabaiga" << endl;
                 return 0;
