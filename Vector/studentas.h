@@ -14,6 +14,7 @@
 #include <chrono>
 #include <assert.h>
 #include <cassert>
+#include "vector.h"
 using namespace std;
 
 const int MAX_ND_SIZE = 500;
@@ -36,7 +37,7 @@ class Zmogus {
 
 class Studentas : public Zmogus {
 private:
-    vector <int> nd_;
+    Vector <int> nd_;
     int egz_;
     double balas_;
     double vid_;
@@ -45,7 +46,7 @@ private:
 public:
     Studentas() : egz_(0), balas_(0), vid_(0), mediana_(0) {} // default konstruktorius
 
-    Studentas(const string& vardas, const string& pavarde, const vector<int>& nd, int egz, double balas, double vid, double mediana) // konstruktorius
+    Studentas(const string& vardas, const string& pavarde, const Vector<int>& nd, int egz, double balas, double vid, double mediana) // konstruktorius
         : Zmogus(vardas, pavarde),  nd_(nd), egz_(egz), balas_(balas), vid_(vid), mediana_(mediana) {}
     ~Studentas() {nd_.clear();} // destruktorius
 
@@ -82,7 +83,7 @@ public:
        other.vid_ = 0;
        other.mediana_ = 0;
        
-       cout << "Move konstruktorius suveike" << endl;
+       //cout << "Move konstruktorius suveike" << endl;
     };
 
     Studentas& operator=(Studentas&& other) noexcept { // move assignment operatorius
@@ -105,14 +106,14 @@ public:
     // Getter and setter functions
     inline string getVardas() const override{return vardas_;}
     inline string getPavarde() const override {return pavarde_;}
-    inline vector<int>& getNd() { return nd_; }
+    inline Vector<int>& getNd() { return nd_; }
     inline int getEgz() const { return egz_; }
     inline double getBalas() const { return balas_; }
     inline double getVid() const { return vid_; }
     inline double getMediana() const { return mediana_; }
     inline void setVardas(const string& vardas) { vardas_ = vardas; }
     inline void setPavarde(const string& pavarde) { pavarde_ = pavarde; }
-    inline void setNd(const vector<int>& nd) { nd_ = nd; }
+    inline void setNd(const Vector<int>& nd) { nd_ = nd; }
     inline void setEgz(const int& egz) { egz_ = egz; }
     inline void setBalas(const double& balas) { balas_ = balas; }
     inline void setVid(const double& vid) { vid_ = vid; }
@@ -150,20 +151,20 @@ public:
     }
 };
 
-void skaitymas(vector<Studentas>&, int);
-void skaitymasTeksto(vector<Studentas>&);
+void skaitymas(Vector<Studentas>&, int);
+void skaitymasTeksto(Vector<Studentas>&);
 bool pagalVarda(const Studentas&, const Studentas&);
 bool pagalPavarde(const Studentas&, const Studentas&);
 bool pagalVidurki(const Studentas&, const Studentas&);
 bool pagalMediana(const Studentas&, const Studentas&);
-void spausdinti(const vector<Studentas>&);
-void spausdintiTeksto(const vector<Studentas>&);
-void skaiciavimas(vector<Studentas>&);
-void padalintiStudentus(vector<Studentas>&);
-void generavimasPazymiu(vector<Studentas>&, int n);
-void generavimasPazymiuCase2(vector<Studentas>&);
-void generavimasStudentu(vector<Studentas>&, int);
-void generavimasFailo(vector<Studentas>&, int);
+void spausdinti(const Vector<Studentas>&);
+void spausdintiTeksto(const Vector<Studentas>&);
+void skaiciavimas(Vector<Studentas>&);
+void padalintiStudentus(Vector<Studentas>&);
+void generavimasPazymiu(Vector<Studentas>&, int n);
+void generavimasPazymiuCase2(Vector<Studentas>&);
+void generavimasStudentu(Vector<Studentas>&, int);
+void generavimasFailo(Vector<Studentas>&, int);
 bool isValidName(const string&);
 void test_constructor ();
 void test_copy_constructor ();

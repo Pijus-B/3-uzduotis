@@ -12,7 +12,7 @@ int main (){
             throw runtime_error ("Nepavyko atidaryti rezultatu failo");
         }
     
-    vector <Studentas> A;
+    Vector <Studentas> A;
     int n; int pasirinkimas;
     while (true){
         cout << "Pasirinkite norima veiksma: " << endl;
@@ -181,46 +181,42 @@ int main (){
 
                 cout << "2. Tikriname resize()" << endl;
                 {
-                    Vector<int> vectorr;
+                    Vector<int> Vectorr;
 
                     // set some initial content:
-                    for (int i=1; i < 10; i++) vectorr.push_back(i);
+                    for (int i=1; i < 10; i++) Vectorr.push_back(i);
 
-                    vectorr.resize(5);
-                    vectorr.resize(8, 100);
-                    vectorr.resize(12);
+                    Vectorr.resize(5);
+                    Vectorr.resize(8, 100);
+                    Vectorr.resize(12);
 
-                    cout << "vectorr susideda is: ";
-                    for (int i = 0; i < vectorr.size();i++)
-                        cout << ' ' << vectorr[i];
+                    cout << "Vectorr susideda is: ";
+                    for (int i = 0; i < Vectorr.size();i++)
+                        cout << ' ' << Vectorr[i];
                     cout << endl;
 
                 }
 
                 cout << "3. Tikriname erase()" << endl;
                 {
-                    Vector<int> vectorr;
+                    Vector<int> Vectorr;
 
-                    for (int i = 1; i <= 10; i++) vectorr.push_back(i);
-
-                    vectorr.erase (vectorr.begin() + 5);
-
-                    vectorr.erase (vectorr.begin(), vectorr.begin() + 3);
-
-                    cout << "vectorr susideda is:";
-                    for (unsigned i=0; i<vectorr.size(); ++i)
-                        cout << ' ' << vectorr[i];
+                    for (int i = 1; i <= 10; i++) Vectorr.push_back(i);
+                    Vectorr.erase (Vectorr.begin() + 5);
+                    Vectorr.erase (Vectorr.begin(), Vectorr.begin() + 3);
+                    cout << "Vectorr susideda is:";
+                    for (auto elem : Vectorr)
+                        cout << ' ' << elem;
                     cout << endl;
 
                     }
 
                 cout << "4. Tikriname begin()" << endl;
                 {
-                    Vector<int> vectorr;
-                    for (int i = 1; i <= 5; i++) vectorr.push_back(i);
-
-                    cout << "vectorr susideda is:";
-                    for (Vector<int>::iterator it = vectorr.begin() ; it != vectorr.end(); ++it)
+                    Vector<int> Vectorr;
+                    for (int i = 1; i <= 5; i++) Vectorr.push_back(i);
+                    cout << "Vectorr susideda is:";
+                    for (Vector<int>::iterator it = Vectorr.begin() ; it != Vectorr.end(); ++it)
                         cout << ' ' << *it;
                     cout << endl;
 
@@ -228,33 +224,30 @@ int main (){
 
                 cout << "5. Tikriname shrink_to_fit()" << endl;
                 {
-                    Vector<int> vectorr (100);
-                    cout << "1. vectorr talpa: " << vectorr.capacity() << endl;
-
-                    vectorr.resize(10);
-                    cout << "2. vectorr talpa: " << vectorr.capacity() << endl;
-
-                    vectorr.shrink_to_fit();
-                    cout << "3. vectorr talpa: " << vectorr.capacity() << endl;
+                    Vector<int> Vectorr (100);
+                    cout << "1. Vectorr talpa: " << Vectorr.capacity() << endl;
+                    Vectorr.resize(10);
+                    cout << "2. Vectorr talpa: " << Vectorr.capacity() << endl;
+                    Vectorr.shrink_to_fit();
+                    cout << "3. Vectorr talpa: " << Vectorr.capacity() << endl;
 
                 }
 
                 cout << "6. Tikriname pop_back()" << endl;
                 {
-                    Vector<int> vectorr;
+                    Vector<int> Vectorr;
                     int sum (0);
-                    vectorr.push_back (100);
-                    vectorr.push_back (200);
-                    vectorr.push_back (300);
+                    Vectorr.push_back (100);
+                    Vectorr.push_back (200);
+                    Vectorr.push_back (300);
 
-                    while (!vectorr.empty())
+                    while (!Vectorr.empty())
                     {
-                        sum += vectorr.back();
-                        vectorr.pop_back();
+                        sum += Vectorr.back();
+                        Vectorr.pop_back();
                     }
 
-                    cout << "vectorr elementu suma: " << sum << endl;
-
+                    cout << "Vectorr elementu suma: " << sum << endl;
                 }
                 break;
 
@@ -262,35 +255,33 @@ int main (){
             case 10:
             {
                auto start_pildyti = chrono::steady_clock::now();
-               unsigned int sz = 10000; //100000, 1000000, 10000000, 100000000
+               unsigned int sz = 100000000; //100000, 1000000, 10000000, 100000000
                std::vector <int> v1;
-               int std_vector_perskirstymas = 0;
+               int std_Vector_perskirstymas = 0;
                for (int i = 1; i <= sz; ++i){
                 v1.push_back(i);
                 if (v1.capacity() == v1.size()){
-                    ++std_vector_perskirstymas;
+                    ++std_Vector_perskirstymas;
                 }
                }
                auto end_pildyti = chrono::steady_clock::now();
                auto skirtumas_pildyti = chrono::duration<double>(end_pildyti - start_pildyti).count();
-               //cout << "Tusciu vektoriu su std::vector uzpildymas su: " << sz << " eilutemis uzeme: " << fixed << setprecision(8)
-              // << skirtumas_pildyti << "s" << endl;
-               cout << "Atmintis buvo perskirstyta " << std_vector_perskirstymas << " kartu su std::vector" << endl;
+               //cout << "Tusciu vektoriu su std::Vector uzpildymas su: " << sz << " eilutemis uzeme: " << fixed << setprecision(8) << skirtumas_pildyti << "s" << endl;
+               cout << "Atmintis buvo perskirstyta " << std_Vector_perskirstymas << " kartu su std::Vector" << endl;
 
-               auto start_pildyti_vector = chrono::steady_clock::now();
+               auto start_pildyti_Vector = chrono::steady_clock::now();
                Vector <int> v2;
-               int vector_perskirstymas = 0;
+               int Vector_perskirstymas = 0;
                for (int i = 1; i <= sz; ++i){
                 v2.push_back(i);
                 if (v2.capacity() == v2.size()){
-                    ++vector_perskirstymas;
+                    ++Vector_perskirstymas;
                 }
                }
-               auto end_pildyti_vector = chrono::steady_clock::now();
-               auto skirtumas_pildyti_vector = chrono::duration<double>(end_pildyti_vector - start_pildyti_vector).count();
-               //cout << "Tusciu vectoriu su Vector uzpildymas su " << sz << " eilutemis uzeme: " << fixed << setprecision(8) 
-               // << skirtumas_pildyti_vector << "s" << endl;
-               cout << "Atmintis buvo perskirstyta " << vector_perskirstymas << " kartu su Vector" << endl;
+               auto end_pildyti_Vector = chrono::steady_clock::now();
+               auto skirtumas_pildyti_Vector = chrono::duration<double>(end_pildyti_Vector - start_pildyti_Vector).count();
+               //cout << "Tusciu Vectoriu su Vector uzpildymas su " << sz << " eilutemis uzeme: " << fixed << setprecision(8) << skirtumas_pildyti_Vector << "s" << endl;
+               cout << "Atmintis buvo perskirstyta " << Vector_perskirstymas << " kartu su Vector" << endl;
                 break;
 
             }

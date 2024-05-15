@@ -28,6 +28,9 @@ public:
     Vector (const std::initializer_list <T> il) {create(il.begin(), il.end());} // initializer list konstruktorius
     ~Vector(){uncreate();} // destruktorius
     //operator=
+    operator std::vector <T> () const{
+         return std::vector<T>(dat, avail);
+    }
     Vector& operator = (const Vector& other) {
         if(this != &other){
             uncreate();
@@ -52,7 +55,7 @@ public:
         uncreate();
         create(n, val);
     }
-    void assign (initializer_list <value_type> il){
+    void assign (std::initializer_list <value_type> il){
         uncreate ();
         create (il);
     }
@@ -98,19 +101,23 @@ public:
     size_type size() const{return avail-dat;}
     size_type max_size() const {return std::numeric_limits<size_type>::max();}    //max size
     void resize(size_type sz){
-        if (sz < size()){
+        if (sz < size()) {
             iterator it = dat + sz;
-            while (it != avail){
+            while (it != avail) {
                 alloc.destroy(it++);
             }
-            avail = dat + sz;
-        }
-        else if (sz > capacity()){
+                avail = dat + sz;
+            }
+        else if (sz > capacity()) {
             grow(sz);
             std::uninitialized_fill(avail, dat + sz, value_type());
             avail = dat + sz;
+            }
+        else if (sz > size()) {
+            std::uninitialized_fill(avail, dat + sz, value_type());
+            avail = dat + sz;
+            }
         }
-    }
      void resize(size_type sz, const value_type& value) {
         if (sz > capacity()) {
             grow(sz);

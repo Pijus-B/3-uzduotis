@@ -1,4 +1,5 @@
 #include "studentas.h"
+#include "vector.h"
 using namespace std;
 
 bool isValidName(const string &name)
@@ -24,7 +25,7 @@ bool pagalVidurki(const Studentas & A, const Studentas & B) {
 bool pagalMediana(const Studentas & A, const Studentas & B) {
     return A.getMediana() < B.getMediana();
 }
-void skaitymas (vector <Studentas> & A, int n)
+void skaitymas (Vector <Studentas> & A, int n)
 { 
     cin >> n;
       for (int i = 0; i < n; i++)
@@ -48,7 +49,7 @@ void skaitymas (vector <Studentas> & A, int n)
         student.setEgz(egz);
         cout << "Iveskite namu darbu tarpinius rezultatus (baigti ivesdami -1)" << endl;
         int nd;
-        vector <int> nds;
+        Vector <int> nds;
         while (cin >> nd && nd != -1)
         {
             nds.push_back(nd);
@@ -57,7 +58,7 @@ void skaitymas (vector <Studentas> & A, int n)
         A.push_back(student);
     }
 }
-void skaitymasTeksto (vector <Studentas> & A)
+void skaitymasTeksto (Vector <Studentas> & A)
 {
     cout << "Pasirinkite norima faila: " << endl;
     cout << "1. studentai1000.txt" << endl;
@@ -107,7 +108,7 @@ void skaitymasTeksto (vector <Studentas> & A)
         student.setVardas(vardas);
         student.setPavarde(pavarde);
         int paz;
-        vector <int> nds;
+        Vector <int> nds;
         while (ss >> paz){
             nds.push_back(paz);
         }
@@ -122,7 +123,7 @@ void skaitymasTeksto (vector <Studentas> & A)
     fd.close();
 
 }
-void skaiciavimas (vector <Studentas>& A)
+void skaiciavimas (Vector <Studentas>& A)
 { 
    for (auto& student : A)
     {
@@ -150,9 +151,9 @@ void skaiciavimas (vector <Studentas>& A)
         }
     }
 }
-void padalintiStudentus(vector <Studentas> & A){
-    vector<Studentas> vargsiukai;
-    vector<Studentas> kietiakiai;
+void padalintiStudentus(Vector <Studentas> & A){
+    Vector<Studentas> vargsiukai;
+    Vector<Studentas> kietiakiai;
     cout << "Pasirinkite norima strategija: " << endl;
     cout << "1 strategija " << endl;
     cout << "2 strategija " << endl;
@@ -255,7 +256,7 @@ void padalintiStudentus(vector <Studentas> & A){
     cout << "Studentu rusiavimo laikas: " << trukme_rusiavimas << " sekundes" << endl;
     cout << "Surusiuotu studentu isvedimas: " << trukme_isvedimas << " sekundes" << endl;
 }
-void spausdinti (const vector <Studentas>& A)
+void spausdinti (const Vector <Studentas>& A)
 {
     cout << left << setw(10) << "Pavarde " << setw(15) << "Vardas " << setw(15) << "Galutinis (Vid.) " << " " << " / Galutinis (Med.)" << endl;
     cout << "----------------------------------------------------" << endl;
@@ -263,7 +264,7 @@ void spausdinti (const vector <Studentas>& A)
     cout << left << setw(10) << student.getVardas() << setw(15) << student.getPavarde() << fixed << setprecision(2) << setw(15) << student.getBalas() << setw(10) << student.getMediana() << endl;
     }
 }
-void spausdintiTeksto(const vector <Studentas>& A)
+void spausdintiTeksto(const Vector <Studentas>& A)
 {
     ofstream fr ("kursiokai.txt");
     fr << left << setw(20) << "Pavarde " << setw(25) << "Vardas " << setw(20) << "Galutinis (Vid.) " << "/ " << " Galutinis (Med.)" << endl;
@@ -273,14 +274,14 @@ void spausdintiTeksto(const vector <Studentas>& A)
     }
     fr.close();
 }
-void generavimasPazymiu(vector<Studentas>& A, int n2) {
+void generavimasPazymiu(Vector<Studentas>& A, int n2) {
     srand(time(0));
     A.clear();
     for (int i = 0; i < n2; i++)
     {
         Studentas student;
         int nd_count = rand() % (MAX_ND_SIZE + 1);
-        vector<int> nds;
+        Vector<int> nds;
         for (int j = 0; j < nd_count; j++)
         {
             nds.push_back(rand() % 11);
@@ -290,11 +291,11 @@ void generavimasPazymiu(vector<Studentas>& A, int n2) {
         A.push_back(student);
     }
 }
-void generavimasPazymiuCase2 (vector <Studentas> & A)
+void generavimasPazymiuCase2 (Vector <Studentas> & A)
 {
     srand(time(0));
     for (auto& student : A){
-        vector<int> nds;
+        Vector<int> nds;
         int nd_count = rand() % (MAX_ND_SIZE + 1);
         for (int j = 0; j < nd_count; j++){
             nds.push_back(rand() % 11);
@@ -303,7 +304,7 @@ void generavimasPazymiuCase2 (vector <Studentas> & A)
         student.setEgz(rand() % 11);
     }
 }
-void generavimasStudentu(vector<Studentas>& A, int n) {
+void generavimasStudentu(Vector<Studentas>& A, int n) {
    
     srand(time(0));
 
@@ -350,7 +351,7 @@ void generavimasFailo (int kiekis)
 }
 void test_constructor ()
 {
-    vector <int> nd = {95};
+    Vector <int> nd = {95};
     Studentas student ("Tomas", "Tedis", nd, 88.0, 90.5, 92.0, 91.5);
     assert (student.getVardas() == "Tomas");
     assert (student.getPavarde() == "Tedis");
@@ -363,7 +364,7 @@ void test_constructor ()
 }
 void test_copy_constructor ()
 {
-    vector <int> nd = {90};
+    Vector <int> nd = {90};
     Studentas originalas ("Egle", "Lape", nd, 92, 91.0, 91.5, 90.5);
     Studentas copy = originalas;
     assert (copy.getVardas() == "Egle");
@@ -377,7 +378,7 @@ void test_copy_constructor ()
 }
 void test_move_constructor ()
 {
-    vector <int> nd = {89};
+    Vector <int> nd = {89};
     Studentas originalas ("Akvile", "Aleksa", nd, 87, 88.0, 88.5, 87.5);
     cout << originalas << endl;
     Studentas moved = move (originalas);
@@ -389,7 +390,7 @@ void test_move_constructor ()
 }
 void test_copy_assignment ()
 {
-    vector <int> nd = {85};
+    Vector <int> nd = {85};
     Studentas originalas ("Bobas", "Jonaitis", nd, 84, 84.5, 85.5, 85.0);
     Studentas copy;
     copy = originalas;
@@ -404,7 +405,7 @@ void test_copy_assignment ()
 }
 void test_move_assignment ()
 {
-    vector <int> nd = {82};
+    Vector <int> nd = {82};
     Studentas originalas ("Marius", "Lelesius", nd, 80, 80.0, 82.5, 81.5);
     Studentas moved;
     moved = move (originalas);
