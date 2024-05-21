@@ -133,9 +133,16 @@ Galime pastebėti, kai pildėme šiuos konteinerius 100000000 elementais, abudu 
 |             |Studentu skirstymo i dvi grupes laikas     | 3.02888 s.     |
 |             |Studentu rusiavimo didejimo tvarka laikas  | 22.6922 s.     |
 
-
-
-
+# Setup File naudojimosi instrukcija
+## 1. Atsisiųsti diegimo failą
+- Atsisiųskite diegimo vykdomąjį failą `V3.0 Setup.exe` iš pateiktos nuorodos.
+## 2. Paleisti diegimo failą
+- Dukart spustelėkite atsisiųstą `V3.0 Setup.exe` failą, kad pradėtumėte diegimo procesą.
+## 3. Vadovautis programos nurodytomis instrukcijomis
+- Sekite ekrane pateiktas diegimo vedlio instrukcijas;
+- Pasirinkite diegimo katalogą ir kitas papildomas funkcijas, jei reikia.
+## 4. Užbaigti diegimą
+- Kai diegimas bus baigtas, spustelėkite "Finish" (Baigti), kad užbaigtumėte diegimą.
 
 
 
