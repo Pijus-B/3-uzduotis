@@ -4,7 +4,7 @@ Pateiktas kodas yra C++ programa studentų informacijos valdymui. Ji apima funkc
 
 
 # Pasirinktų funkcijų ištirimas
-Šis ištirimas yra skritas tam, kad pasitikrinti, ar sukurtos funkcijos veikia taip, kaip ir su konteineriu `std::vector`. Norint tą atlikti, pirmiausia reikėjo apsilankyti skirtoje dėstytojo svetainėje apie `std::vector`: https://en.cppreference.com/w/cpp/container/vector Apsilankius šioje svetainėje, galime pastebėti, kad yra nemažai pavyzdžių su funkcijomis. Dėl šios priežasties aš sukūriau panašias funkcijas, naudodamas savo `Vector` konteinerį bei lyginau rezultatus iš anksčiau minėtos svetainės.
+Šis ištirimas yra skritas tam, kad pasitikrinti, ar sukurtos funkcijos veikia taip, kaip ir su konteineriu `std::vector`. Norint tą atlikti, pirmiausia reikėjo apsilankyti skirtoje dėstytojo svetainėje apie `std::vector`: https://en.cppreference.com/w/cpp/container/vector Apsilankius šioje svetainėje, galime pastebėti, kad yra nemažai pavyzdžių su funkcijomis. Dėl šios priežasties aš sukūriau panašias funkcijas, naudodamas savo `Vector` konteinerį bei palyginau rezultatus iš anksčiau minėtos svetainės.
 ## Operatoriai
 ![paveikslas](https://github.com/Pijus-B/3-uzduotis/assets/90143621/aa64ca1d-6db6-47c8-b5f8-723df8166568)
 
